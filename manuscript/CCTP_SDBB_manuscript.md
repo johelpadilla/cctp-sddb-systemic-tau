@@ -3,7 +3,7 @@ title: "Context-Dependent Relational Reorganization of Heart Rate Dynamics Prece
 author: |
   Johel Padilla-Villanueva, DrPH  
   University of Puerto Rico, Medical Sciences Campus, San Juan, Puerto Rico  
-  ORCID: 0000-0002-5797-6931 · github.com/johelpadilla/systemictau
+  ORCID: 0000-0002-5797-6931 · github.com/johelpadilla/cctp-sddb-systemic-tau
 date: "July 2026"
 bibliography: references.bib
 link-citations: true
@@ -37,7 +37,7 @@ Sudden cardiac death from ventricular fibrillation (VF) remains difficult to ant
 
 Applied to $N=10$ high-quality records from the PhysioNet Sudden Cardiac Death Holter Database (SDDB; 23 records total), we find that $\Delta\tau_s$ and $\Delta\mathrm{excess3}$ are statistically extreme under phase-shuffle surrogates in the majority of cases and, crucially, maintain \textbf{sign concordance} (8/10 records) even when the direction is opposite to classical variance increase. Intermittent pacing and atrial fibrillation cases were retained after explicit quality flagging and did not abolish the signal. Two records with small effect sizes (47 and 50) showed discordant direction and are interpreted as borderline transitions. Light re-calibration of synthetic-derived thresholds ($\theta_3=0.08$, high-threshold $=0.65$, relative $\lambda$) is documented; the continuous excess3 metric remains primary.
 
-These results support a view of pre-VF transitions as \emph{context-dependent reorganizations of the relational structure of heart-rate dynamics}, rather than as a uniform loss of stability. The findings provide real-world physiological support for the Systemic Tau and RECD framework as tools capable of detecting relational reorganizations that precede critical transitions in noisy biological signals where classical univariate EWS fail or reverse. The pipeline is fully reproducible and immediately extensible to other Holter collections.
+These results support a view of pre-VF transitions as \emph{context-dependent reorganizations of the relational structure of heart-rate dynamics}, rather than as a uniform loss of stability. The findings provide real-world physiological support for the Systemic Tau and RECD framework as tools capable of detecting relational reorganizations that precede critical transitions in noisy biological signals where classical univariate EWS fail or reverse. The pipeline is fully reproducible (\url{https://github.com/johelpadilla/cctp-sddb-systemic-tau}) and immediately extensible to other Holter collections.
 
 \vspace{0.4em}
 \noindent\textbf{Keywords:} Systemic Tau; Discrete Extramental Clock (RECD); ordinal patterns; early-warning signals; ventricular fibrillation; heart-rate variability; network physiology; PhysioNet SDDB; critical transitions; surrogate testing.
@@ -195,7 +195,7 @@ On the same RR series we computed rolling variance and lag-1 autocorrelation as 
 
 ## 2.7 Software and reproducibility
 
-Analyses used Python 3 with NumPy/SciPy/Pandas/Matplotlib, WFDB, and `systemictau` [@Padilla2026software]. Batch orchestration, quality reporting, and figure generation are provided by project scripts (`run_cctp_batch.py`, `run_recd_on_rr.py`, `run_recd_weighted_on_rr.py`, `analyze_cctp_pilot.py`). Exact commands appear in Appendix A.
+Analyses used Python 3 with NumPy/SciPy/Pandas/Matplotlib, WFDB, and `systemictau` [@Padilla2026software]. Batch orchestration, quality reporting, nested RECD modules, and figure generation are provided in the public repository for this study [@Padilla2026CCTPcode] (`https://github.com/johelpadilla/cctp-sddb-systemic-tau`), including scripts `run_cctp_batch.py`, `run_recd_on_rr.py`, `run_recd_weighted_on_rr.py`, and `analyze_cctp_pilot.py`. Exact reproduction commands appear in Appendix A.
 
 # 3. Results
 
@@ -327,8 +327,8 @@ Natural extensions include (i) external validation on independent Holter VF coll
 # Data and Code Availability
 
 - \textbf{SDDB:} PhysioNet Sudden Cardiac Death Holter Database, DOI \href{https://doi.org/10.13026/C2W306}{10.13026/C2W306} [@PhysioNetSDDB; @Greenwald1986; @Goldberger2000].
-- \textbf{Systemic Tau software:} `systemictau` Python package and related releases [@Padilla2026software], \url{https://github.com/johelpadilla/systemictau}.
-- \textbf{Analysis code:} project scripts and batch outputs for this study (RR extraction, batch runner, RECD modules, figure generation) are available from the author upon reasonable request and will be released with the public code archive accompanying this work.
+- \textbf{Analysis code for this study (primary):} full pipeline (RR extraction, Systemic Tau, phase-shuffle surrogates, nested ordinal RECD / excess3, weighted RECD, batch orchestration), cleaned RR series for the $N=10$ cohort, results tables, and figures are publicly available at \url{https://github.com/johelpadilla/cctp-sddb-systemic-tau} [@Padilla2026CCTPcode].
+- \textbf{Systemic Tau core library:} `systemictau` Python package [@Padilla2026software], \url{https://github.com/johelpadilla/systemictau}.
 - \textbf{Theory:} prior Systemic Tau / RECD works and syntheses [@Padilla2025preprints; @Padilla2026synthesis; @Padilla2025chaotic].
 
 # Acknowledgments
@@ -354,10 +354,15 @@ This study analyzes exclusively de-identified, publicly available Holter recordi
 
 # Appendix A. Reproducibility commands
 
-```bash
-cd Investigaciones/Cardiac_CCTP_Pilot
+Public repository: \url{https://github.com/johelpadilla/cctp-sddb-systemic-tau}
 
-# Full batch with final parameters
+```bash
+git clone https://github.com/johelpadilla/cctp-sddb-systemic-tau.git
+cd cctp-sddb-systemic-tau
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+
+# Full batch with final paper parameters (N=10)
 python3 code/run_cctp_batch.py \
   --records 30,31,32,35,36,38,45,47,50,51 \
   --theta3 0.08 --high-thresh 0.65 --lambda-relative --force
@@ -410,4 +415,4 @@ The following materials accompany the main text:
 
 **S5. Borderline records 47 and 50.** Small absolute $\Delta\tau_s$ with non-concordant $\Delta\mathrm{excess3}$ are interpreted as indeterminate or borderline transitions rather than as definitive alerts.
 
-**S6. Software.** Analyses used `systemictau`, WFDB, and standard scientific Python libraries (NumPy, SciPy, Pandas, Matplotlib).
+**S6. Software and code archive.** Analyses used `systemictau`, WFDB, and standard scientific Python libraries (NumPy, SciPy, Pandas, Matplotlib). The complete study repository is at \url{https://github.com/johelpadilla/cctp-sddb-systemic-tau}.
