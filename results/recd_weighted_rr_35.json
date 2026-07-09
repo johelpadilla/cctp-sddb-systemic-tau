@@ -1,0 +1,83 @@
+{
+  "protocol": "CCTP v0.1 RECD weighted (alpha_mode=lambda from |\u03c4_s|)",
+  "record": "35",
+  "source": "SDDB Holter (same rr_*_clean.npz)",
+  "params": {
+    "m": 3,
+    "delay": 1,
+    "W_TAU": 101,
+    "w_phi": 101,
+    "stride": 5,
+    "theta3": 0.1,
+    "high_thresh": 1.75,
+    "alpha_mode": "lambda",
+    "beta1": 2.0,
+    "gamma2": 1.5,
+    "gamma3": 6.0,
+    "delta3": 2.0
+  },
+  "windows": {
+    "basal": [
+      6.0,
+      16.0
+    ],
+    "approach": [
+      20.999677777777777,
+      23.999677777777777
+    ]
+  },
+  "n_recd": 100739,
+  "mean_excess3": {
+    "basal": 0.3370053759698356,
+    "approach": 0.3405679382446145,
+    "delta": 0.003562562274778913,
+    "p_welch": 3.1615330769062365e-29
+  },
+  "high_level3_rate": {
+    "basal": 0.0,
+    "approach": 0.0,
+    "delta": 0.0,
+    "p_welch": null
+  },
+  "contrib": {
+    "contrib1": {
+      "basal": 0.1949905612597265,
+      "approach": 0.19254473899160912,
+      "delta": -0.002445822268117376,
+      "p_welch": null
+    },
+    "contrib2": {
+      "basal": 0.2530526267323542,
+      "approach": 0.2589069577485706,
+      "delta": 0.0058543310162164075,
+      "p_welch": null
+    },
+    "contrib3": {
+      "basal": 1.0,
+      "approach": 1.0,
+      "delta": 0.0,
+      "p_welch": null
+    }
+  },
+  "frac_contrib3": {
+    "basal": 0.7789313670217716,
+    "approach": 0.7779366579760896,
+    "delta": -0.0009947090456819963,
+    "p_welch": 0.6830855067692412
+  },
+  "mean_delta_recd": {
+    "basal": 1.4480431879920805,
+    "approach": 1.4514516967401798,
+    "delta": 0.0034085087480992815,
+    "p_welch": 0.5203880139262176
+  },
+  "mean_lambda": {
+    "basal": 0.0,
+    "approach": 0.0
+  },
+  "figures": [
+    "/Users/johelpadilla/grok-safe/Investigaciones/Cardiac_CCTP_Pilot/figures/35/18_recd_weighted_contribs.png",
+    "/Users/johelpadilla/grok-safe/Investigaciones/Cardiac_CCTP_Pilot/figures/35/19_recd_weighted_box.png"
+  ],
+  "timestamp": "2026-07-08T16:01:41.669010"
+}

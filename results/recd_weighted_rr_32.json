@@ -1,0 +1,83 @@
+{
+  "protocol": "CCTP v0.1 RECD weighted (alpha_mode=lambda from |\u03c4_s|)",
+  "record": "32",
+  "source": "SDDB Holter (same rr_*_clean.npz)",
+  "params": {
+    "m": 3,
+    "delay": 1,
+    "W_TAU": 101,
+    "w_phi": 101,
+    "stride": 5,
+    "theta3": 0.1,
+    "high_thresh": 1.75,
+    "alpha_mode": "lambda",
+    "beta1": 2.0,
+    "gamma2": 1.5,
+    "gamma3": 6.0,
+    "delta3": 2.0
+  },
+  "windows": {
+    "basal": [
+      6.754999999999999,
+      9.754999999999999
+    ],
+    "approach": [
+      13.754999999999999,
+      16.755
+    ]
+  },
+  "n_recd": 127197,
+  "mean_excess3": {
+    "basal": 0.31747079219235735,
+    "approach": 0.3086345363554552,
+    "delta": -0.008836255836902174,
+    "p_welch": 5.0730510060526026e-108
+  },
+  "high_level3_rate": {
+    "basal": 0.0,
+    "approach": 0.0,
+    "delta": 0.0,
+    "p_welch": null
+  },
+  "contrib": {
+    "contrib1": {
+      "basal": 0.13834487306297397,
+      "approach": 0.13382065571397553,
+      "delta": -0.004524217348998438,
+      "p_welch": null
+    },
+    "contrib2": {
+      "basal": 0.2683217936036927,
+      "approach": 0.27270753419700366,
+      "delta": 0.004385740593310983,
+      "p_welch": null
+    },
+    "contrib3": {
+      "basal": 1.0,
+      "approach": 1.0,
+      "delta": 0.0,
+      "p_welch": null
+    }
+  },
+  "frac_contrib3": {
+    "basal": 0.790423658078763,
+    "approach": 0.7896578636964107,
+    "delta": -0.0007657943823523583,
+    "p_welch": 0.784131526878925
+  },
+  "mean_delta_recd": {
+    "basal": 1.4066666666666665,
+    "approach": 1.4065281899109792,
+    "delta": -0.00013847675568734452,
+    "p_welch": 0.9802129819902483
+  },
+  "mean_lambda": {
+    "basal": 0.0,
+    "approach": 0.0
+  },
+  "figures": [
+    "/Users/johelpadilla/grok-safe/Investigaciones/Cardiac_CCTP_Pilot/figures/32/18_recd_weighted_contribs.png",
+    "/Users/johelpadilla/grok-safe/Investigaciones/Cardiac_CCTP_Pilot/figures/32/19_recd_weighted_box.png"
+  ],
+  "timestamp": "2026-07-08T16:52:00.837792"
+}

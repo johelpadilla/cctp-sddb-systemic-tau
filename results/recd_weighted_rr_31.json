@@ -1,0 +1,83 @@
+{
+  "protocol": "CCTP v0.1 RECD weighted (alpha_mode=lambda from |\u03c4_s|)",
+  "record": "31",
+  "source": "SDDB Holter (same rr_*_clean.npz)",
+  "params": {
+    "m": 3,
+    "delay": 1,
+    "W_TAU": 101,
+    "w_phi": 101,
+    "stride": 5,
+    "theta3": 0.1,
+    "high_thresh": 1.75,
+    "alpha_mode": "lambda",
+    "beta1": 2.0,
+    "gamma2": 1.5,
+    "gamma3": 6.0,
+    "delta3": 2.0
+  },
+  "windows": {
+    "basal": [
+      3.9663292100694445,
+      6.9663292100694445
+    ],
+    "approach": [
+      10.966329210069444,
+      13.966329210069444
+    ]
+  },
+  "n_recd": 63215,
+  "mean_excess3": {
+    "basal": 0.35035816604900066,
+    "approach": 0.32828622070462726,
+    "delta": -0.0220719453443734,
+    "p_welch": 1.0746276067406643e-222
+  },
+  "high_level3_rate": {
+    "basal": 0.0,
+    "approach": 0.0,
+    "delta": 0.0,
+    "p_welch": null
+  },
+  "contrib": {
+    "contrib1": {
+      "basal": 0.13813056379821959,
+      "approach": 0.1471905576917776,
+      "delta": 0.009059993893558022,
+      "p_welch": null
+    },
+    "contrib2": {
+      "basal": 0.3019213649851632,
+      "approach": 0.2939928157858973,
+      "delta": -0.007928549199265889,
+      "p_welch": null
+    },
+    "contrib3": {
+      "basal": 1.0,
+      "approach": 1.0027522869308136,
+      "delta": 0.002752286930813641,
+      "p_welch": 4.3514301041864737e-11
+    }
+  },
+  "frac_contrib3": {
+    "basal": 0.7737248375965851,
+    "approach": 0.7733183309166567,
+    "delta": -0.00040650667992836453,
+    "p_welch": 0.8908671275040118
+  },
+  "mean_delta_recd": {
+    "basal": 1.4400519287833828,
+    "approach": 1.4439356604084883,
+    "delta": 0.0038837316251054688,
+    "p_welch": 0.5183204190991497
+  },
+  "mean_lambda": {
+    "basal": 0.0,
+    "approach": 0.0004400915533025084
+  },
+  "figures": [
+    "/Users/johelpadilla/grok-safe/Investigaciones/Cardiac_CCTP_Pilot/figures/31/18_recd_weighted_contribs.png",
+    "/Users/johelpadilla/grok-safe/Investigaciones/Cardiac_CCTP_Pilot/figures/31/19_recd_weighted_box.png"
+  ],
+  "timestamp": "2026-07-08T16:30:13.748923"
+}

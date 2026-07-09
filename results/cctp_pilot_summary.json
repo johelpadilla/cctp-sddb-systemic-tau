@@ -1,0 +1,44 @@
+{
+  "protocol": "CCTP v0.1",
+  "record": "35",
+  "source": "Sudden Cardiac Death Holter Database (PhysioNet sddb)",
+  "chosen_reason": "Longest pre-VF window (~24h), clear vfon marker near end",
+  "vfon_sec": 88496.0,
+  "total_hours": 23.999677777777777,
+  "n_beats": 100741,
+  "windows": {
+    "W_EWS": 501,
+    "W_TAU": 101,
+    "stride": 5
+  },
+  "basal_window_h": [
+    6,
+    16
+  ],
+  "approach_window_h": [
+    20.999677777777777,
+    23.999677777777777
+  ],
+  "metrics": {
+    "var": {
+      "basal_mean": 32907.3653856146,
+      "approach_mean": 36004.74716381283,
+      "delta": 3097.381778198236,
+      "p_welch": 6.897642989297806e-23
+    },
+    "ar1": {
+      "basal_mean": 0.21011441189120814,
+      "approach_mean": 0.1653365612692935,
+      "delta": -0.04477785062191464,
+      "p_welch": 1.4643727960099222e-40
+    },
+    "tau_s": {
+      "basal_mean": 0.0581775705194829,
+      "approach_mean": 0.0739481530774689,
+      "delta": 0.015770582557985996,
+      "p_welch": 7.182980310521212e-26
+    }
+  },
+  "has_systemictau": true,
+  "timestamp": "2026-07-08T13:59:41.647346"
+}

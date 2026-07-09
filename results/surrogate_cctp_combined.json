@@ -1,0 +1,25 @@
+{
+  "protocol": "CCTP v0.1 surrogates (light)",
+  "n_surr_per_record": 8,
+  "results": [
+    {
+      "record": "32",
+      "delta_obs": -0.023924549928001432,
+      "surr_deltas": [
+        0.010839885968124935,
+        -0.0021905137381579495,
+        0.019796417709024596,
+        -0.005002210927749518,
+        0.004968467656458374,
+        0.013146356207644466,
+        0.001643373743999246,
+        -0.0072720356445894075
+      ],
+      "p_twosided": 0.0,
+      "p_dir": 0.0,
+      "json": "/Users/johelpadilla/grok-safe/Investigaciones/Cardiac_CCTP_Pilot/results/surrogate_cctp_32.json",
+      "fig": "/Users/johelpadilla/grok-safe/Investigaciones/Cardiac_CCTP_Pilot/figures/32/15_surrogate_delta_tau.png"
+    }
+  ],
+  "timestamp": "2026-07-08T19:42:48.246775"
+}

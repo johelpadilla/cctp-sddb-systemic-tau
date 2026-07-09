@@ -1,0 +1,83 @@
+{
+  "protocol": "CCTP v0.1 RECD weighted (alpha_mode=lambda from |\u03c4_s|)",
+  "record": "38",
+  "source": "SDDB Holter (same rr_*_clean.npz)",
+  "params": {
+    "m": 3,
+    "delay": 1,
+    "W_TAU": 101,
+    "w_phi": 101,
+    "stride": 5,
+    "theta3": 0.1,
+    "high_thresh": 1.75,
+    "alpha_mode": "lambda",
+    "beta1": 2.0,
+    "gamma2": 1.5,
+    "gamma3": 6.0,
+    "delta3": 2.0
+  },
+  "windows": {
+    "basal": [
+      0.5,
+      3.5
+    ],
+    "approach": [
+      5.031666666666666,
+      8.031666666666666
+    ]
+  },
+  "n_recd": 74428,
+  "mean_excess3": {
+    "basal": 0.29742589056300045,
+    "approach": 0.33878981713465006,
+    "delta": 0.04136392657164961,
+    "p_welch": 0.0
+  },
+  "high_level3_rate": {
+    "basal": 0.0,
+    "approach": 0.0,
+    "delta": 0.0,
+    "p_welch": null
+  },
+  "contrib": {
+    "contrib1": {
+      "basal": 0.15118884941240776,
+      "approach": 0.18068328897814673,
+      "delta": 0.029494439565738967,
+      "p_welch": null
+    },
+    "contrib2": {
+      "basal": 0.24002186389723967,
+      "approach": 0.2572693311302699,
+      "delta": 0.017247467233030223,
+      "p_welch": null
+    },
+    "contrib3": {
+      "basal": 1.0,
+      "approach": 1.0046676394983707,
+      "delta": 0.004667639498370679,
+      "p_welch": 2.693775630263676e-14
+    }
+  },
+  "frac_contrib3": {
+    "basal": 0.8001203991631567,
+    "approach": 0.7810853193041775,
+    "delta": -0.01903507985897923,
+    "p_welch": 6.960244670000972e-14
+  },
+  "mean_delta_recd": {
+    "basal": 1.3912107133096474,
+    "approach": 1.4426202596067874,
+    "delta": 0.05140954629714001,
+    "p_welch": 3.665441372579107e-22
+  },
+  "mean_lambda": {
+    "basal": 0.0,
+    "approach": 0.0007255280878392157
+  },
+  "figures": [
+    "/Users/johelpadilla/grok-safe/Investigaciones/Cardiac_CCTP_Pilot/figures/38/18_recd_weighted_contribs.png",
+    "/Users/johelpadilla/grok-safe/Investigaciones/Cardiac_CCTP_Pilot/figures/38/19_recd_weighted_box.png"
+  ],
+  "timestamp": "2026-07-08T17:02:43.506266"
+}

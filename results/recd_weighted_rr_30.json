@@ -1,0 +1,83 @@
+{
+  "protocol": "CCTP v0.1 RECD weighted (alpha_mode=lambda from |\u03c4_s|)",
+  "record": "30",
+  "source": "SDDB Holter (same rr_*_clean.npz)",
+  "params": {
+    "m": 3,
+    "delay": 1,
+    "W_TAU": 101,
+    "w_phi": 101,
+    "stride": 5,
+    "theta3": 0.1,
+    "high_thresh": 1.75,
+    "alpha_mode": "lambda",
+    "beta1": 2.0,
+    "gamma2": 1.5,
+    "gamma3": 6.0,
+    "delta3": 2.0
+  },
+  "windows": {
+    "basal": [
+      0.5,
+      3.5
+    ],
+    "approach": [
+      4.909166666666667,
+      7.909166666666667
+    ]
+  },
+  "n_recd": 128805,
+  "mean_excess3": {
+    "basal": 0.3178041061805281,
+    "approach": 0.30602752319698917,
+    "delta": -0.011776582983538952,
+    "p_welch": 7.682131118852788e-78
+  },
+  "high_level3_rate": {
+    "basal": 0.0,
+    "approach": 0.0,
+    "delta": 0.0,
+    "p_welch": null
+  },
+  "contrib": {
+    "contrib1": {
+      "basal": 0.1505711318795431,
+      "approach": 0.16566379769974865,
+      "delta": 0.015092665820205547,
+      "p_welch": null
+    },
+    "contrib2": {
+      "basal": 0.2940216992574054,
+      "approach": 0.29319826338639654,
+      "delta": -0.0008234358710088596,
+      "p_welch": null
+    },
+    "contrib3": {
+      "basal": 1.0000094205429586,
+      "approach": 1.0,
+      "delta": -9.420542958604727e-06,
+      "p_welch": 0.17471012358671362
+    }
+  },
+  "frac_contrib3": {
+    "basal": 0.7756697996578581,
+    "approach": 0.7699309485425284,
+    "delta": -0.0057388511153296795,
+    "p_welch": 0.059215119866638785
+  },
+  "mean_delta_recd": {
+    "basal": 1.4446022516799069,
+    "approach": 1.4588620610861454,
+    "delta": 0.0142598094062385,
+    "p_welch": 0.02638368287401872
+  },
+  "mean_lambda": {
+    "basal": 1.5645526191285722e-06,
+    "approach": 0.0
+  },
+  "figures": [
+    "/Users/johelpadilla/grok-safe/Investigaciones/Cardiac_CCTP_Pilot/figures/30/18_recd_weighted_contribs.png",
+    "/Users/johelpadilla/grok-safe/Investigaciones/Cardiac_CCTP_Pilot/figures/30/19_recd_weighted_box.png"
+  ],
+  "timestamp": "2026-07-08T16:00:09.821846"
+}

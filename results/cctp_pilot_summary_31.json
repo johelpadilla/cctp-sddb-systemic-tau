@@ -1,0 +1,43 @@
+{
+  "protocol": "CCTP v0.1",
+  "record": "31",
+  "source": "Sudden Cardiac Death Holter Database (PhysioNet sddb)",
+  "vfon_sec": 49344.0,
+  "total_hours": 13.966329210069444,
+  "n_beats": 63217,
+  "windows": {
+    "W_EWS": 501,
+    "W_TAU": 101,
+    "stride": 5
+  },
+  "basal_window_h": [
+    3.9663292100694445,
+    6.9663292100694445
+  ],
+  "approach_window_h": [
+    10.966329210069444,
+    13.966329210069444
+  ],
+  "metrics": {
+    "var": {
+      "basal_mean": 6231.157476916433,
+      "approach_mean": 6422.63877151643,
+      "delta": 191.48129459999745,
+      "p_welch": 0.5751905384380374
+    },
+    "ar1": {
+      "basal_mean": -0.11628236780557094,
+      "approach_mean": -0.21564461633502577,
+      "delta": -0.09936224852945483,
+      "p_welch": 1.3120654784487914e-96
+    },
+    "tau_s": {
+      "basal_mean": 0.020326262596586063,
+      "approach_mean": 0.020232762851422833,
+      "delta": -9.349974516323009e-05,
+      "p_welch": 0.9704765658600156
+    }
+  },
+  "has_systemictau": true,
+  "timestamp": "2026-07-08T19:40:52.855110"
+}

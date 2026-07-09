@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Large raw ECG waveform files (re-download from PhysioNet; annotations kept)
+data/sddb/*.dat
+
+# Local scratch
+*.log
+tmp/
+.cache/

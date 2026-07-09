@@ -1,0 +1,55 @@
+{
+  "protocol": "CCTP v0.1 RECD ordinal levels on RR",
+  "record": "50",
+  "source": "SDDB Holter (same rr_*_clean.npz as \u03c4_s pilot)",
+  "params": {
+    "m": 3,
+    "delay": 1,
+    "w_phi": 101,
+    "theta3": 0.08,
+    "stride": 5,
+    "high_thresh": 0.65
+  },
+  "windows": {
+    "basal": [
+      1.7619444444444436,
+      4.761944444444444
+    ],
+    "approach": [
+      8.761944444444444,
+      11.761944444444444
+    ]
+  },
+  "n_sym": 64251,
+  "mean_excess3": {
+    "basal": 0.3375949639918983,
+    "approach": 0.33424563451766753,
+    "delta": -0.0033493294742307778,
+    "p_welch": 0.000918332988859114
+  },
+  "high_level3_rate": {
+    "basal": 0.0,
+    "approach": 0.0,
+    "delta": 0.0,
+    "p_welch": null
+  },
+  "phi_means": {
+    "phi1": {
+      "basal": 0.1572257188695545,
+      "approach": 0.17691154422788605
+    },
+    "phi2": {
+      "basal": 0.27220782426261875,
+      "approach": 0.2609320339830085
+    },
+    "phi3_active_frac": {
+      "basal": 1.0,
+      "approach": 1.0
+    }
+  },
+  "figures": [
+    "/Users/johelpadilla/grok-safe/Investigaciones/Cardiac_CCTP_Pilot/figures/50/16_recd_excess3.png",
+    "/Users/johelpadilla/grok-safe/Investigaciones/Cardiac_CCTP_Pilot/figures/50/17_recd_excess3_box.png"
+  ],
+  "timestamp": "2026-07-08T19:23:39.240396"
+}

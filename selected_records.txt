@@ -1,0 +1,20 @@
+# selected_records.txt - records to process with full CCTP pipeline
+# One record id per line. Comments with #
+# Already processed (high quality baseline)
+30
+31
+35
+# High-priority expansion (sinus preferred; AF ok; pacing flagged)
+# Order: quality + long pre-event first
+38   # sinus, pre~8h
+44   # sinus excellent, pre~19.6h (has atr)
+45   # sinus good, pre~18.2h
+36   # AF, pre~19h
+50   # AF, pre~11.8h
+47   # sinus, pre~6.2h
+# Paced/intermittent - include with caution (RR regularity may bias tau/excess3)
+32   # intermittent pacing, pre~16.8h
+43   # intermittent pacing, pre~15.6h
+51   # intermittent pacing, pre~23h long
+# Later / lower priority after review: 33 (pre borderline)
+# Total possible high-quality ~8-12 after strict filters (SDDB max 23 total)
