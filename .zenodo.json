@@ -1,0 +1,52 @@
+{
+  "title": "CCTP/SDDB: Systemic Tau and ordinal RECD before spontaneous ventricular fibrillation",
+  "description": "<p>Analysis code, cleaned RR series, results, and figures for the manuscript <em>Context-Dependent Relational Reorganization of Heart Rate Dynamics Precedes Spontaneous Ventricular Fibrillation: Systemic Tau and Ordinal RECD Evidence from the Sudden Cardiac Death Holter Database</em>.</p><p>Pipeline: RR extraction from PhysioNet SDDB, Systemic Tau (τ<sub>s</sub>), phase-shuffle surrogates, nested ordinal RECD levels (Φ<sub>1</sub>–Φ<sub>3</sub>, excess3), λ-weighted RECD, and batch orchestration for the N=10 analytic cohort (records 30, 31, 32, 35, 36, 38, 45, 47, 50, 51).</p><p>Companion library: <a href=\"https://github.com/johelpadilla/systemictau\">systemictau</a>. Source data: PhysioNet Sudden Cardiac Death Holter Database (DOI 10.13026/C2W306).</p>",
+  "creators": [
+    {
+      "name": "Padilla-Villanueva, Johel",
+      "affiliation": "University of Puerto Rico, Medical Sciences Campus",
+      "orcid": "0000-0002-5797-6931"
+    }
+  ],
+  "keywords": [
+    "Systemic Tau",
+    "RECD",
+    "ordinal patterns",
+    "early-warning signals",
+    "ventricular fibrillation",
+    "heart-rate variability",
+    "PhysioNet",
+    "SDDB",
+    "critical transitions",
+    "network physiology"
+  ],
+  "license": "mit",
+  "upload_type": "software",
+  "access_right": "open",
+  "language": "eng",
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/johelpadilla/cctp-sddb-systemic-tau",
+      "relation": "isSupplementTo",
+      "resource_type": "software"
+    },
+    {
+      "identifier": "10.13026/C2W306",
+      "relation": "references",
+      "resource_type": "dataset",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "https://github.com/johelpadilla/systemictau",
+      "relation": "requires",
+      "resource_type": "software"
+    },
+    {
+      "identifier": "10.5281/zenodo.21210553",
+      "relation": "references",
+      "resource_type": "software",
+      "scheme": "doi"
+    }
+  ],
+  "communities": []
+}

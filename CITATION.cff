@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "CCTP/SDDB: Systemic Tau and ordinal RECD before spontaneous ventricular fibrillation"
+version: "1.0.0"
+date-released: "2026-07-08"
+authors:
+  - family-names: "Padilla-Villanueva"
+    given-names: "Johel"
+    orcid: "https://orcid.org/0000-0002-5797-6931"
+    affiliation: "University of Puerto Rico, Medical Sciences Campus"
+abstract: >-
+  Analysis code, cleaned RR series, results, and figures for the Holter
+  manuscript on Systemic Tau and nested ordinal RECD (excess3) preceding
+  spontaneous ventricular fibrillation in PhysioNet SDDB (N=10).
+keywords:
+  - Systemic Tau
+  - RECD
+  - ordinal patterns
+  - early-warning signals
+  - ventricular fibrillation
+  - PhysioNet SDDB
+license: MIT
+repository-code: "https://github.com/johelpadilla/cctp-sddb-systemic-tau"
+url: "https://github.com/johelpadilla/cctp-sddb-systemic-tau"
+contact:
+  - family-names: "Padilla-Villanueva"
+    given-names: "Johel"
+    orcid: "https://orcid.org/0000-0002-5797-6931"
