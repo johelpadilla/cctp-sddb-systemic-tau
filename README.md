@@ -1,5 +1,7 @@
 # CCTP / SDDB: Systemic Tau and ordinal RECD before spontaneous VF
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21270699.svg)](https://doi.org/10.5281/zenodo.21270699)
+
 **Analysis code and companion data for the manuscript**
 
 > *Context-Dependent Relational Reorganization of Heart Rate Dynamics Precedes Spontaneous Ventricular Fibrillation: Systemic Tau and Ordinal RECD Evidence from the Sudden Cardiac Death Holter Database*
@@ -130,13 +132,17 @@ If you use this code or derived results, please cite the manuscript and the Syst
 
 ```bibtex
 @software{Padilla2026CCTPcode,
-  author  = {Padilla-Villanueva, Johel},
-  title   = {{CCTP}/{SDDB}: Systemic Tau and ordinal {RECD} before spontaneous {VF}},
-  year    = {2026},
-  url     = {https://github.com/johelpadilla/cctp-sddb-systemic-tau},
-  note    = {Analysis code accompanying the SDDB Holter manuscript}
+  author    = {Padilla-Villanueva, Johel},
+  title     = {{CCTP}/{SDDB}: Systemic Tau and ordinal {RECD} before spontaneous {VF}},
+  year      = {2026},
+  version   = {v1.0.1},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.21270699},
+  url       = {https://github.com/johelpadilla/cctp-sddb-systemic-tau}
 }
 ```
+
+**DOIs:** version [10.5281/zenodo.21270699](https://doi.org/10.5281/zenodo.21270699) · concept [10.5281/zenodo.21270698](https://doi.org/10.5281/zenodo.21270698)
 
 Also cite PhysioNet SDDB ([Goldberger et al., 2000](https://doi.org/10.1161/01.CIR.101.23.e215); [Greenwald, 1986](https://dspace.mit.edu/handle/1721.1/28139)).
 
