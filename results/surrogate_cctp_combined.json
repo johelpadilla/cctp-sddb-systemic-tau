@@ -3,23 +3,23 @@
   "n_surr_per_record": 8,
   "results": [
     {
-      "record": "32",
-      "delta_obs": -0.023924549928001432,
+      "record": "44",
+      "delta_obs": 0.1221390279159544,
       "surr_deltas": [
-        0.010839885968124935,
-        -0.0021905137381579495,
-        0.019796417709024596,
-        -0.005002210927749518,
-        0.004968467656458374,
-        0.013146356207644466,
-        0.001643373743999246,
-        -0.0072720356445894075
+        0.007045775676787808,
+        0.01008673015253761,
+        -0.0017094946420521458,
+        -0.0045426608378463995,
+        0.02668142468336013,
+        -0.0005375199145077092,
+        -0.012314112845442121,
+        -0.0028747431407515835
       ],
       "p_twosided": 0.0,
       "p_dir": 0.0,
-      "json": "/Users/johelpadilla/grok-safe/Investigaciones/Cardiac_CCTP_Pilot/results/surrogate_cctp_32.json",
-      "fig": "/Users/johelpadilla/grok-safe/Investigaciones/Cardiac_CCTP_Pilot/figures/32/15_surrogate_delta_tau.png"
+      "json": "/Users/johelpadilla/grok-safe/Investigaciones/Cardiac_CCTP_Pilot/results/surrogate_cctp_44.json",
+      "fig": "/Users/johelpadilla/grok-safe/Investigaciones/Cardiac_CCTP_Pilot/figures/44/15_surrogate_delta_tau.png"
     }
   ],
-  "timestamp": "2026-07-08T19:42:48.246775"
+  "timestamp": "2026-07-12T14:30:52.948634"
 }

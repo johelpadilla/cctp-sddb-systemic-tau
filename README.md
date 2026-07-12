@@ -27,14 +27,18 @@ ORCID: [0000-0002-5797-6931](https://orcid.org/0000-0002-5797-6931)
 
 | Path | Description |
 |------|-------------|
-| `code/` | Full analysis pipeline used in the paper |
-| `data/rr_*_clean.npz` | Cleaned RR series for the *N* = 10 analytic cohort |
+| `code/` | Full analysis pipeline used in the paper + Phase-1 external validation |
+| `data/rr_*_clean.npz` | Cleaned RR series for the *N* = 10 analytic cohort (+ `rr_44` expansion) |
+| `data/rr_external/` | Cleaned RR for VFDB / CUDB / NSRDB Phase-1 extracts |
 | `data/sddb/` | PhysioNet headers + beat annotations (`.hea`, `.atr`/`.ari`; no large `.dat`) |
+| `data/vfdb/`, `data/cudb/`, `data/nsrdb/` | External DB headers + annotations (`.dat` omitted; re-download from PhysioNet) |
 | `data/records_inventory.csv` | Record inventory / inclusion notes |
 | `selected_records.txt` | Final *N* = 10 record list |
-| `results/` | Batch summary CSV + per-record JSON outputs |
-| `figures/` | Per-record and batch figures (including manuscript panels) |
-| `manuscript/` | Manuscript source (Markdown + bibliography + embedded figures) |
+| `results/` | Batch, stratified, lead-time, head-to-head, and Phase-1 external tables |
+| `figures/` | Per-record, batch, and publication figures |
+| `docs/` | External validation plan/report, Jul-12 interpretation, Copilot draft |
+| `tests/` | Unit tests for detector / FAR / short-window helpers |
+| `manuscript/` | Manuscript source (Markdown + PDF + bibliography + figures) |
 
 ### Analysis scripts (`code/`)
 
@@ -49,6 +53,25 @@ ORCID: [0000-0002-5797-6931](https://orcid.org/0000-0002-5797-6931)
 | `run_cctp_batch.py` | Full batch orchestrator + comparative plots |
 | `recd_ordinal_levels.py` | Nested RECD level math (vendored) |
 | `_bootstrap.py` | Robust imports (`systemictau` + RECD) |
+| `cctp_metrics_core.py` | Pure lead-time / detector / stratification helpers |
+| `run_sddb_inventory.py` | Full 23-record inventory + process status |
+| `run_cohort_stratified.py` | Stratified cohort table (substrate / event type) |
+| `run_leadtime_detector.py` | Lead-time + detector performance (τ_s, excess3, var, AR1) |
+| `run_ews_head2head.py` | Head-to-head relational vs classic EWS table |
+| `run_publication_figures.py` | Publication-ready stratification + lead-time figures |
+| `extract_rr_external.py` | RR extract for VFDB (XQRS) / CUDB / NSRDB controls |
+| `run_external_validation_phase1.py` | Frozen external sensitivity + control FAR (Phase 1) |
+
+### Extension docs
+
+| Path | Description |
+|------|-------------|
+| `docs/EXTERNAL_VALIDATION_PLAN.md` | Independent Holter targets, frozen metrics, success criteria |
+| `docs/EXTERNAL_VALIDATION_PHASE1_REPORT.md` | Phase-1 results (VFDB n=11, NSRDB FAR; no clinical claim) |
+| `docs/JUL12_RESULTS_INTERPRETATION.md` | Discovery stratified / lead-time / H2H reading |
+| `docs/CLINICAL_COPILOT_DRAFT.md` | Copilot inputs/displays + research-use limits |
+| `tests/test_leadtime_detector.py` | Unit tests for pure detector/lead-time functions |
+| `tests/test_far_and_short_windows.py` | FAR / short-window helper tests |
 
 ---
 
@@ -84,6 +107,37 @@ Batch figures:
 ```text
 figures/batch/
 ```
+
+### Full SDDB inventory, lead-time, EWS comparison (extension)
+
+```bash
+python3 code/run_sddb_inventory.py
+python3 code/run_cohort_stratified.py
+python3 code/run_leadtime_detector.py \
+  --records 30,31,32,35,36,38,45,47,50,51 --theta3 0.08
+python3 code/run_ews_head2head.py
+python3 code/run_publication_figures.py
+python3 tests/test_leadtime_detector.py
+```
+
+Key tables: `data/sddb_full_inventory.csv`, `results/cctp_cohort_stratified.csv`,
+`results/leadtime_per_record.csv`, `results/ews_head2head.csv`,
+`figures/publication/`.
+
+### External Validation Phase 1 (frozen params; no retune)
+
+Cleaned external RR under `data/rr_external/` is included. Raw VFDB/CU `.dat`
+waveforms are **not** in the repo (re-download from PhysioNet if re-running XQRS).
+
+```bash
+# Re-run analysis on included cleaned RR (no PhysioNet download needed)
+python3 code/run_external_validation_phase1.py
+python3 -m pytest tests/test_leadtime_detector.py tests/test_far_and_short_windows.py -q
+```
+
+Outputs: `results/external_phase1_*.{csv,json}`, report
+`docs/EXTERNAL_VALIDATION_PHASE1_REPORT.md`. **No clinical/deployability claim**
+(NSRDB FAR ≫ clinical tolerance under the frozen abs-*z* rule).
 
 ### Single-record examples
 

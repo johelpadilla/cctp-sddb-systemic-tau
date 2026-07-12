@@ -49,11 +49,12 @@ curl -fsS -H "$AUTH" -H "Content-Type: application/octet-stream" \
   "${BUCKET}/cctp-sddb-systemic-tau-${TAG}.zip" >/dev/null
 
 META_FILE="${TMP}/metadata.json"
-python3 - <<'PY' >"$META_FILE"
-import json
+export ZENODO_VERSION="${TAG#v}"
+python3 - <<PY >"$META_FILE"
+import json, os
 from pathlib import Path
 z = json.loads(Path(".zenodo.json").read_text())
-# Zenodo deposit metadata wrapper
+ver = os.environ.get("ZENODO_VERSION", "1.1.0")
 meta = {
     "metadata": {
         "title": z["title"],
@@ -72,7 +73,7 @@ meta = {
         "access_right": z.get("access_right", "open"),
         "language": z.get("language", "eng"),
         "related_identifiers": z.get("related_identifiers", []),
-        "version": "1.0.0",
+        "version": ver,
     }
 }
 print(json.dumps(meta))

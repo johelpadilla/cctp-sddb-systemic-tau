@@ -1,0 +1,88 @@
+{
+  "generated_at": "2026-07-12T19:21:13.156812+00:00",
+  "phase": "external_validation_phase1",
+  "status": "started_and_reported",
+  "params_frozen": {
+    "theta3": 0.08,
+    "high_threshold": 0.65,
+    "W_TAU": 101,
+    "stride": 5,
+    "z_threshold": 2.0,
+    "min_consecutive": 3,
+    "alarm_rule": "abs_z_from_basal >= z_threshold sustained min_consecutive",
+    "rr_clean_ms": [
+      250.0,
+      2000.0
+    ]
+  },
+  "inventory_csv": "results/external_phase1_inventory.csv",
+  "per_record_csv": "results/external_phase1_per_record.csv",
+  "sensitivity_json": "results/external_phase1_sensitivity.json",
+  "controls_csv": "results/external_phase1_controls.csv",
+  "far_json": "results/external_phase1_far.json",
+  "n_independent_events_processable": 11,
+  "sensitivity_by_metric": {
+    "ar1": {
+      "n_records": 11.0,
+      "n_detected": 6.0,
+      "sensitivity": 0.5454545454545454,
+      "median_lead_time_h": 0.23598333570692276,
+      "mean_lead_time_h": 0.237893883034035,
+      "min_lead_time_h": 0.15439665052625867,
+      "max_lead_time_h": 0.340131106906467,
+      "false_alarm_rate": NaN
+    },
+    "excess3": {
+      "n_records": 11.0,
+      "n_detected": 9.0,
+      "sensitivity": 0.8181818181818182,
+      "median_lead_time_h": 0.12691109551323787,
+      "mean_lead_time_h": 0.15287345321090134,
+      "min_lead_time_h": 0.02257446289062498,
+      "max_lead_time_h": 0.339578874376085,
+      "false_alarm_rate": NaN
+    },
+    "tau_s": {
+      "n_records": 11.0,
+      "n_detected": 11.0,
+      "sensitivity": 1.0,
+      "median_lead_time_h": 0.17306664360894097,
+      "mean_lead_time_h": 0.18862443943216345,
+      "min_lead_time_h": 0.009895562065972224,
+      "max_lead_time_h": 0.3359988742404514,
+      "false_alarm_rate": NaN
+    },
+    "var": {
+      "n_records": 11.0,
+      "n_detected": 6.0,
+      "sensitivity": 0.5454545454545454,
+      "median_lead_time_h": 0.23552388932969834,
+      "mean_lead_time_h": 0.230368696142126,
+      "min_lead_time_h": 0.12977998521592882,
+      "max_lead_time_h": 0.31517220391167533,
+      "false_alarm_rate": NaN
+    }
+  },
+  "far_by_metric": {
+    "tau_s": {
+      "n_controls": 6.0,
+      "total_episodes": 86.0,
+      "total_search_hours": 59.9992578125,
+      "far_per_24h": 34.400425526097,
+      "fraction_alarmed": 1.0,
+      "reason": "ok"
+    },
+    "excess3": {
+      "n_controls": 6.0,
+      "total_episodes": 72.0,
+      "total_search_hours": 59.9992578125,
+      "far_per_24h": 28.800356254406793,
+      "fraction_alarmed": 1.0,
+      "reason": "ok"
+    }
+  },
+  "clinical_claim": false,
+  "deployability_claim": false,
+  "next_step": "Expand processable independent n (more CU/VFDB with pre\u226515\u201360 min); add institutional matched non-event Holters for device-matched FAR (Phase 2); do not retune thresholds.",
+  "success_criteria_note": "S1\u2013S6 from docs/EXTERNAL_VALIDATION_PLAN.md are NOT claimed fully met; Phase 1 provides preliminary external sensitivity + control FAR estimate only."
+}

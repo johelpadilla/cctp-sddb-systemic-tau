@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-07-12T19:21:13.156467+00:00",
+  "params": {
+    "theta3": 0.08,
+    "high_threshold": 0.65,
+    "W_TAU": 101,
+    "stride": 5,
+    "z_threshold": 2.0,
+    "min_consecutive": 3,
+    "alarm_rule": "abs_z_from_basal >= z_threshold sustained min_consecutive",
+    "rr_clean_ms": [
+      250.0,
+      2000.0
+    ]
+  },
+  "control_source": "PhysioNet NSRDB (negative-control Holters; no VF)",
+  "by_metric": {
+    "tau_s": {
+      "n_controls": 6.0,
+      "total_episodes": 86.0,
+      "total_search_hours": 59.9992578125,
+      "far_per_24h": 34.400425526097,
+      "fraction_alarmed": 1.0,
+      "reason": "ok"
+    },
+    "excess3": {
+      "n_controls": 6.0,
+      "total_episodes": 72.0,
+      "total_search_hours": 59.9992578125,
+      "far_per_24h": 28.800356254406793,
+      "fraction_alarmed": 1.0,
+      "reason": "ok"
+    }
+  },
+  "notes": [
+    "FAR = total alarm episodes / total search hours * 24.",
+    "Basal = early control window; search = remainder (capped).",
+    "NSRDB is rhythm-healthy Holter \u2014 not device-matched to VFDB/CU telemetry.",
+    "If no controls processed, far_per_24h is nan (honest fallback)."
+  ]
+}

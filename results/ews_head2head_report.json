@@ -1,0 +1,113 @@
+{
+  "generated_at": "2026-07-12T18:34:18.218754+00:00",
+  "n_records": 10,
+  "effect_sizes_deltas": {
+    "tau_s": {
+      "n": 10,
+      "mean_delta": 0.014995815570318899,
+      "median_delta": 0.0032673175449562265,
+      "n_positive": 5,
+      "n_negative": 5,
+      "frac_positive": 0.5
+    },
+    "excess3": {
+      "n": 10,
+      "mean_delta": 0.0008987126271684631,
+      "median_delta": 0.00010661640027406771,
+      "n_positive": 5,
+      "n_negative": 5,
+      "frac_positive": 0.5
+    },
+    "var": {
+      "n": 10,
+      "mean_delta": 9419.377599850553,
+      "median_delta": 801.0071618130137,
+      "n_positive": 6,
+      "n_negative": 4,
+      "frac_positive": 0.6
+    },
+    "ar1": {
+      "n": 10,
+      "mean_delta": -0.0635450125680691,
+      "median_delta": 0.02368157625712878,
+      "n_positive": 6,
+      "n_negative": 4,
+      "frac_positive": 0.6
+    }
+  },
+  "direction_concordance": {
+    "tau_vs_excess3": {
+      "n": 10.0,
+      "n_concordant": 8.0,
+      "concordance": 0.8
+    },
+    "tau_vs_var": {
+      "n": 10.0,
+      "n_concordant": 5.0,
+      "concordance": 0.5
+    },
+    "tau_vs_ar1": {
+      "n": 10.0,
+      "n_concordant": 7.0,
+      "concordance": 0.7
+    },
+    "excess3_vs_var": {
+      "n": 10.0,
+      "n_concordant": 5.0,
+      "concordance": 0.5
+    },
+    "var_vs_ar1": {
+      "n": 10.0,
+      "n_concordant": 2.0,
+      "concordance": 0.2
+    }
+  },
+  "detector_performance": {
+    "ar1": {
+      "n_records": 10.0,
+      "n_detected": 10.0,
+      "sensitivity": 1.0,
+      "median_lead_time_h": 5.968817003038194,
+      "mean_lead_time_h": 5.1850116644965265,
+      "min_lead_time_h": 2.716254340277778,
+      "max_lead_time_h": 6.8583403862847225,
+      "false_alarm_rate": NaN
+    },
+    "excess3": {
+      "n_records": 10.0,
+      "n_detected": 10.0,
+      "sensitivity": 1.0,
+      "median_lead_time_h": 6.862645941840277,
+      "mean_lead_time_h": 5.910891845703125,
+      "min_lead_time_h": 2.7156689453125002,
+      "max_lead_time_h": 7.963093532986111,
+      "false_alarm_rate": NaN
+    },
+    "tau_s": {
+      "n_records": 10.0,
+      "n_detected": 10.0,
+      "sensitivity": 1.0,
+      "median_lead_time_h": 5.88185791015625,
+      "mean_lead_time_h": 5.631256157769097,
+      "min_lead_time_h": 2.4655688476562503,
+      "max_lead_time_h": 7.853511284722224,
+      "false_alarm_rate": NaN
+    },
+    "var": {
+      "n_records": 10.0,
+      "n_detected": 10.0,
+      "sensitivity": 1.0,
+      "median_lead_time_h": 3.8958831108940966,
+      "mean_lead_time_h": 4.223109781901042,
+      "min_lead_time_h": 0.25617404513888964,
+      "max_lead_time_h": 7.684949001736111,
+      "false_alarm_rate": NaN
+    }
+  },
+  "interpretation_notes": [
+    "All metrics share the same basal/approach windows as the manuscript pipeline.",
+    "Direction concordance is sign(\u0394) agreement; \u03c4_s and excess3 are expected to align (relational).",
+    "Classic var often rises (critical slowing-like) while AR(1) often falls on these Holters \u2014 relational metrics need not match univariate sign.",
+    "Detector sensitivity uses abs-z departure from basal; FAR requires independent control Holters (reported nan until external validation)."
+  ]
+}

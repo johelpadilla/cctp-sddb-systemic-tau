@@ -1,0 +1,23 @@
+{
+  "generated_at": "2026-07-12T18:27:34.608495+00:00",
+  "n_sddb_records": 23,
+  "n_manuscript_analytic": 10,
+  "n_processed_with_clean_rr": 10,
+  "n_excluded": 10,
+  "n_expansion_candidates_with_local_ann": 0,
+  "n_eligible_missing_local_annotations": 2,
+  "analytic_record_ids": [
+    "30",
+    "31",
+    "32",
+    "35",
+    "36",
+    "38",
+    "45",
+    "47",
+    "50",
+    "51"
+  ],
+  "csv": "data/sddb_full_inventory.csv",
+  "notes": "Full SDDB has 23 Holter records (30\u201352). Analytic cohort N=10 has cleaned RR npz. Expansion requires local annotations; many records only have inventory metadata without .atr/.ari on disk."
+}

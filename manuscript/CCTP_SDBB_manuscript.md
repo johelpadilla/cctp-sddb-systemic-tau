@@ -35,9 +35,11 @@ header-includes:
 
 Sudden cardiac death from ventricular fibrillation (VF) remains difficult to anticipate from surface electrocardiography. Classic early-warning signals (EWS) such as rising variance or lag-1 autocorrelation often fail or reverse in real cardiac data because they assume a simple critical-slowing-down scenario. We introduce a relational, multivariate analysis pipeline that combines (i) \textbf{Systemic Tau} ($\tau_s$), an ordinal, Kendall-based measure of cross-variable coupling change, with (ii) \textbf{ordinal recurrence quantification} under the Discrete Extramental Clock (RECD) framework, which decomposes a bivariate heart-rate proxy into hierarchical symbolic levels ($\Phi_1$, $\Phi_2$, $\Phi_3$) and tracks the continuous excess contribution of the highest level (excess3).
 
-Applied to $N=10$ high-quality records from the PhysioNet Sudden Cardiac Death Holter Database (SDDB; 23 records total), we find that $\Delta\tau_s$ and $\Delta\mathrm{excess3}$ are statistically extreme under phase-shuffle surrogates in the majority of cases and, crucially, maintain \textbf{sign concordance} (8/10 records) even when the direction is opposite to classical variance increase. Intermittent pacing and atrial fibrillation cases were retained after explicit quality flagging and did not abolish the signal. Two records with small effect sizes (47 and 50) showed discordant direction and are interpreted as borderline transitions. Light re-calibration of synthetic-derived thresholds ($\theta_3=0.08$, high-threshold $=0.65$, relative $\lambda$) is documented; the continuous excess3 metric remains primary.
+Applied to $N=10$ high-quality records from the PhysioNet Sudden Cardiac Death Holter Database (SDDB; 23 records total), we find that $\Delta\tau_s$ and $\Delta\mathrm{excess3}$ are statistically extreme under phase-shuffle surrogates in the majority of cases and, crucially, maintain \textbf{sign concordance} (8/10 records) even when the direction is opposite to classical variance increase. After corrected VF anchoring, the cohort comprises six intermediate and four terminal events across sinus ($n=5$), atrial fibrillation ($n=3$), and intermittent pacing ($n=2$) substrates; stratified means show polarity that depends on substrate (e.g., negative relational deltas under pacing, positive mean $\Delta\tau_s$ under AF). A frozen abs-$z$ detector versus the basal window yields multi-hour median lead times (excess3 $\approx 6.9$\,h; $\tau_s\approx 5.9$\,h; variance $\approx 3.9$\,h) with discovery sensitivity 1.0 on event Holters only---false-alarm rate is undefined without control recordings. Intermittent pacing and atrial fibrillation cases were retained after explicit quality flagging and did not abolish the signal. Two records with small effect sizes (47 and 50) showed discordant direction and are interpreted as borderline transitions. Light re-calibration of synthetic-derived thresholds ($\theta_3=0.08$, high-threshold $=0.65$, relative $\lambda$) is documented; the continuous excess3 metric remains primary.
 
 These results support a view of pre-VF transitions as \emph{context-dependent reorganizations of the relational structure of heart-rate dynamics}, rather than as a uniform loss of stability. The findings provide real-world physiological support for the Systemic Tau and RECD framework as tools capable of detecting relational reorganizations that precede critical transitions in noisy biological signals where classical univariate EWS fail or reverse. The pipeline is fully reproducible (\url{https://github.com/johelpadilla/cctp-sddb-systemic-tau}) and immediately extensible to other Holter collections.
+
+An external pilot (Phase 1) applying the identical frozen pipeline to 11 independent short pre-VF/VT episodes from the PhysioNet VFDB database yielded sensitivity of 1.0 for $\tau_s$ and 0.82 for excess3, with sign concordance of 0.64 between the two relational metrics. Median lead times were short (~7–10 min) owing to the brief pre-event windows available in public short-recording databases. On negative-control Holters (NSRDB), the frozen abs-$z$ detector produced high false-alarm rates (~29–34 per 24 h), indicating that specificity—not sensitivity—remains the principal next scientific bottleneck. No clinical or deployability claims are made.
 
 \vspace{0.4em}
 \noindent\textbf{Keywords:} Systemic Tau; Discrete Extramental Clock (RECD); ordinal patterns; early-warning signals; ventricular fibrillation; heart-rate variability; network physiology; PhysioNet SDDB; critical transitions; surrogate testing.
@@ -143,9 +145,11 @@ This article provides the first systematic application of Systemic Tau and ordin
 2. explicit retention and flagging of intermittent pacing and AF;
 3. surrogate-based tests of non-trivial relational structure;
 4. documented light re-calibration of thresholds derived from synthetic series;
-5. full reproducibility commands and accompanying figures.
+5. stratification by substrate and event geometry (intermediate vs terminal) after NPZ-anchored event times;
+6. a frozen abs-$z$ lead-time detector and a head-to-head concordance matrix versus classical variance and lag-1 autocorrelation;
+7. full reproducibility commands and accompanying figures.
 
-The central empirical claim is: \textbf{pre-VF heart-rate dynamics exhibit context-dependent relational reorganization that is sign-concordant between $\tau_s$ and Level-3 excess3}, even when classical univariate EWS are weak, reversed, or clinically confounded. This provides a physiological test of the nested RECD mathematics of Section 1.3 on spontaneous human Holter data.
+The central empirical claim is: \textbf{pre-VF heart-rate dynamics exhibit context-dependent relational reorganization that is sign-concordant between $\tau_s$ and Level-3 excess3}, even when classical univariate EWS are weak, reversed, or clinically confounded. Lead-time analyses further show that the same relational series can depart from basal statistics hours before VF onset on discovery Holters, without yet establishing a false-alarm rate. This provides a physiological test of the nested RECD mathematics of Section 1.3 on spontaneous human Holter data.
 
 # 2. Data and Methods
 
@@ -193,9 +197,21 @@ Weighted RECD completed on 6/10 records (30, 31, 32, 35, 38, 51); remaining reco
 
 On the same RR series we computed rolling variance and lag-1 autocorrelation as standard CSD-style EWS [@Scheffer2009; @Dakos2012], reported as basal-to-approach deltas for qualitative comparison with relational metrics.
 
-## 2.7 Software and reproducibility
+## 2.7 Stratification by substrate and event type
 
-Analyses used Python 3 with NumPy/SciPy/Pandas/Matplotlib, WFDB, and `systemictau` [@Padilla2026software]. Batch orchestration, quality reporting, nested RECD modules, and figure generation are provided in the public repository for this study [@Padilla2026CCTPcode] (`https://github.com/johelpadilla/cctp-sddb-systemic-tau`), including scripts `run_cctp_batch.py`, `run_recd_on_rr.py`, `run_recd_weighted_on_rr.py`, and `analyze_cctp_pilot.py`. Exact reproduction commands appear in Appendix A.
+Each record was labeled by \textbf{substrate} (sinus / AF / paced) from rhythm metadata and automated pacing flags, and by \textbf{event type}: intermediate if the VF (or terminal arrhythmia) anchor leaves more than 3\,h of post-event recording ($(\mathrm{duration}-\mathrm{event\_hr})>3$\,h), otherwise terminal. Event hour was resolved from cleaned RR NPZ metadata (not from recording duration alone), correcting earlier terminal-heavy misclassification when `event_hr` was empty. Stratum-wise means and medians of $\Delta\tau_s$, $\Delta\mathrm{excess3}$, $\Delta\mathrm{var}$, and $\Delta\mathrm{AR}(1)$ are reported.
+
+## 2.8 Lead-time detector (frozen rule)
+
+For each metric series ($\tau_s$, excess3, rolling variance, lag-1 AR), we defined a discovery detector as the first time the absolute $z$-score relative to the basal-window mean and standard deviation exceeds $z=2$ for at least three consecutive windows (stride 5). Lead time is hours from that first sustained alarm to the event anchor. Sensitivity is the fraction of event Holters with any pre-event alarm; \textbf{false-alarm rate (FAR) is undefined} in the absence of independent control Holters and is reported as missing until external validation.
+
+## 2.9 Head-to-head direction concordance
+
+Pairwise \textbf{direction concordance} is the fraction of records in which $\mathrm{sign}(\Delta)$ agrees between two metrics (zeros treated as non-positive for sign). Concordance is computed for $\tau_s$ vs excess3, $\tau_s$ vs var, $\tau_s$ vs AR(1), excess3 vs var, and var vs AR(1), using identical basal/approach windows as Sections 2.3--2.6.
+
+## 2.10 Software and reproducibility
+
+Analyses used Python 3 with NumPy/SciPy/Pandas/Matplotlib, WFDB, and `systemictau` [@Padilla2026software]. Batch orchestration, quality reporting, nested RECD modules, stratification, lead-time detection, head-to-head comparison, and figure generation are provided in the public repository for this study [@Padilla2026CCTPcode] (`https://github.com/johelpadilla/cctp-sddb-systemic-tau`), including scripts `run_cctp_batch.py`, `run_cohort_stratified.py`, `run_leadtime_detector.py`, `run_ews_head2head.py`, `run_publication_figures.py`, `run_recd_on_rr.py`, `run_recd_weighted_on_rr.py`, and `analyze_cctp_pilot.py`. Exact reproduction commands appear in Appendix A.
 
 # 3. Results
 
@@ -284,13 +300,106 @@ This dissociation is not a failure of EWS theory; it is evidence that pre-VF Hol
 
 Weighted RECD ($\alpha(\lambda)$ driven by $|\tau_s|$) completed on 6/10 records. Because empirical $|\tau_s|$ is far below synthetic activation scales, $\lambda(t)$ is nearly flat and frac-contrib3 remains high and relatively stable. The continuous excess3 delta---not the binary high-level rate---carries the differentiating signal. Full $\lambda$ activation is expected to matter more after further threshold work on cleaner multichannel recordings.
 
+## 3.6 Stratified analysis by substrate and event type
+
+With NPZ-anchored event hours, the $N=10$ cohort separates into \textbf{6 intermediate} events (records 30, 32, 38, 45, 47, 50) and \textbf{4 terminal} events (31, 35, 36, 51). Substrate counts are sinus $n=5$, AF $n=3$, paced $n=2$.
+
+\begin{table}[H]
+\centering
+\caption{Stratum means of basal-to-approach deltas ($N=10$). Intermediate vs terminal uses a $>3$\,h post-event residual rule. Values rounded for display; full precision in repository CSV.}
+\label{tab:stratified}
+\small
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+Stratum & $n$ & mean $\Delta\tau_s$ & mean $\Delta\mathrm{excess3}$ & mean $\Delta\mathrm{var}$ & mean $\Delta\mathrm{AR}(1)$ \\
+\midrule
+AF & 3 & $+0.056$ & $+0.0028$ & $+1.1\times10^{4}$ & $+0.013$ \\
+paced & 2 & $-0.040$ & $-0.021$ & $-446$ & $+0.036$ \\
+sinus & 5 & $+0.013$ & $+0.008$ & $+1.2\times10^{4}$ & $-0.150$ \\
+intermediate & 6 & $+0.019$ & $+0.009$ & $+1.6\times10^{4}$ & $-0.097$ \\
+terminal & 4 & $+0.009$ & $-0.011$ & $-101$ & $-0.013$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Paced records show consistently \textbf{negative} relational deltas for both $\tau_s$ and excess3. AF records show a positive mean $\Delta\tau_s$. Sinus records are mixed (median $\Delta\tau_s\approx 0$). Intermediate events carry larger mean variance rises than terminal ones in this small sample. Terminal mean $\Delta\mathrm{excess3}$ is slightly negative ($n=4$) and should not be over-interpreted as a universal terminal signature. Figure~\ref{fig:strat} summarizes these patterns visually.
+
+![Stratified mean deltas of $\tau_s$, excess3, variance, and AR(1) by substrate and event type ($N=10$).](figures/publication/fig_stratified_deltas.png){width=95%}
+
+## 3.7 Lead-time detector performance
+
+Under the frozen abs-$z\geq 2$ rule sustained for three consecutive windows (Section 2.8), every metric alarms before the event on all 10 discovery Holters (sensitivity $=1.0$). Median lead times are \textbf{6.86\,h} (excess3), \textbf{5.88\,h} ($\tau_s$), \textbf{5.97\,h} (AR(1)), and \textbf{3.90\,h} (variance). At a 6\,h horizon, cumulative detection rates are 0.7 (excess3), 0.5 (AR(1)), 0.4 ($\tau_s$), and 0.2 (variance). The shortest $\tau_s$ lead occurs on borderline record 47 ($\approx 2.47$\,h).
+
+\begin{table}[H]
+\centering
+\caption{Discovery lead-time detector ($N=10$ event Holters). FAR requires control Holters and is not estimable here.}
+\label{tab:leadtime}
+\small
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Metric & Sensitivity & Median lead (h) & Mean lead (h) & FAR \\
+\midrule
+excess3 & 1.0 & 6.86 & 5.91 & --- \\
+$\tau_s$ & 1.0 & 5.88 & 5.63 & --- \\
+AR(1) & 1.0 & 5.97 & 5.19 & --- \\
+variance & 1.0 & 3.90 & 4.22 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+These multi-hour leads are \textbf{hypothesis-generating}: they show that basal-relative departures in relational series can precede VF by hours on SDDB discovery records. They do \textbf{not} establish a clinical operating point, because FAR is undefined without non-event controls and because abs-$z$ alarms can respond to non-specific non-stationarity.
+
+![Lead-time distributions and cumulative detection curves for $\tau_s$, excess3, variance, and AR(1) under the frozen abs-$z$ detector.](figures/publication/fig_leadtime_detector.png){width=95%}
+
+## 3.8 Head-to-head concordance matrix
+
+Direction concordance (fraction of records with agreeing $\mathrm{sign}(\Delta)$) is highest for the relational pair:
+
+\begin{table}[H]
+\centering
+\caption{Pairwise direction concordance of basal-to-approach deltas ($N=10$).}
+\label{tab:concordance}
+\small
+\begin{tabular}{@{}lc@{}}
+\toprule
+Metric pair & Concordance \\
+\midrule
+$\tau_s$ vs excess3 & \textbf{8/10 (0.8)} \\
+$\tau_s$ vs AR(1) & 7/10 (0.7) \\
+$\tau_s$ vs variance & 5/10 (0.5) \\
+excess3 vs variance & 5/10 (0.5) \\
+variance vs AR(1) & 2/10 (0.2) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+$\tau_s$ and excess3 remain the only high-concordance pair; variance and AR(1) agree on only 2/10 records, reinforcing that classical univariate EWS do not form a coherent CSD package on these Holters. Discordant relational records remain 47 and 50 (Section 3.1).
+
+![Head-to-head direction concordance among relational and classical EWS metrics.](figures/publication/fig_ews_concordance.png){width=85%}
+
+## 3.9 External Validation Phase 1 Pilot (frozen pipeline)
+
+To test whether the relational signal observed on the SDDB discovery cohort generalizes, the identical frozen parameters ($\theta_3=0.08$, high-threshold $=0.65$, $W_\tau=101$, stride $=5$, abs-$z \geq 2$ sustained for $\geq 3$ consecutive windows) were applied to independent public data without any re-tuning.
+
+**Data footprint.** PhysioNet VFDB (22 records) and CUDB (35 records) were processed; after strict inclusion criteria (pre-event $\geq 15$ min, interpolation fraction $\leq 15\%$), 11 independent short episodes from VFDB remained processable (all in the `short_15_60min` stratum). CUDB contributed zero usable events. Six long healthy Holters from PhysioNet NSRDB served as negative controls for false-alarm rate (FAR) estimation. One additional SDDB record (44) was processed as an internal extension only.
+
+**Sensitivity and lead-time (independent VFDB n=11).** Under the frozen detector: $\tau_s$ sensitivity 1.0 (median lead 0.173 h), excess3 sensitivity 0.82 (median lead 0.127 h). Sign concordance between $\Delta\tau_s$ and $\Delta$excess3 was 7/11 (0.64). All lead times are necessarily short because the source databases contain only brief pre-event segments.
+
+**False-alarm rate (NSRDB controls).** On ~60 h of healthy control monitoring the frozen rule produced ~34.4 alarms per 24 h for $\tau_s$ and ~28.8 for excess3. Every control Holter generated at least one alarm episode. This quantifies the specificity limitation that was previously undefined.
+
+**Interpretation.** Phase 1 demonstrates that the relational metrics continue to detect pre-event departures under frozen parameters on completely independent data. However, the high FAR on healthy controls shows that the current single-metric abs-$z$ rule is not yet specific enough for clinical use. No S1–S6 success criteria are claimed as fully met.
+
 # 4. Discussion
 
 ## 4.1 Context-dependent reorganization as the central message
 
-The strongest interpretive claim supported by these data is not "a universal numeric threshold predicts VF," but rather: \textbf{the relational organization of heart-rate dynamics reconfigures before spontaneous VF, and the sign of that reconfiguration is itself informative}. Positive $\Delta\tau_s$/$\Delta\mathrm{excess3}$ and negative $\Delta\tau_s$/$\Delta\mathrm{excess3}$ both appear, each with surrogate support in strong cases. This context dependence is a feature of physiological diversity, not noise to be averaged away.
+The strongest interpretive claim supported by these data is not "a universal numeric threshold predicts VF," but rather: \textbf{the relational organization of heart-rate dynamics reconfigures before spontaneous VF, and the sign of that reconfiguration is itself informative}. Positive $\Delta\tau_s$/$\Delta\mathrm{excess3}$ and negative $\Delta\tau_s$/$\Delta\mathrm{excess3}$ both appear, each with surrogate support in strong cases. Stratified means (Section 3.6) place that dependence on substrate: paced Holters trend negative relationally; AF trends positive in $\Delta\tau_s$; sinus is mixed. This context dependence is a feature of physiological diversity, not noise to be averaged away.
 
-A useful distinction is that between measuring the amplitude of fluctuations (variance) and measuring whether coupled variables reorganize their mutual pattern (relational structure). Both can change before a transition; only the second tracks reorganization of interaction.
+A useful distinction is that between measuring the amplitude of fluctuations (variance) and measuring whether coupled variables reorganize their mutual pattern (relational structure). Both can change before a transition; only the second tracks reorganization of interaction. The head-to-head matrix (Section 3.8) quantifies that distinction: relational concordance 0.8 versus variance--AR(1) concordance 0.2.
+
+Lead-time results (Section 3.7) add a temporal claim---relational series can depart from basal statistics many hours before VF on discovery records---while remaining strictly limited by missing FAR.
+
+The external pilot (Phase 1) on 11 independent VFDB episodes provides the first evidence that the relational reorganization signature detected by $\tau_s$ and excess3 on SDDB generalizes beyond the discovery corpus under strictly frozen parameters. Sensitivity remained high, yet the same rule produced unacceptably high false-alarm rates on healthy control Holters. This result reframes the research priority: future work must focus on improving specificity (better basal referencing, multi-metric fusion, or device-matched controls) rather than further sensitivity hunting on short public databases.
 
 ## 4.2 Relation to classical EWS and network physiology
 
@@ -308,21 +417,23 @@ Intermittent pacing and AF were not excluded a priori. Automated flags and inter
 
 # 5. Limitations
 
-1. \textbf{Scale of SDDB.} The database contains only 23 records. After strict filters, $N\approx 8$--$12$ is the realistic high-quality ceiling; here $N=10$. This scale supports a first relational study but not multi-center clinical claim-making.
+1. \textbf{Scale of SDDB.} The database contains only 23 records. After strict filters, $N\approx 8$--$12$ is the realistic high-quality ceiling; here $N=10$. This scale supports a first relational study but not multi-center clinical claim-making. Stratified cells (e.g., paced $n=2$, terminal $n=4$) are too small for formal interaction tests.
 2. \textbf{Annotation heterogeneity.} Audited `.atr` annotations are preferred; unaudited `.ari` fallbacks are required for some records. Pacing detection is robust (comment + known list + CV heuristic) but paced RR interpretation remains cautious.
 3. \textbf{Sparse clinical metadata.} Age, sex, medications, ejection fraction, and etiology are often missing or incomplete. Subgroup clinical interpretation is therefore limited.
 4. \textbf{Single retrospective public corpus.} Recordings originate primarily from 1980s Boston-area hospitals. External validation on independent pre-VF Holter collections is mandatory before translation.
 5. \textbf{Small absolute magnitudes.} Physiological $|\tau_s|$ and excess3 deltas are modest; synthetic-derived thresholds required light re-calibration. The binary high-level rate remains uninformative at $0.65$ on these series.
 6. \textbf{Surrogate budget.} Phase-shuffle ensembles use $n=8$ per record (light but directional). Larger ensembles and alternative surrogate classes (IAAFT, twin surrogates) are natural extensions.
 7. \textbf{Bivariate proxy.} The RR--$|\Delta\mathrm{RR}|$ embedding is intentional and minimal; richer multichannel ECG or multimodal Network Physiology embeddings may strengthen $\lambda$-weighted RECD.
+8. \textbf{Detector FAR undefined.} The abs-$z$ lead-time analysis reports discovery sensitivity only. Without independent control Holters, false-alarm rate, positive predictive value, and clinical operating characteristics cannot be claimed. Sensitivity of 1.0 on event-only records is expected to be optimistic.
+9. **External pilot limitations.** Phase 1 used short public VFDB episodes; longer pre-event windows and device-matched controls are required for clinically meaningful lead-time and FAR comparisons. The high FAR observed on NSRDB controls is informative but not device-matched to the VFDB telemetry environment.
 
 # 6. Conclusions
 
-Systemic Tau combined with ordinal RECD provides a reproducible, sign-concordant early-warning signature of spontaneous VF that is invisible or reversed by classical univariate EWS in several records. The relational metrics detect reorganization even when variance-based signals are weak or reversed; intermittent pacing and AF, when explicitly flagged, do not abolish the pattern.
+Systemic Tau combined with ordinal RECD provides a reproducible, sign-concordant early-warning signature of spontaneous VF that is invisible or reversed by classical univariate EWS in several records. The relational metrics detect reorganization even when variance-based signals are weak or reversed; intermittent pacing and AF, when explicitly flagged, do not abolish the pattern. After corrected event anchoring, substrate- and geometry-stratified deltas, multi-hour discovery lead times (median excess3 $\approx 6.9$\,h; $\tau_s\approx 5.9$\,h versus variance $\approx 3.9$\,h), and a head-to-head concordance matrix (0.8 for $\tau_s$--excess3 versus 0.2 for variance--AR(1)) strengthen the case that pre-VF Holter dynamics are relational reorganizations rather than a single critical-slowing trajectory---while leaving FAR and external validity open.
 
 These findings provide real-world physiological support for the Systemic Tau and RECD framework as tools capable of detecting context-dependent relational reorganizations that precede critical transitions, even in noisy biological signals where classical univariate early-warning signals fail or reverse.
 
-Natural extensions include (i) external validation on independent Holter VF collections, (ii) richer multivariate proxies under the Network Physiology program, and (iii) prospective evaluation of online ordinal monitors as research early-warning tools.
+Natural extensions include (i) external validation on independent Holter VF collections with control arms for FAR, (ii) richer multivariate proxies under the Network Physiology program, and (iii) prospective evaluation of online ordinal monitors as research early-warning tools.
 
 # Data and Code Availability
 
@@ -381,6 +492,21 @@ cols = ['record','delta_tau','p_tau_surrogate','delta_excess3',
         'p_excess3','interp_frac','pacing_detected','has_weighted']
 print(df[cols].to_string(index=False))
 "
+
+# Stratified cohort, lead-time detector, head-to-head EWS (frozen params)
+python3 code/run_cohort_stratified.py
+python3 code/run_leadtime_detector.py
+python3 code/run_ews_head2head.py
+python3 code/run_publication_figures.py
+
+# Unit tests for lead-time / event-type helpers
+python3 tests/test_leadtime_detector.py
+
+# External Validation Phase 1 (frozen params, independent VFDB + controls)
+python3 code/extract_rr_external.py --db all
+python3 code/run_external_validation_phase1.py
+# (optional internal extension)
+python3 code/run_external_validation_phase1.py --include-sddb-extension
 ```
 
 # Appendix B. Notation
@@ -416,4 +542,6 @@ The following materials accompany the main text:
 
 **S5. Borderline records 47 and 50.** Small absolute $\Delta\tau_s$ with non-concordant $\Delta\mathrm{excess3}$ are interpreted as indeterminate or borderline transitions rather than as definitive alerts.
 
-**S6. Software and code archive.** Analyses used `systemictau`, WFDB, and standard scientific Python libraries (NumPy, SciPy, Pandas, Matplotlib). The complete study repository is at \url{https://github.com/johelpadilla/cctp-sddb-systemic-tau}.
+**S6. Stratification, lead-time, and head-to-head (Jul-12 2026 run).** Corrected intermediate/terminal labels (6/4), substrate strata, abs-$z$ lead-time tables (`leadtime_per_record.csv`, `leadtime_detector_summary.json`), concordance matrix (`ews_head2head_report.json`), and publication figures under `figures/publication/` (also mirrored in `manuscript/figures/publication/`). Interpretation note: `docs/JUL12_RESULTS_INTERPRETATION.md`.
+
+**S7. Software and code archive.** Analyses used `systemictau`, WFDB, and standard scientific Python libraries (NumPy, SciPy, Pandas, Matplotlib). The complete study repository is at \url{https://github.com/johelpadilla/cctp-sddb-systemic-tau}.

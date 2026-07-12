@@ -1,0 +1,24 @@
+record_id,duration_hours,has_vf_marker,pre_event_hours,has_atr_clinical,pacing,rhythm,vf_onset,quality_notes,inventory_include,inventory_reason,in_manuscript_n10,process_status,exclusion_or_hold_reason,expansion_candidate,has_hea,has_atr,has_ari,has_annotation,has_dat,dat_bytes,has_clean_rr,can_extract_rr
+30,24.55,Yes,7.91,Yes,none,Sinus,07:54:33,Good; previously analyzed,Yes,meets criteria; sinus no pace,Yes,processed_analytic,meets criteria; sinus no pace,No,1,1,0,1,0,0,1,1
+31,13.98,Yes,13.71,Yes,none,Sinus,13:42:24,Good; previously analyzed; delta_tau~0 but excess3 strong,Yes,meets criteria; sinus no pace,Yes,processed_analytic,meets criteria; sinus no pace,No,1,1,0,1,1,37740000,1,1
+32,24.33,Yes,16.75,No,intermittent,Sinus with intermittent demand ventricular pacing,16:45:18,Intermittent pacing - RR may be affected; use with caution,Yes,long pre-event; flag pacing,Yes,processed_analytic,long pre-event; flag pacing,No,1,1,0,1,0,0,1,1
+33,24.55,Yes,4.77,No,none,Sinus,04:46:19,Pre-event borderline ~4.8h,Yes,sinus; pre ~4.8h borderline,No,eligible_no_local_annotations,include=Yes but no local .atr/.ari+.hea for RR extraction,No,0,0,0,0,0,0,0,0
+34,7.09,Yes,6.6,No,none,Sinus,06:35:44,Short total duration <12h,No,duration <12h,No,excluded,duration <12h,No,0,0,0,0,0,0,0,0
+35,24.87,Yes,24.58,Yes,none,Atrial fibrillation,24:34:56,Excellent long pre; AF; previously analyzed; terminal,Yes,meets criteria; AF example,Yes,processed_analytic,meets criteria; AF example,No,1,1,0,1,0,0,1,1
+36,20.36,Yes,18.98,No,none,Atrial fibrillation,18:59:01,AF; good pre-event window,Yes,AF; long pre,Yes,processed_analytic,AF; long pre,No,1,1,0,1,0,0,1,1
+37,25.13,Yes,1.52,No,none,Atrial fibrillation,01:31:13,Very short pre-event window,No,pre-event window <3h,No,excluded,pre-event window <3h,No,0,0,0,0,0,0,0,0
+38,18.31,Yes,8.03,No,none,Sinus,08:01:54,Good sinus candidate,Yes,meets criteria; sinus,Yes,processed_analytic,meets criteria; sinus,No,1,0,1,1,1,49428750,1,1
+39,5.78,Yes,4.63,No,none,Sinus,04:37:51,Short duration,No,duration <12h,No,excluded,duration <12h,No,0,0,0,0,0,0,0,0
+40,24.88,No,,No,continuous,Paced,"(paced, no VF)",Continuously paced; no VF marker,No,no VF marker (paced continuous),No,excluded,no VF marker (paced continuous),No,0,0,0,0,0,0,0,0
+41,3.93,Yes,2.99,No,none,Sinus,02:59:24,Very short,No,duration <12h,No,excluded,duration <12h,No,0,0,0,0,0,0,0,0
+42,25.14,No,,No,none,Sinus,(no VF),No VF marker,No,no VF marker,No,excluded,no VF marker,No,0,0,0,0,0,0,0,0
+43,23.13,Yes,15.62,No,intermittent,Intermittent ventricular pacing,15:37:11,Intermittent pacing; long pre; use caution on RR,Yes,long pre; flag for pacing,No,eligible_no_local_annotations,include=Yes but no local .atr/.ari+.hea for RR extraction,No,0,0,1,1,0,0,0,0
+44,23.33,Yes,19.65,Yes,none,Sinus,19:38:45,Excellent; long pre ~19.6h; sinus,Yes,meets criteria; high quality sinus,No,rr_extracted_expansion,clean RR available; not in manuscript N=10 analytic set,No,1,0,1,1,0,0,1,1
+45,24.16,Yes,18.15,No,none,Sinus,18:09:17,Good; long pre; history of ectopy,Yes,meets criteria; sinus,Yes,processed_analytic,meets criteria; sinus,No,1,1,0,1,0,0,1,1
+46,4.25,Yes,3.7,No,none,Sinus,03:41:47,Short,No,duration <12h,No,excluded,duration <12h,No,0,0,0,0,0,0,0,0
+47,23.6,Yes,6.22,No,none,Sinus,06:13:01,Sinus; pre ~6.2h ok,Yes,meets criteria,Yes,processed_analytic,meets criteria,No,1,0,1,1,0,0,1,1
+48,24.6,Yes,2.49,No,none,Sinus,02:29:40,Short pre-event,No,pre-event window <3h,No,excluded,pre-event window <3h,No,0,0,0,0,0,0,0,0
+49,25.03,No,,No,intermittent,Sinus with intermittent pacing,"(paced, no VF)",Paced no VF,No,no VF marker (paced or other),No,excluded,no VF marker (paced or other),No,0,0,0,0,0,0,0,0
+50,23.13,Yes,11.76,No,none,Atrial fibrillation,11:45:43,AF; good pre ~11.8h,Yes,AF; meets duration/pre,Yes,processed_analytic,AF; meets duration/pre,No,1,0,1,1,0,0,1,1
+51,25.14,Yes,22.97,No,intermittent,Sinus with intermittent pacing,22:58:23,Long pre; intermittent pacing flag,Yes,long pre; flag pacing,Yes,processed_analytic,long pre; flag pacing,No,1,1,0,1,0,0,1,1
+52,7.52,Yes,2.54,Yes,none,Sinus,02:32:40,Short total,No,duration <12h,No,excluded,duration <12h,No,1,1,0,1,0,0,0,1

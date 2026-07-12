@@ -12,10 +12,15 @@ venv/
 .vscode/
 *.swp
 
-# Large raw ECG waveform files (re-download from PhysioNet; annotations kept)
+# Large raw ECG waveform files (re-download from PhysioNet; annotations + cleaned RR kept)
 data/sddb/*.dat
+data/vfdb/*.dat
+data/cudb/*.dat
 
-# Local scratch
+# Local scratch / caches
 *.log
 tmp/
 .cache/
+.pytest_cache/
+code/__pycache__/
+tests/__pycache__/

@@ -2,16 +2,13 @@ cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 type: software
 title: "CCTP/SDDB: Systemic Tau and ordinal RECD before spontaneous ventricular fibrillation"
-version: "1.0.1"
-date-released: "2026-07-09"
-doi: "10.5281/zenodo.21270699"
+version: "1.1.0"
+date-released: "2026-07-12"
+doi: "10.5281/zenodo.21270698"
 identifiers:
   - type: doi
-    value: "10.5281/zenodo.21270699"
-    description: "This version (v1.0.1)"
-  - type: doi
     value: "10.5281/zenodo.21270698"
-    description: "Concept DOI (all versions)"
+    description: "Concept DOI (all versions; version DOI minted by Zenodo on GitHub release)"
   - type: url
     value: "https://github.com/johelpadilla/cctp-sddb-systemic-tau"
     description: "GitHub repository"
@@ -23,7 +20,9 @@ authors:
 abstract: >-
   Analysis code, cleaned RR series, results, and figures for the Holter
   manuscript on Systemic Tau and nested ordinal RECD (excess3) preceding
-  spontaneous ventricular fibrillation in PhysioNet SDDB (N=10).
+  spontaneous ventricular fibrillation in PhysioNet SDDB (N=10), plus
+  External Validation Phase 1 (VFDB n=11 independent short events; NSRDB
+  control FAR; frozen detector parameters). No clinical deployability claim.
 keywords:
   - Systemic Tau
   - RECD
@@ -31,9 +30,12 @@ keywords:
   - early-warning signals
   - ventricular fibrillation
   - PhysioNet SDDB
+  - external validation
+  - VFDB
+  - NSRDB
 license: MIT
 repository-code: "https://github.com/johelpadilla/cctp-sddb-systemic-tau"
-url: "https://doi.org/10.5281/zenodo.21270699"
+url: "https://doi.org/10.5281/zenodo.21270698"
 contact:
   - family-names: "Padilla-Villanueva"
     given-names: "Johel"

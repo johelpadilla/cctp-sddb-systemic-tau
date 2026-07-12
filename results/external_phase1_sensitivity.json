@@ -1,0 +1,83 @@
+{
+  "generated_at": "2026-07-12T19:20:34.518245+00:00",
+  "params": {
+    "theta3": 0.08,
+    "high_threshold": 0.65,
+    "W_TAU": 101,
+    "stride": 5,
+    "z_threshold": 2.0,
+    "min_consecutive": 3,
+    "alarm_rule": "abs_z_from_basal >= z_threshold sustained min_consecutive",
+    "rr_clean_ms": [
+      250.0,
+      2000.0
+    ]
+  },
+  "n_inventory": 62,
+  "n_included_events_indep": 11,
+  "by_metric": {
+    "ar1": {
+      "n_records": 11.0,
+      "n_detected": 6.0,
+      "sensitivity": 0.5454545454545454,
+      "median_lead_time_h": 0.23598333570692276,
+      "mean_lead_time_h": 0.237893883034035,
+      "min_lead_time_h": 0.15439665052625867,
+      "max_lead_time_h": 0.340131106906467,
+      "false_alarm_rate": NaN
+    },
+    "excess3": {
+      "n_records": 11.0,
+      "n_detected": 9.0,
+      "sensitivity": 0.8181818181818182,
+      "median_lead_time_h": 0.12691109551323787,
+      "mean_lead_time_h": 0.15287345321090134,
+      "min_lead_time_h": 0.02257446289062498,
+      "max_lead_time_h": 0.339578874376085,
+      "false_alarm_rate": NaN
+    },
+    "tau_s": {
+      "n_records": 11.0,
+      "n_detected": 11.0,
+      "sensitivity": 1.0,
+      "median_lead_time_h": 0.17306664360894097,
+      "mean_lead_time_h": 0.18862443943216345,
+      "min_lead_time_h": 0.009895562065972224,
+      "max_lead_time_h": 0.3359988742404514,
+      "false_alarm_rate": NaN
+    },
+    "var": {
+      "n_records": 11.0,
+      "n_detected": 6.0,
+      "sensitivity": 0.5454545454545454,
+      "median_lead_time_h": 0.23552388932969834,
+      "mean_lead_time_h": 0.230368696142126,
+      "min_lead_time_h": 0.12977998521592882,
+      "max_lead_time_h": 0.31517220391167533,
+      "false_alarm_rate": NaN
+    }
+  },
+  "by_stratum_tau_s": {
+    "short_15_60min": {
+      "n_records": 11.0,
+      "n_detected": 11.0,
+      "sensitivity": 1.0,
+      "median_lead_time_h": 0.17306664360894097,
+      "mean_lead_time_h": 0.18862443943216345,
+      "min_lead_time_h": 0.009895562065972224,
+      "max_lead_time_h": 0.3359988742404514,
+      "false_alarm_rate": NaN
+    }
+  },
+  "concordance_tau_excess3": {
+    "n": 11.0,
+    "n_concordant": 7.0,
+    "concordance": 0.6363636363636364
+  },
+  "limitations": [
+    "Phase-1 public DBs (VFDB/CU) are short vs SDDB Holters; lead times in minutes not multi-hour.",
+    "Sensitivity on event-only sets; clinical PPV not estimated.",
+    "No threshold retuning; frozen Jul-12 discovery params.",
+    "Not a multi-center clinical validation; no FDA/deployability claim."
+  ]
+}

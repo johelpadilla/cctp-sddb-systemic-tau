@@ -190,7 +190,7 @@ def load_key_metrics(rec: str) -> dict:
         m["delta_excess3"] = m.get("delta_excess3_unw")
         m["p_excess3"] = m.get("p_excess3_unw")
 
-    # === Quality from clean npz (new) ===
+    # === Quality + event timing from clean npz (authoritative for event_hr) ===
     npz_path = DATA_DIR / f"rr_{rec}_clean.npz"
     if npz_path.exists():
         try:
@@ -200,6 +200,17 @@ def load_key_metrics(rec: str) -> dict:
             m["pacing_detected"] = bool(npz["pacing_detected"]) if "pacing_detected" in npz else None
             m["known_pacing_type"] = str(npz["known_pacing_type"]) if "known_pacing_type" in npz else "none"
             m["cv_rr"] = float(npz["cv_rr"]) if "cv_rr" in npz else None
+            # Always resolve event_hr from RR series + vfon (pilot JSON often omits it)
+            try:
+                from cctp_metrics_core import resolve_event_timing_from_npz
+
+                timing = resolve_event_timing_from_npz(rec, str(npz_path))
+                m["event_hr"] = timing["event_hr"]
+                if m.get("duration_h") is None:
+                    m["duration_h"] = timing["duration_h"]
+                m["event_type"] = timing["event_type"]
+            except Exception as te:
+                print(f"  [{rec}] WARNING: could not resolve event_hr from npz: {te}")
         except Exception as e:
             print(f"  [{rec}] WARNING: could not load quality from npz: {e}")
 
