@@ -16,6 +16,7 @@ venv/
 data/sddb/*.dat
 data/vfdb/*.dat
 data/cudb/*.dat
+data/nsrdb/*.dat
 
 # Local scratch / caches
 *.log

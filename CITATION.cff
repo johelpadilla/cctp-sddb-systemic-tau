@@ -2,16 +2,17 @@ cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 type: software
 title: "CCTP/SDDB: Systemic Tau and ordinal RECD before spontaneous ventricular fibrillation"
-version: "1.1.0"
+version: "1.2.0"
 date-released: "2026-07-12"
-doi: "10.5281/zenodo.21326738"
+# Version DOI will be set after Zenodo archives v1.2.0; concept DOI is stable.
+doi: "10.5281/zenodo.21270698"
 identifiers:
-  - type: doi
-    value: "10.5281/zenodo.21326738"
-    description: "This version (v1.1.0)"
   - type: doi
     value: "10.5281/zenodo.21270698"
     description: "Concept DOI (all versions)"
+  - type: doi
+    value: "10.5281/zenodo.21326738"
+    description: "Prior version (v1.1.0)"
   - type: url
     value: "https://github.com/johelpadilla/cctp-sddb-systemic-tau"
     description: "GitHub repository"
@@ -23,9 +24,10 @@ authors:
 abstract: >-
   Analysis code, cleaned RR series, results, and figures for the Holter
   manuscript on Systemic Tau and nested ordinal RECD (excess3) preceding
-  spontaneous ventricular fibrillation in PhysioNet SDDB (N=10), plus
-  External Validation Phase 1 (VFDB n=11 independent short events; NSRDB
-  control FAR; frozen detector parameters). No clinical deployability claim.
+  spontaneous ventricular fibrillation in PhysioNet SDDB (N=10), External
+  Validation Phase 1 (VFDB n=11; NSRDB control FAR), and Phase 2 public
+  interim (full NSRDB n=18 FAR under frozen parameters; device-mismatch
+  caveat; S5 not claimed). No clinical deployability claim.
 keywords:
   - Systemic Tau
   - RECD
@@ -38,7 +40,7 @@ keywords:
   - NSRDB
 license: MIT
 repository-code: "https://github.com/johelpadilla/cctp-sddb-systemic-tau"
-url: "https://doi.org/10.5281/zenodo.21326738"
+url: "https://doi.org/10.5281/zenodo.21270698"
 contact:
   - family-names: "Padilla-Villanueva"
     given-names: "Johel"
@@ -50,7 +52,7 @@ preferred-citation:
       given-names: "Johel"
       orcid: "https://orcid.org/0000-0002-5797-6931"
   title: "CCTP/SDDB: Systemic Tau and ordinal RECD before spontaneous ventricular fibrillation"
-  version: "1.0.1"
+  version: "1.2.0"
   year: 2026
-  doi: "10.5281/zenodo.21270699"
-  url: "https://doi.org/10.5281/zenodo.21270699"
+  doi: "10.5281/zenodo.21270698"
+  url: "https://doi.org/10.5281/zenodo.21270698"

@@ -1,0 +1,58 @@
+{
+  "generated_at": "2026-07-12T20:06:14.002829+00:00",
+  "phase": "external_validation_phase2_interim_far",
+  "params": {
+    "theta3": 0.08,
+    "high_threshold": 0.65,
+    "W_TAU": 101,
+    "stride": 5,
+    "z_threshold": 2.0,
+    "min_consecutive": 3,
+    "alarm_rule": "abs_z_from_basal >= z_threshold sustained min_consecutive",
+    "rr_clean_ms": [
+      250.0,
+      2000.0
+    ]
+  },
+  "control_source": "PhysioNet NSRDB full local set (negative-control Holters; no VF)",
+  "control_max_hours": 12.0,
+  "n_npz_found": 18,
+  "n_controls_processed": 18,
+  "by_metric": {
+    "tau_s": {
+      "n_controls": 18.0,
+      "total_episodes": 253.0,
+      "total_search_hours": 179.9978949652778,
+      "far_per_24h": 33.7337278370467,
+      "fraction_alarmed": 1.0,
+      "reason": "ok"
+    },
+    "excess3": {
+      "n_controls": 18.0,
+      "total_episodes": 242.0,
+      "total_search_hours": 179.9978949652778,
+      "far_per_24h": 32.26704401804467,
+      "fraction_alarmed": 1.0,
+      "reason": "ok"
+    }
+  },
+  "device_mismatch": true,
+  "device_mismatch_note": "NSRDB is rhythm-healthy Holter ECG \u2014 NOT device-matched to VFDB/CU telemetry. Expanded n does not remove this mismatch; FAR remains an upper-bound / interim public estimate only.",
+  "s5_claim": false,
+  "clinical_claim": false,
+  "deployability_claim": false,
+  "notes": [
+    "FAR = total alarm episodes / total search hours * 24.",
+    "Basal = early control window; search = remainder (capped at control_max_hours).",
+    "Primary rule frozen: abs-z \u2265 2 sustained \u2265 3; \u03b8\u2083=0.08; high=0.65; W_TAU=101.",
+    "NSRDB is rhythm-healthy Holter \u2014 not device-matched to VFDB/CU telemetry.",
+    "S5 (FAR \u2264 2/24h) is NOT claimed met solely from more healthy Holter controls.",
+    "Phase 1 baseline (n=6): \u03c4_s FAR ~34.4/24h, excess3 ~28.8/24h."
+  ],
+  "phase1_baseline": {
+    "n_controls": 6,
+    "tau_s_far_per_24h": 34.400425526097,
+    "excess3_far_per_24h": 28.800356254406793,
+    "total_search_hours": 59.9992578125
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "generated_at": "2026-07-12T20:06:14.003232+00:00",
+  "phase": "external_validation_phase2_interim_far",
+  "status": "nsrdb_full_set_far_reported",
+  "params_frozen": {
+    "theta3": 0.08,
+    "high_threshold": 0.65,
+    "W_TAU": 101,
+    "stride": 5,
+    "z_threshold": 2.0,
+    "min_consecutive": 3,
+    "alarm_rule": "abs_z_from_basal >= z_threshold sustained min_consecutive",
+    "rr_clean_ms": [
+      250.0,
+      2000.0
+    ]
+  },
+  "controls_csv": "results/external_phase2_controls.csv",
+  "per_record_csv": "results/external_phase2_controls_per_record.csv",
+  "far_json": "results/external_phase2_far.json",
+  "n_controls": 18,
+  "total_search_hours": 179.9978949652778,
+  "far_by_metric": {
+    "tau_s": {
+      "n_controls": 18.0,
+      "total_episodes": 253.0,
+      "total_search_hours": 179.9978949652778,
+      "far_per_24h": 33.7337278370467,
+      "fraction_alarmed": 1.0,
+      "reason": "ok"
+    },
+    "excess3": {
+      "n_controls": 18.0,
+      "total_episodes": 242.0,
+      "total_search_hours": 179.9978949652778,
+      "far_per_24h": 32.26704401804467,
+      "fraction_alarmed": 1.0,
+      "reason": "ok"
+    }
+  },
+  "phase1_vs_phase2": {
+    "phase1_n": 6,
+    "phase2_n": 18,
+    "phase1_tau_s_far_per_24h": 34.400425526097,
+    "phase2_tau_s_far_per_24h": 33.7337278370467,
+    "phase1_excess3_far_per_24h": 28.800356254406793,
+    "phase2_excess3_far_per_24h": 32.26704401804467
+  },
+  "device_mismatch": true,
+  "device_mismatch_note": "NSRDB is rhythm-healthy Holter ECG \u2014 NOT device-matched to VFDB/CU telemetry. Expanded n does not remove this mismatch; FAR remains an upper-bound / interim public estimate only.",
+  "s5_claim": false,
+  "s5_note": "S5 (FAR \u2264 2/24h) is NOT met and is NOT claimed; expanding healthy NSRDB cannot alone establish clinical specificity or pass S5.",
+  "clinical_claim": false,
+  "deployability_claim": false,
+  "recommendation": "Stop expanding public healthy Holter as the main specificity path. Next highest-value step: prepare institutional / device-matched non-event controls via docs/PHASE2_IRB_DATA_CHECKLIST.md (Tier A). Optional: keep full NSRDB FAR as public interim reference only.",
+  "next_step": "Institutional pathway: complete partner identification + de-ID schema from PHASE2_IRB_DATA_CHECKLIST; do not retune frozen primary rule."
+}

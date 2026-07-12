@@ -1,6 +1,6 @@
 # External Validation Plan — Systemic Tau + RECD before spontaneous VF
 
-**Status:** research plan; **Phase 1 started 2026-07-12** — see `docs/EXTERNAL_VALIDATION_PHASE1_REPORT.md` (not a completed multi-center study; no clinical claim)  
+**Status:** research plan; **Phase 1 reported 2026-07-12** (`docs/EXTERNAL_VALIDATION_PHASE1_REPORT.md`); **Phase 2 planning + interim full-NSRDB FAR (n=18) 2026-07-12** (`docs/EXTERNAL_VALIDATION_PHASE2_PLAN.md`, `docs/EXTERNAL_VALIDATION_PHASE2_PROGRESS.md`) — institutional Tier A still open; **no clinical claim**; **S5 not claimed**  
 **Primary metrics (frozen):** Δτ_s and continuous Δexcess3 on bivariate RR proxy  
 **Paper parameters (do not re-tune on validation sets):** θ₃ = 0.08, high-thresh = 0.65, W_τ = 101, stride = 5, λ-relative for weighted RECD (secondary)
 
@@ -116,9 +116,11 @@ For sensitivity 0.60 with 95% CI width ±0.15 (Wilson), ~40 independent events a
 ## 9. Timeline (suggested)
 
 1. **Phase 0 (done in-repo):** SDDB inventory + N=10 pipeline + lead-time / EWS head-to-head + frozen code.  
-2. **Phase 1:** Process remaining SDDB eligible annotations; public VFDB/CU subset.  
-3. **Phase 2:** Institutional Holters + control set; FAR.  
-4. **Phase 3:** Pre-specified manuscript addendum / validation paper.
+2. **Phase 1 (done & reported 2026-07-12):** Public VFDB/CU + NSRDB controls; independent n=11; FAR ~29–34/24 h (S5 fail). See `docs/EXTERNAL_VALIDATION_PHASE1_REPORT.md`.  
+3. **Phase 2 (2026-07-12):** **Specificity / realistic FAR** — plan + IRB checklist; **public interim done** (full NSRDB n=18, primary FAR τ_s ~33.7 / excess3 ~32.3 per 24h, device mismatch remains; S5 not met). Next: institutional / device-matched controls. Plan: `docs/EXTERNAL_VALIDATION_PHASE2_PLAN.md`; progress: `docs/EXTERNAL_VALIDATION_PHASE2_PROGRESS.md`.  
+4. **Phase 3:** Pre-specified manuscript addendum / validation paper (after Phase 2 data).
+
+**Phase 2 scientific goal (not more short-DB sensitivity):** estimate FAR on higher-quality controls; do not retune θ₃ / high-threshold / W_TAU / abs-z primary rule; no clinical claim until multi-source S4–S5 are met under adequate controls.
 
 ---
 
@@ -127,4 +129,8 @@ For sensitivity 0.60 with 95% CI width ±0.15 (Wilson), ~40 independent events a
 - `data/sddb_full_inventory.csv` — 23-record inventory with exclusion reasons  
 - `results/cctp_batch_summary.csv` / `cctp_cohort_stratified.csv` — discovery cohort  
 - `results/leadtime_*` / `ews_head2head_*` — detector and comparator baselines  
-- `code/cctp_metrics_core.py` — pure lead-time / detector functions (unit-tested)
+- `results/external_phase1_*` — Phase 1 FAR / sensitivity (v1.1.0)  
+- `results/phase2_public_control_inventory.csv` — Phase 2 candidate public/institutional control inventory  
+- `docs/EXTERNAL_VALIDATION_PHASE2_PLAN.md` — Phase 2 specificity plan  
+- `docs/PHASE2_IRB_DATA_CHECKLIST.md` — IRB / data-request checklist  
+- `code/cctp_metrics_core.py` — pure lead-time / detector / FAR functions (unit-tested)

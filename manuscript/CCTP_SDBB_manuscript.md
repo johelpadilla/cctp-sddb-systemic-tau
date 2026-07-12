@@ -39,7 +39,7 @@ Applied to $N=10$ high-quality records from the PhysioNet Sudden Cardiac Death H
 
 These results support a view of pre-VF transitions as \emph{context-dependent reorganizations of the relational structure of heart-rate dynamics}, rather than as a uniform loss of stability. The findings provide real-world physiological support for the Systemic Tau and RECD framework as tools capable of detecting relational reorganizations that precede critical transitions in noisy biological signals where classical univariate EWS fail or reverse. The pipeline is fully reproducible (\url{https://github.com/johelpadilla/cctp-sddb-systemic-tau}) and immediately extensible to other Holter collections.
 
-An external pilot (Phase 1) applying the identical frozen pipeline to 11 independent short pre-VF/VT episodes from the PhysioNet VFDB database yielded sensitivity of 1.0 for $\tau_s$ and 0.82 for excess3, with sign concordance of 0.64 between the two relational metrics. Median lead times were short (~7–10 min) owing to the brief pre-event windows available in public short-recording databases. On negative-control Holters (NSRDB), the frozen abs-$z$ detector produced high false-alarm rates (~29–34 per 24 h), indicating that specificity—not sensitivity—remains the principal next scientific bottleneck. No clinical or deployability claims are made.
+An external pilot (Phase 1) applying the identical frozen pipeline to 11 independent short pre-VF/VT episodes from the PhysioNet VFDB database yielded sensitivity of 1.0 for $\tau_s$ and 0.82 for excess3, with sign concordance of 0.64 between the two relational metrics. Median lead times were short (~7–10 min) owing to the brief pre-event windows available in public short-recording databases. On negative-control Holters (NSRDB; Phase 1 $n=6$, then full-set interim Phase 2 $n=18$), the frozen abs-$z$ detector produced stably high false-alarm rates ($\tau_s\approx 33.7$ and excess3 $\approx 32.3$ alarms per 24 h on the full set). Expanding healthy-Holter sample size did not materially lower FAR, and NSRDB is not device-matched to VFDB telemetry; specificity---not sensitivity---remains the principal next scientific bottleneck. No clinical or deployability claims are made.
 
 \vspace{0.4em}
 \noindent\textbf{Keywords:} Systemic Tau; Discrete Extramental Clock (RECD); ordinal patterns; early-warning signals; ventricular fibrillation; heart-rate variability; network physiology; PhysioNet SDDB; critical transitions; surrogate testing.
@@ -389,6 +389,30 @@ To test whether the relational signal observed on the SDDB discovery cohort gene
 
 **Interpretation.** Phase 1 demonstrates that the relational metrics continue to detect pre-event departures under frozen parameters on completely independent data. However, the high FAR on healthy controls shows that the current single-metric abs-$z$ rule is not yet specific enough for clinical use. No S1–S6 success criteria are claimed as fully met.
 
+## 3.10 External Validation Phase 2 public interim (full NSRDB FAR)
+
+Phase 2 asked whether the Phase 1 high FAR was an artifact of small control $n$. The same frozen abs-$z$ rule (no retune) was re-applied to the complete local NSRDB set of $n=18$ long healthy Holters (~180 h of capped search time: early basal ~2 h, search remainder capped at 12 h per record).
+
+\begin{table}[H]
+\centering
+\caption{Public control FAR under the frozen primary rule (NSRDB). Phase 2 expands Phase 1 without parameter change.}
+\label{tab:phase2_far}
+\small
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Metric & Phase 1 ($n=6$) FAR / 24 h & Phase 2 full NSRDB ($n=18$) FAR / 24 h \\
+\midrule
+$\tau_s$ & $\approx 34.4$ & $\approx 33.7$ \\
+excess3 & $\approx 28.8$ & $\approx 32.3$ \\
+Fraction of controls with $\geq 1$ alarm & 1.0 & 1.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+**Honest reading.** Expanding from 6 to 18 healthy Holters does not materially lower primary FAR. The Phase 1 specificity bottleneck was therefore not a sampling fluke of $n=6$. Two caveats remain explicit: (i) \textbf{device mismatch}---NSRDB is rhythm-healthy ambulatory Holter ECG, not device-matched to VFDB/CU clinical telemetry; (ii) the frozen single-metric abs-$z$ rule still fails any clinical-style FAR tolerance (e.g., FAR $\leq 2$/24 h is not met and is not claimed). Public healthy Holter expansion is therefore closed as the main specificity path; the scientifically next step is quality-first institutional / device-matched non-event controls under the same frozen parameters, not further retuning on public data.
+
+These interim numbers leave the discovery relational message intact: sign-concordant pre-VF reorganization on SDDB and Phase 1 external sensitivity still stand as evidence of what Systemic Tau and RECD can detect before VF. What they do not establish---and what this manuscript does not claim---is clinical specificity or deployability.
+
 # 4. Discussion
 
 ## 4.1 Context-dependent reorganization as the central message
@@ -399,7 +423,7 @@ A useful distinction is that between measuring the amplitude of fluctuations (va
 
 Lead-time results (Section 3.7) add a temporal claim---relational series can depart from basal statistics many hours before VF on discovery records---while remaining strictly limited by missing FAR.
 
-The external pilot (Phase 1) on 11 independent VFDB episodes provides the first evidence that the relational reorganization signature detected by $\tau_s$ and excess3 on SDDB generalizes beyond the discovery corpus under strictly frozen parameters. Sensitivity remained high, yet the same rule produced unacceptably high false-alarm rates on healthy control Holters. This result reframes the research priority: future work must focus on improving specificity (better basal referencing, multi-metric fusion, or device-matched controls) rather than further sensitivity hunting on short public databases.
+The external pilot (Phase 1) on 11 independent VFDB episodes provides the first evidence that the relational reorganization signature detected by $\tau_s$ and excess3 on SDDB generalizes beyond the discovery corpus under strictly frozen parameters. Sensitivity remained high, yet the same rule produced unacceptably high false-alarm rates on healthy control Holters. Phase 2's full-NSRDB interim ($n=18$; Section 3.10) shows that expanding public healthy Holters leaves FAR essentially unchanged ($\tau_s\approx 33.7$/24 h; excess3 $\approx 32.3$/24 h) under device mismatch. Together, the two external stages reframe the research priority without diluting the discovery claim: the relational pre-VF signal is real enough to transfer under frozen parameters; the single-metric abs-$z$ operating point is not yet specific. Future work must prioritize quality-first device-matched non-event controls and, if pre-registered, better basal referencing or multi-metric fusion---not further sensitivity hunting on short public databases, and not silent retuning of discovery thresholds on validation data.
 
 ## 4.2 Relation to classical EWS and network physiology
 
@@ -424,16 +448,18 @@ Intermittent pacing and AF were not excluded a priori. Automated flags and inter
 5. \textbf{Small absolute magnitudes.} Physiological $|\tau_s|$ and excess3 deltas are modest; synthetic-derived thresholds required light re-calibration. The binary high-level rate remains uninformative at $0.65$ on these series.
 6. \textbf{Surrogate budget.} Phase-shuffle ensembles use $n=8$ per record (light but directional). Larger ensembles and alternative surrogate classes (IAAFT, twin surrogates) are natural extensions.
 7. \textbf{Bivariate proxy.} The RR--$|\Delta\mathrm{RR}|$ embedding is intentional and minimal; richer multichannel ECG or multimodal Network Physiology embeddings may strengthen $\lambda$-weighted RECD.
-8. \textbf{Detector FAR undefined.} The abs-$z$ lead-time analysis reports discovery sensitivity only. Without independent control Holters, false-alarm rate, positive predictive value, and clinical operating characteristics cannot be claimed. Sensitivity of 1.0 on event-only records is expected to be optimistic.
-9. **External pilot limitations.** Phase 1 used short public VFDB episodes; longer pre-event windows and device-matched controls are required for clinically meaningful lead-time and FAR comparisons. The high FAR observed on NSRDB controls is informative but not device-matched to the VFDB telemetry environment.
+8. \textbf{Discovery detector vs control FAR.} On SDDB event Holters alone, the abs-$z$ lead-time analysis reports discovery sensitivity only (FAR undefined until controls). External NSRDB controls now quantify FAR, but the rate remains high under the frozen rule ($\sim$33--34 alarms per 24 h for $\tau_s$; Section 3.10). Sensitivity of 1.0 on event-only discovery records is expected to be optimistic relative to any future clinical operating point. Positive predictive value and deployability are not claimed.
+9. \textbf{External pilot limitations.} Phase 1 used short public VFDB episodes; longer pre-event windows and device-matched controls are required for clinically meaningful lead-time and FAR comparisons. Phase 2 confirms high FAR on the full NSRDB set ($n=18$), but NSRDB remains rhythm-healthy Holter---not device-matched to VFDB telemetry---so public interim FAR is an upper-bound / mismatch-caveated reference only. Institutional device-matched non-event series are not yet included.
 
 # 6. Conclusions
 
-Systemic Tau combined with ordinal RECD provides a reproducible, sign-concordant early-warning signature of spontaneous VF that is invisible or reversed by classical univariate EWS in several records. The relational metrics detect reorganization even when variance-based signals are weak or reversed; intermittent pacing and AF, when explicitly flagged, do not abolish the pattern. After corrected event anchoring, substrate- and geometry-stratified deltas, multi-hour discovery lead times (median excess3 $\approx 6.9$\,h; $\tau_s\approx 5.9$\,h versus variance $\approx 3.9$\,h), and a head-to-head concordance matrix (0.8 for $\tau_s$--excess3 versus 0.2 for variance--AR(1)) strengthen the case that pre-VF Holter dynamics are relational reorganizations rather than a single critical-slowing trajectory---while leaving FAR and external validity open.
+Systemic Tau combined with ordinal RECD provides a reproducible, sign-concordant early-warning signature of spontaneous VF that is invisible or reversed by classical univariate EWS in several records. The relational metrics detect reorganization even when variance-based signals are weak or reversed; intermittent pacing and AF, when explicitly flagged, do not abolish the pattern. After corrected event anchoring, substrate- and geometry-stratified deltas, multi-hour discovery lead times (median excess3 $\approx 6.9$\,h; $\tau_s\approx 5.9$\,h versus variance $\approx 3.9$\,h), and a head-to-head concordance matrix (0.8 for $\tau_s$--excess3 versus 0.2 for variance--AR(1)) strengthen the case that pre-VF Holter dynamics are relational reorganizations rather than a single critical-slowing trajectory.
 
-These findings provide real-world physiological support for the Systemic Tau and RECD framework as tools capable of detecting context-dependent relational reorganizations that precede critical transitions, even in noisy biological signals where classical univariate early-warning signals fail or reverse.
+External validation under strictly frozen parameters adds two honest layers: Phase 1 shows high sensitivity on independent short VFDB episodes, and Phase 2 shows that full public NSRDB controls ($n=18$) leave primary FAR high ($\tau_s\approx 33.7$/24 h; excess3 $\approx 32.3$/24 h) under device mismatch. The manuscript therefore closes the public interim as a transparent specificity reference---not as clinical readiness. No clinical, FDA, or deployability claim is made.
 
-Natural extensions include (i) external validation on independent Holter VF collections with control arms for FAR, (ii) richer multivariate proxies under the Network Physiology program, and (iii) prospective evaluation of online ordinal monitors as research early-warning tools.
+These findings provide real-world physiological support for the Systemic Tau and RECD framework as tools capable of detecting context-dependent relational reorganizations that precede critical transitions, even in noisy biological signals where classical univariate early-warning signals fail or reverse. They are an honest example of what the relational metrics can surface before VF---and of what they do not yet resolve on public healthy Holters.
+
+Natural extensions include (i) quality-first institutional / device-matched non-event controls under the same frozen rule, (ii) richer multivariate proxies under the Network Physiology program, and (iii) only if pre-registered, exploratory multi-metric fusion or basal redesign labeled as secondary to the frozen primary detector.
 
 # Data and Code Availability
 
@@ -507,6 +533,11 @@ python3 code/extract_rr_external.py --db all
 python3 code/run_external_validation_phase1.py
 # (optional internal extension)
 python3 code/run_external_validation_phase1.py --include-sddb-extension
+
+# External Validation Phase 2 public interim FAR (full NSRDB; frozen rule)
+python3 code/download_nsrdb_records.py --remaining   # if re-fetching annotations
+python3 code/extract_rr_external.py --db nsrdb
+python3 code/run_external_validation_phase2_far.py
 ```
 
 # Appendix B. Notation
@@ -545,3 +576,5 @@ The following materials accompany the main text:
 **S6. Stratification, lead-time, and head-to-head (Jul-12 2026 run).** Corrected intermediate/terminal labels (6/4), substrate strata, abs-$z$ lead-time tables (`leadtime_per_record.csv`, `leadtime_detector_summary.json`), concordance matrix (`ews_head2head_report.json`), and publication figures under `figures/publication/` (also mirrored in `manuscript/figures/publication/`). Interpretation note: `docs/JUL12_RESULTS_INTERPRETATION.md`.
 
 **S7. Software and code archive.** Analyses used `systemictau`, WFDB, and standard scientific Python libraries (NumPy, SciPy, Pandas, Matplotlib). The complete study repository is at \url{https://github.com/johelpadilla/cctp-sddb-systemic-tau}.
+
+**S8. External Validation Phase 2 public interim.** Full NSRDB FAR under the frozen primary rule (`results/external_phase2_far.json`, `results/external_phase2_summary.json`, inventory `results/phase2_public_control_inventory.csv`). Device-mismatch caveat and institutional Tier A request draft: `docs/EXTERNAL_VALIDATION_PHASE2_PROGRESS.md`, `docs/PHASE2_INSTITUTIONAL_DATA_REQUEST.md`.

@@ -1,6 +1,7 @@
 # CCTP / SDDB: Systemic Tau and ordinal RECD before spontaneous VF
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21326738.svg)](https://doi.org/10.5281/zenodo.21326738)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21270698.svg)](https://doi.org/10.5281/zenodo.21270698)
+[![GitHub release](https://img.shields.io/github/v/release/johelpadilla/cctp-sddb-systemic-tau)](https://github.com/johelpadilla/cctp-sddb-systemic-tau/releases)
 
 **Analysis code and companion data for the manuscript**
 
@@ -27,17 +28,17 @@ ORCID: [0000-0002-5797-6931](https://orcid.org/0000-0002-5797-6931)
 
 | Path | Description |
 |------|-------------|
-| `code/` | Full analysis pipeline used in the paper + Phase-1 external validation |
+| `code/` | Full analysis pipeline + Phase-1/Phase-2 external validation |
 | `data/rr_*_clean.npz` | Cleaned RR series for the *N* = 10 analytic cohort (+ `rr_44` expansion) |
-| `data/rr_external/` | Cleaned RR for VFDB / CUDB / NSRDB Phase-1 extracts |
+| `data/rr_external/` | Cleaned RR for VFDB / CUDB / NSRDB Phase-1 & Phase-2 extracts |
 | `data/sddb/` | PhysioNet headers + beat annotations (`.hea`, `.atr`/`.ari`; no large `.dat`) |
 | `data/vfdb/`, `data/cudb/`, `data/nsrdb/` | External DB headers + annotations (`.dat` omitted; re-download from PhysioNet) |
 | `data/records_inventory.csv` | Record inventory / inclusion notes |
 | `selected_records.txt` | Final *N* = 10 record list |
-| `results/` | Batch, stratified, lead-time, head-to-head, and Phase-1 external tables |
+| `results/` | Batch, stratified, lead-time, H2H, Phase-1, and Phase-2 FAR tables |
 | `figures/` | Per-record, batch, and publication figures |
-| `docs/` | External validation plan/report, Jul-12 interpretation, Copilot draft |
-| `tests/` | Unit tests for detector / FAR / short-window helpers |
+| `docs/` | External validation plans/reports, Phase 2 Tier A request, Copilot draft |
+| `tests/` | Unit tests for detector / FAR / Phase-2 planning artifacts |
 | `manuscript/` | Manuscript source (Markdown + PDF + bibliography + figures) |
 
 ### Analysis scripts (`code/`)
@@ -61,6 +62,8 @@ ORCID: [0000-0002-5797-6931](https://orcid.org/0000-0002-5797-6931)
 | `run_publication_figures.py` | Publication-ready stratification + lead-time figures |
 | `extract_rr_external.py` | RR extract for VFDB (XQRS) / CUDB / NSRDB controls |
 | `run_external_validation_phase1.py` | Frozen external sensitivity + control FAR (Phase 1) |
+| `download_nsrdb_records.py` | Download NSRDB annotations (Phase 2 full set) |
+| `run_external_validation_phase2_far.py` | Full NSRDB interim FAR under frozen primary rule |
 
 ### Extension docs
 
@@ -68,10 +71,16 @@ ORCID: [0000-0002-5797-6931](https://orcid.org/0000-0002-5797-6931)
 |------|-------------|
 | `docs/EXTERNAL_VALIDATION_PLAN.md` | Independent Holter targets, frozen metrics, success criteria |
 | `docs/EXTERNAL_VALIDATION_PHASE1_REPORT.md` | Phase-1 results (VFDB n=11, NSRDB FAR; no clinical claim) |
+| `docs/EXTERNAL_VALIDATION_PHASE2_PLAN.md` | Phase 2 plan (Tier A priority) |
+| `docs/EXTERNAL_VALIDATION_PHASE2_PROGRESS.md` | Phase 2 public interim + Tier A status |
+| `docs/PHASE2_INSTITUTIONAL_DATA_REQUEST.md` | Partner-facing Tier A data request |
+| `docs/PHASE2_IRB_DATA_CHECKLIST.md` | IRB / de-ID checklist |
 | `docs/JUL12_RESULTS_INTERPRETATION.md` | Discovery stratified / lead-time / H2H reading |
 | `docs/CLINICAL_COPILOT_DRAFT.md` | Copilot inputs/displays + research-use limits |
 | `tests/test_leadtime_detector.py` | Unit tests for pure detector/lead-time functions |
 | `tests/test_far_and_short_windows.py` | FAR / short-window helper tests |
+| `tests/test_phase2_far_artifacts.py` | Phase 2 FAR artifact honesty tests |
+| `tests/test_phase2_planning_artifacts.py` | Phase 2 planning / Tier A structural tests |
 
 ---
 
@@ -124,20 +133,26 @@ Key tables: `data/sddb_full_inventory.csv`, `results/cctp_cohort_stratified.csv`
 `results/leadtime_per_record.csv`, `results/ews_head2head.csv`,
 `figures/publication/`.
 
-### External Validation Phase 1 (frozen params; no retune)
+### External Validation Phase 1 + Phase 2 public interim (frozen params; no retune)
 
-Cleaned external RR under `data/rr_external/` is included. Raw VFDB/CU `.dat`
+Cleaned external RR under `data/rr_external/` is included. Raw VFDB/CU/NSRDB `.dat`
 waveforms are **not** in the repo (re-download from PhysioNet if re-running XQRS).
 
 ```bash
-# Re-run analysis on included cleaned RR (no PhysioNet download needed)
+# Phase 1: VFDB sensitivity + NSRDB n=6 FAR baseline
 python3 code/run_external_validation_phase1.py
-python3 -m pytest tests/test_leadtime_detector.py tests/test_far_and_short_windows.py -q
+
+# Phase 2: full NSRDB n=18 interim FAR (same frozen rule)
+python3 code/run_external_validation_phase2_far.py
+
+python3 -m pytest tests/test_leadtime_detector.py tests/test_far_and_short_windows.py \
+  tests/test_phase2_far_artifacts.py tests/test_phase2_planning_artifacts.py -q
 ```
 
-Outputs: `results/external_phase1_*.{csv,json}`, report
-`docs/EXTERNAL_VALIDATION_PHASE1_REPORT.md`. **No clinical/deployability claim**
-(NSRDB FAR ≫ clinical tolerance under the frozen abs-*z* rule).
+Outputs: `results/external_phase1_*.{csv,json}`, `results/external_phase2_*.{csv,json}`,
+reports under `docs/EXTERNAL_VALIDATION_PHASE*.md`. **No clinical/deployability claim.**
+Full NSRDB FAR remains high (~33.7 / ~32.3 per 24 h for τ_s / excess3) under
+**device mismatch**; S5 is **not** claimed.
 
 ### Single-record examples
 
@@ -189,14 +204,16 @@ If you use this code or derived results, please cite the manuscript and the Syst
   author    = {Padilla-Villanueva, Johel},
   title     = {{CCTP}/{SDDB}: Systemic Tau and ordinal {RECD} before spontaneous {VF}},
   year      = {2026},
-  version   = {v1.0.1},
+  version   = {v1.2.0},
   publisher = {Zenodo},
-  doi       = {10.5281/zenodo.21270699},
+  doi       = {10.5281/zenodo.21270698},
   url       = {https://github.com/johelpadilla/cctp-sddb-systemic-tau}
 }
 ```
 
-**DOIs:** version [10.5281/zenodo.21270699](https://doi.org/10.5281/zenodo.21270699) · concept [10.5281/zenodo.21270698](https://doi.org/10.5281/zenodo.21270698)
+**DOIs:** concept [10.5281/zenodo.21270698](https://doi.org/10.5281/zenodo.21270698)
+(all versions) · prior v1.1.0 [10.5281/zenodo.21326738](https://doi.org/10.5281/zenodo.21326738)
+· v1.2.0 version DOI appears after Zenodo archives the release.
 
 Also cite PhysioNet SDDB ([Goldberger et al., 2000](https://doi.org/10.1161/01.CIR.101.23.e215); [Greenwald, 1986](https://dspace.mit.edu/handle/1721.1/28139)).
 
