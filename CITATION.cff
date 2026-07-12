@@ -4,11 +4,14 @@ type: software
 title: "CCTP/SDDB: Systemic Tau and ordinal RECD before spontaneous ventricular fibrillation"
 version: "1.1.0"
 date-released: "2026-07-12"
-doi: "10.5281/zenodo.21270698"
+doi: "10.5281/zenodo.21326738"
 identifiers:
   - type: doi
+    value: "10.5281/zenodo.21326738"
+    description: "This version (v1.1.0)"
+  - type: doi
     value: "10.5281/zenodo.21270698"
-    description: "Concept DOI (all versions; version DOI minted by Zenodo on GitHub release)"
+    description: "Concept DOI (all versions)"
   - type: url
     value: "https://github.com/johelpadilla/cctp-sddb-systemic-tau"
     description: "GitHub repository"
@@ -35,7 +38,7 @@ keywords:
   - NSRDB
 license: MIT
 repository-code: "https://github.com/johelpadilla/cctp-sddb-systemic-tau"
-url: "https://doi.org/10.5281/zenodo.21270698"
+url: "https://doi.org/10.5281/zenodo.21326738"
 contact:
   - family-names: "Padilla-Villanueva"
     given-names: "Johel"

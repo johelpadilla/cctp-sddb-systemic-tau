@@ -1,6 +1,6 @@
 # CCTP / SDDB: Systemic Tau and ordinal RECD before spontaneous VF
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21270699.svg)](https://doi.org/10.5281/zenodo.21270699)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21326738.svg)](https://doi.org/10.5281/zenodo.21326738)
 
 **Analysis code and companion data for the manuscript**
 
