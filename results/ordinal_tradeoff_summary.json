@@ -1,0 +1,661 @@
+{
+  "generated_at": "2026-07-13T17:54:41.456235+00:00",
+  "phase": "ordinal_sensitivity_specificity_tradeoff",
+  "exploratory_only": true,
+  "clinical_claim": false,
+  "superiority_claim": false,
+  "s5_claim": false,
+  "fusion": false,
+  "primary_arms": [
+    "opc_L50",
+    "sdd",
+    "absz_tau_s"
+  ],
+  "excluded_from_primary": {
+    "opc_L8": "K/L saturation with joint K=36; not a usable specificity probe"
+  },
+  "inputs": {
+    "exploratory_summary": "results/ordinal_exploratory_summary.json",
+    "far_summary": "results/ordinal_nsrdb_far_summary.json",
+    "far_per_record": "results/ordinal_nsrdb_far_per_record.csv",
+    "comparison_csv": "results/ordinal_opc_sdd_absz_comparison.csv",
+    "bakeoff_doc": "docs/ORDINAL_EXPLORATORY_BAKEOFF.md",
+    "far_doc": "docs/ORDINAL_NSRDB_FAR_COMPARISON.md"
+  },
+  "methodology": {
+    "join_only": true,
+    "reprocessed_wfdb": false,
+    "sensitivity_source": "ordinal_exploratory_summary.json (SDDB+VFDB bake-off)",
+    "far_source": "ordinal_nsrdb_far_summary.json (NSRDB n=18, refractory 0.5h)",
+    "far_formula": "total_episodes / total_search_hours * 24",
+    "device_mismatch": true,
+    "device_mismatch_note": "NSRDB is rhythm-healthy Holter ECG \u2014 NOT device-matched to VFDB/CU telemetry.",
+    "balance_metrics_note": "sens_per_far_unit, specificity_proxy, geometric_balance, youden_like are exploratory ranking aids only \u2014 not clinical decision metrics."
+  },
+  "tradeoff_table": [
+    {
+      "detector": "opc_L50",
+      "detector_display": "OPC L=50",
+      "primary_arm": true,
+      "fusion": false,
+      "sens_sddb": 0.5454545454545454,
+      "n_sddb": 11,
+      "n_detected_sddb": 6,
+      "median_lead_h_sddb": 4.848495551215277,
+      "sens_vfdb": 0.36363636363636365,
+      "n_vfdb": 22,
+      "n_detected_vfdb": 8,
+      "median_lead_h_vfdb": 0.04930889659457738,
+      "sens_all_events": 0.42424242424242425,
+      "n_all_events": 33,
+      "n_detected_all_events": 14,
+      "median_lead_h_all_events": 0.28432387881808807,
+      "far_per_24h": 3.7333769938233505,
+      "total_control_episodes": 28.0,
+      "total_search_hours": 179.9978949652778,
+      "n_controls": 18,
+      "fraction_controls_alarmed": 0.3888888888888889,
+      "median_far_per_record": 0.0,
+      "mean_far_per_record": 3.7333628476296576,
+      "min_far_per_record": 0.0,
+      "max_far_per_record": 16.80003281256409,
+      "sens_per_far_unit": 0.11363503470030163,
+      "far_per_sens_unit": 8.800102914012184,
+      "specificity_proxy_1_over_1_plus_far24": 0.865383253014776,
+      "geometric_balance_sens_x_spec_proxy": 0.6059144239558782,
+      "youden_like_exploratory": 0.28962567725720034,
+      "sens_sddb_minus_vfdb_gap": 0.18181818181818177
+    },
+    {
+      "detector": "sdd",
+      "detector_display": "SDD (TV)",
+      "primary_arm": true,
+      "fusion": false,
+      "sens_sddb": 1.0,
+      "n_sddb": 11,
+      "n_detected_sddb": 11,
+      "median_lead_h_sddb": 6.964224175347221,
+      "sens_vfdb": 0.9545454545454546,
+      "n_vfdb": 22,
+      "n_detected_vfdb": 21,
+      "median_lead_h_vfdb": 0.14148554484049478,
+      "sens_all_events": 0.9696969696969697,
+      "n_all_events": 33,
+      "n_detected_all_events": 32,
+      "median_lead_h_all_events": 0.23744388580322262,
+      "far_per_24h": 46.26720774488224,
+      "total_control_episodes": 347.0,
+      "total_search_hours": 179.9978949652778,
+      "n_controls": 18,
+      "fraction_controls_alarmed": 1.0,
+      "median_far_per_record": 45.60091043486308,
+      "mean_far_per_record": 46.267205651593684,
+      "min_far_per_record": 45.599999999999994,
+      "max_far_per_record": 48.000812513753495,
+      "sens_per_far_unit": 0.020958623114753036,
+      "far_per_sens_unit": 47.71305798690981,
+      "specificity_proxy_1_over_1_plus_far24": 0.34155334714788044,
+      "geometric_balance_sens_x_spec_proxy": 0.5755026027040684,
+      "youden_like_exploratory": 0.31125031684485016,
+      "sens_sddb_minus_vfdb_gap": 0.045454545454545414
+    },
+    {
+      "detector": "absz_tau_s",
+      "detector_display": "abs-z \u03c4_s (frozen)",
+      "primary_arm": true,
+      "fusion": false,
+      "sens_sddb": 1.0,
+      "n_sddb": 11,
+      "n_detected_sddb": 11,
+      "median_lead_h_sddb": 5.889453667534722,
+      "sens_vfdb": 0.8636363636363636,
+      "n_vfdb": 22,
+      "n_detected_vfdb": 19,
+      "median_lead_h_vfdb": 0.09989332411024304,
+      "sens_all_events": 0.9090909090909091,
+      "n_all_events": 33,
+      "n_detected_all_events": 30,
+      "median_lead_h_all_events": 0.22606776767306858,
+      "far_per_24h": 33.7337278370467,
+      "total_control_episodes": 253.0,
+      "total_search_hours": 179.9978949652778,
+      "n_controls": 18,
+      "fraction_controls_alarmed": 1.0,
+      "median_far_per_record": 33.600466675555154,
+      "mean_far_per_record": 33.73371788851651,
+      "min_far_per_record": 19.200370840495832,
+      "max_far_per_record": 45.60057396555773,
+      "sens_per_far_unit": 0.026949020087028056,
+      "far_per_sens_unit": 37.107100620751375,
+      "specificity_proxy_1_over_1_plus_far24": 0.4157015474167879,
+      "geometric_balance_sens_x_spec_proxy": 0.6147442538581596,
+      "youden_like_exploratory": 0.32479245650769695,
+      "sens_sddb_minus_vfdb_gap": 0.13636363636363635
+    }
+  ],
+  "cohort_summary": [
+    {
+      "detector": "opc_L50",
+      "detector_display": "OPC L=50",
+      "cohort": "SDDB",
+      "role": "events_sensitivity",
+      "n_records": 11,
+      "n_detected_or_episodes": 6,
+      "sensitivity": 0.5454545454545454,
+      "far_per_24h": null,
+      "fraction_alarmed": null,
+      "median_lead_h": 4.848495551215277,
+      "note": "Holter pre-VF event sensitivity (exploratory)"
+    },
+    {
+      "detector": "opc_L50",
+      "detector_display": "OPC L=50",
+      "cohort": "VFDB",
+      "role": "events_sensitivity",
+      "n_records": 22,
+      "n_detected_or_episodes": 8,
+      "sensitivity": 0.36363636363636365,
+      "far_per_24h": null,
+      "fraction_alarmed": null,
+      "median_lead_h": 0.04930889659457738,
+      "note": "Telemetry pre-VF event sensitivity (exploratory)"
+    },
+    {
+      "detector": "opc_L50",
+      "detector_display": "OPC L=50",
+      "cohort": "all_events",
+      "role": "events_sensitivity",
+      "n_records": 33,
+      "n_detected_or_episodes": 14,
+      "sensitivity": 0.42424242424242425,
+      "far_per_24h": null,
+      "fraction_alarmed": null,
+      "median_lead_h": 0.28432387881808807,
+      "note": "SDDB+VFDB pooled event sensitivity"
+    },
+    {
+      "detector": "opc_L50",
+      "detector_display": "OPC L=50",
+      "cohort": "NSRDB",
+      "role": "controls_far",
+      "n_records": 18,
+      "n_detected_or_episodes": 28,
+      "sensitivity": null,
+      "far_per_24h": 3.7333769938233505,
+      "fraction_alarmed": 0.3888888888888889,
+      "median_lead_h": null,
+      "note": "Healthy Holter FAR; not device-matched; not classical specificity"
+    },
+    {
+      "detector": "sdd",
+      "detector_display": "SDD (TV)",
+      "cohort": "SDDB",
+      "role": "events_sensitivity",
+      "n_records": 11,
+      "n_detected_or_episodes": 11,
+      "sensitivity": 1.0,
+      "far_per_24h": null,
+      "fraction_alarmed": null,
+      "median_lead_h": 6.964224175347221,
+      "note": "Holter pre-VF event sensitivity (exploratory)"
+    },
+    {
+      "detector": "sdd",
+      "detector_display": "SDD (TV)",
+      "cohort": "VFDB",
+      "role": "events_sensitivity",
+      "n_records": 22,
+      "n_detected_or_episodes": 21,
+      "sensitivity": 0.9545454545454546,
+      "far_per_24h": null,
+      "fraction_alarmed": null,
+      "median_lead_h": 0.14148554484049478,
+      "note": "Telemetry pre-VF event sensitivity (exploratory)"
+    },
+    {
+      "detector": "sdd",
+      "detector_display": "SDD (TV)",
+      "cohort": "all_events",
+      "role": "events_sensitivity",
+      "n_records": 33,
+      "n_detected_or_episodes": 32,
+      "sensitivity": 0.9696969696969697,
+      "far_per_24h": null,
+      "fraction_alarmed": null,
+      "median_lead_h": 0.23744388580322262,
+      "note": "SDDB+VFDB pooled event sensitivity"
+    },
+    {
+      "detector": "sdd",
+      "detector_display": "SDD (TV)",
+      "cohort": "NSRDB",
+      "role": "controls_far",
+      "n_records": 18,
+      "n_detected_or_episodes": 347,
+      "sensitivity": null,
+      "far_per_24h": 46.26720774488224,
+      "fraction_alarmed": 1.0,
+      "median_lead_h": null,
+      "note": "Healthy Holter FAR; not device-matched; not classical specificity"
+    },
+    {
+      "detector": "absz_tau_s",
+      "detector_display": "abs-z \u03c4_s (frozen)",
+      "cohort": "SDDB",
+      "role": "events_sensitivity",
+      "n_records": 11,
+      "n_detected_or_episodes": 11,
+      "sensitivity": 1.0,
+      "far_per_24h": null,
+      "fraction_alarmed": null,
+      "median_lead_h": 5.889453667534722,
+      "note": "Holter pre-VF event sensitivity (exploratory)"
+    },
+    {
+      "detector": "absz_tau_s",
+      "detector_display": "abs-z \u03c4_s (frozen)",
+      "cohort": "VFDB",
+      "role": "events_sensitivity",
+      "n_records": 22,
+      "n_detected_or_episodes": 19,
+      "sensitivity": 0.8636363636363636,
+      "far_per_24h": null,
+      "fraction_alarmed": null,
+      "median_lead_h": 0.09989332411024304,
+      "note": "Telemetry pre-VF event sensitivity (exploratory)"
+    },
+    {
+      "detector": "absz_tau_s",
+      "detector_display": "abs-z \u03c4_s (frozen)",
+      "cohort": "all_events",
+      "role": "events_sensitivity",
+      "n_records": 33,
+      "n_detected_or_episodes": 30,
+      "sensitivity": 0.9090909090909091,
+      "far_per_24h": null,
+      "fraction_alarmed": null,
+      "median_lead_h": 0.22606776767306858,
+      "note": "SDDB+VFDB pooled event sensitivity"
+    },
+    {
+      "detector": "absz_tau_s",
+      "detector_display": "abs-z \u03c4_s (frozen)",
+      "cohort": "NSRDB",
+      "role": "controls_far",
+      "n_records": 18,
+      "n_detected_or_episodes": 253,
+      "sensitivity": null,
+      "far_per_24h": 33.7337278370467,
+      "fraction_alarmed": 1.0,
+      "median_lead_h": null,
+      "note": "Healthy Holter FAR; not device-matched; not classical specificity"
+    }
+  ],
+  "episode_crosscheck_per_record_vs_pooled": {
+    "opc_L50": {
+      "sum_per_record": 28.0,
+      "pooled_total_episodes": 28.0,
+      "match": true
+    },
+    "sdd": {
+      "sum_per_record": 347.0,
+      "pooled_total_episodes": 347.0,
+      "match": true
+    },
+    "absz_tau_s": {
+      "sum_per_record": 253.0,
+      "pooled_total_episodes": 253.0,
+      "match": true
+    }
+  },
+  "fusion_flags": {
+    "exploratory_fusion": false,
+    "far_fusion": false,
+    "tradeoff_any_fusion": false
+  },
+  "forbidden_claim_scan": {
+    "phrases_checked": [
+      "clinical superiority",
+      "clinically superior",
+      "is clinically superior",
+      "fda ready",
+      "fda-ready",
+      "s5 achieved",
+      "achieves s5",
+      "ready for deployment",
+      "device-matched superiority",
+      "proven superior",
+      "clinically validated for deployment"
+    ],
+    "hits": []
+  },
+  "narrative": {
+    "strengths_weaknesses": {
+      "opc_L50": {
+        "strengths": [
+          "Lowest pooled FAR on NSRDB among the three primary arms under fixed params.",
+          "Majority of NSRDB records have zero OPC episodes (median per-record FAR = 0).",
+          "Collapse+persistence predicate is conceptually aligned with RECD ordinal structure.",
+          "Cleaner basal behavior on SDDB in the bake-off vs saturated L=8."
+        ],
+        "weaknesses": [
+          "Lowest exploratory event sensitivity (SDDB 0.55, VFDB 0.36, all 0.42).",
+          "Misses several Holters that SDD and abs-z detect.",
+          "Still above informal S5 FAR target of \u22642/24h on this non-device-matched set (no S5 claim).",
+          "Sensitive to L vs K alphabet interaction (L=8 is invalid for K=36)."
+        ],
+        "operating_point": "specificity-leaning / selective collapse detector"
+      },
+      "sdd": {
+        "strengths": [
+          "Highest exploratory event sensitivity among the three (SDDB 1.00, VFDB 0.95, all 0.97).",
+          "Detects distributional reorganization (TV) rather than amplitude excursions.",
+          "Matches or slightly exceeds abs-z hit rate on these public event sets."
+        ],
+        "weaknesses": [
+          "Highest pooled FAR on NSRDB (~46.3/24h) \u2014 near refractory-period ceiling on long Holters.",
+          "Fraction of controls alarmed = 1.0 under these fixed params.",
+          "Fixed early basal on ambulatory Holter dynamics is a hard specificity stress test.",
+          "High sensitivity alone is not a usable operating point if control FAR saturates."
+        ],
+        "operating_point": "sensitivity-leaning / distribution-shift detector"
+      },
+      "absz_tau_s": {
+        "strengths": [
+          "Frozen pilot baseline; parameters unchanged from production discovery freeze.",
+          "High exploratory sensitivity (SDDB 1.00, VFDB 0.86, all 0.91).",
+          "Intermediate FAR between OPC L=50 and SDD on NSRDB (~33.7/24h).",
+          "Phase-2 FAR order of magnitude reproduced (sanity anchor)."
+        ],
+        "weaknesses": [
+          "FAR remains high on healthy Holter relative to informal S5 (no S5 claim).",
+          "All NSRDB controls alarmed at least once under z\u22652 sustained \u22653.",
+          "Continuous amplitude z-score is a different predicate than ordinal collapse/divergence.",
+          "Three VFDB misses are in too_short pre-event strata."
+        ],
+        "operating_point": "frozen continuous baseline; intermediate FAR vs high sens"
+      }
+    },
+    "rankings_observational": {
+      "best_specificity_lowest_far": [
+        {
+          "rank": 1,
+          "detector": "opc_L50",
+          "detector_display": "OPC L=50",
+          "value": 3.7333769938233505,
+          "metric": "far_per_24h",
+          "higher_is_better": false
+        },
+        {
+          "rank": 2,
+          "detector": "absz_tau_s",
+          "detector_display": "abs-z \u03c4_s (frozen)",
+          "value": 33.7337278370467,
+          "metric": "far_per_24h",
+          "higher_is_better": false
+        },
+        {
+          "rank": 3,
+          "detector": "sdd",
+          "detector_display": "SDD (TV)",
+          "value": 46.26720774488224,
+          "metric": "far_per_24h",
+          "higher_is_better": false
+        }
+      ],
+      "best_sensitivity_all_events": [
+        {
+          "rank": 1,
+          "detector": "sdd",
+          "detector_display": "SDD (TV)",
+          "value": 0.9696969696969697,
+          "metric": "sens_all_events",
+          "higher_is_better": true
+        },
+        {
+          "rank": 2,
+          "detector": "absz_tau_s",
+          "detector_display": "abs-z \u03c4_s (frozen)",
+          "value": 0.9090909090909091,
+          "metric": "sens_all_events",
+          "higher_is_better": true
+        },
+        {
+          "rank": 3,
+          "detector": "opc_L50",
+          "detector_display": "OPC L=50",
+          "value": 0.42424242424242425,
+          "metric": "sens_all_events",
+          "higher_is_better": true
+        }
+      ],
+      "best_sensitivity_sddb": [
+        {
+          "rank": 1,
+          "detector": "sdd",
+          "detector_display": "SDD (TV)",
+          "value": 1.0,
+          "metric": "sens_sddb",
+          "higher_is_better": true
+        },
+        {
+          "rank": 2,
+          "detector": "absz_tau_s",
+          "detector_display": "abs-z \u03c4_s (frozen)",
+          "value": 1.0,
+          "metric": "sens_sddb",
+          "higher_is_better": true
+        },
+        {
+          "rank": 3,
+          "detector": "opc_L50",
+          "detector_display": "OPC L=50",
+          "value": 0.5454545454545454,
+          "metric": "sens_sddb",
+          "higher_is_better": true
+        }
+      ],
+      "best_sensitivity_vfdb": [
+        {
+          "rank": 1,
+          "detector": "sdd",
+          "detector_display": "SDD (TV)",
+          "value": 0.9545454545454546,
+          "metric": "sens_vfdb",
+          "higher_is_better": true
+        },
+        {
+          "rank": 2,
+          "detector": "absz_tau_s",
+          "detector_display": "abs-z \u03c4_s (frozen)",
+          "value": 0.8636363636363636,
+          "metric": "sens_vfdb",
+          "higher_is_better": true
+        },
+        {
+          "rank": 3,
+          "detector": "opc_L50",
+          "detector_display": "OPC L=50",
+          "value": 0.36363636363636365,
+          "metric": "sens_vfdb",
+          "higher_is_better": true
+        }
+      ],
+      "best_sens_per_far_unit": [
+        {
+          "rank": 1,
+          "detector": "opc_L50",
+          "detector_display": "OPC L=50",
+          "value": 0.11363503470030163,
+          "metric": "sens_per_far_unit",
+          "higher_is_better": true
+        },
+        {
+          "rank": 2,
+          "detector": "absz_tau_s",
+          "detector_display": "abs-z \u03c4_s (frozen)",
+          "value": 0.026949020087028056,
+          "metric": "sens_per_far_unit",
+          "higher_is_better": true
+        },
+        {
+          "rank": 3,
+          "detector": "sdd",
+          "detector_display": "SDD (TV)",
+          "value": 0.020958623114753036,
+          "metric": "sens_per_far_unit",
+          "higher_is_better": true
+        }
+      ],
+      "best_geometric_balance": [
+        {
+          "rank": 1,
+          "detector": "absz_tau_s",
+          "detector_display": "abs-z \u03c4_s (frozen)",
+          "value": 0.6147442538581596,
+          "metric": "geometric_balance_sens_x_spec_proxy",
+          "higher_is_better": true
+        },
+        {
+          "rank": 2,
+          "detector": "opc_L50",
+          "detector_display": "OPC L=50",
+          "value": 0.6059144239558782,
+          "metric": "geometric_balance_sens_x_spec_proxy",
+          "higher_is_better": true
+        },
+        {
+          "rank": 3,
+          "detector": "sdd",
+          "detector_display": "SDD (TV)",
+          "value": 0.5755026027040684,
+          "metric": "geometric_balance_sens_x_spec_proxy",
+          "higher_is_better": true
+        }
+      ],
+      "best_youden_like_exploratory": [
+        {
+          "rank": 1,
+          "detector": "absz_tau_s",
+          "detector_display": "abs-z \u03c4_s (frozen)",
+          "value": 0.32479245650769695,
+          "metric": "youden_like_exploratory",
+          "higher_is_better": true
+        },
+        {
+          "rank": 2,
+          "detector": "sdd",
+          "detector_display": "SDD (TV)",
+          "value": 0.31125031684485016,
+          "metric": "youden_like_exploratory",
+          "higher_is_better": true
+        },
+        {
+          "rank": 3,
+          "detector": "opc_L50",
+          "detector_display": "OPC L=50",
+          "value": 0.28962567725720034,
+          "metric": "youden_like_exploratory",
+          "higher_is_better": true
+        }
+      ],
+      "fewest_control_episodes": [
+        {
+          "rank": 1,
+          "detector": "opc_L50",
+          "detector_display": "OPC L=50",
+          "value": 28.0,
+          "metric": "total_control_episodes",
+          "higher_is_better": false
+        },
+        {
+          "rank": 2,
+          "detector": "absz_tau_s",
+          "detector_display": "abs-z \u03c4_s (frozen)",
+          "value": 253.0,
+          "metric": "total_control_episodes",
+          "higher_is_better": false
+        },
+        {
+          "rank": 3,
+          "detector": "sdd",
+          "detector_display": "SDD (TV)",
+          "value": 347.0,
+          "metric": "total_control_episodes",
+          "higher_is_better": false
+        }
+      ]
+    },
+    "balance_by_objective": {
+      "if_priority_is_lowest_false_alarm_burden": {
+        "preferred_observational": "opc_L50",
+        "rationale": "OPC L=50 pooled FAR 3.733/24h vs abs-z 33.734 and SDD 46.267; accepts substantially lower event hit rate."
+      },
+      "if_priority_is_maximum_event_hit_rate": {
+        "preferred_observational": "sdd",
+        "rationale": "SDD all-events sensitivity 0.970 (32/33) edges abs-z 0.909 (30/33); FAR cost is highest of the three under these fixed params."
+      },
+      "if_priority_is_sens_per_unit_far": {
+        "preferred_observational": "opc_L50",
+        "rationale": "Among fixed-param arms, OPC L=50 yields the highest sens_all / FAR ratio because FAR is ~9\u00d7 lower than abs-z while retaining partial event detection."
+      },
+      "if_priority_is_frozen_baseline_continuity": {
+        "preferred_observational": "absz_tau_s",
+        "rationale": "abs-z remains the only production-frozen continuous baseline; ordinal arms are methodological alternatives, not retunes of production thresholds."
+      },
+      "if_priority_is_balanced_hit_rate_with_intermediate_far": {
+        "preferred_observational": "absz_tau_s",
+        "rationale": "abs-z sits between OPC (selective, low FAR) and SDD (near-ceiling FAR) with high event sensitivity; geometric/Youden-like proxies may still favor OPC because FAR dominates the denominator \u2014 interpret proxies cautiously."
+      }
+    },
+    "executive_summary": "Exploratory trade-off on public PhysioNet cohorts (SDDB n=11, VFDB n=22 events; NSRDB n=18 controls, ~180 search-hours, refractory 0.5 h). Three detectors kept strictly separate with fixed parameters \u2014 no fusion, no production retune, no clinical/S5/FDA claim. OPC L=50 is the most specific arm (FAR\u22483.73/24h, 28 episodes) but detects only 14/33 events (sens\u22480.42). SDD is the most sensitive (sens\u22480.97) with the highest control FAR (\u224846.3/24h, 347 episodes). Frozen abs-z is intermediate on FAR (\u224833.7/24h) with high sensitivity (\u22480.91). Which arm looks 'balanced' depends on the objective: specificity \u2192 OPC L=50; hit rate \u2192 SDD; frozen pilot baseline \u2192 abs-z; sens-per-FAR efficiency \u2192 OPC L=50. NSRDB is not device-matched to VFDB/CU telemetry.",
+    "recommendations": [
+      {
+        "id": "A",
+        "title": "Keep arms separate; do not fuse as primary claim",
+        "detail": "Continue evaluating OPC L=50, SDD, and abs-z independently. Any light fusion (e.g. sequential filter) would be a new experiment with its own multiplicity cost \u2014 not a free upgrade."
+      },
+      {
+        "id": "B",
+        "title": "If pursuing OPC, explore parameter/alphabet alignment \u2014 not abs-z retune",
+        "detail": "L vs K interaction is material (L=8 invalid for K=36). Modest grid on L, \u03b8_D, \u03b8_R on a held-out or bootstrap scheme could move the operating point without claiming clinical optimization. Do not retune production abs-z."
+      },
+      {
+        "id": "C",
+        "title": "If pursuing SDD, redesign basal/control policy before FAR claims",
+        "detail": "Current fixed early basal yields near-ceiling FAR on ambulatory Holters. Sliding basal, longer L_c, higher \u03b8_TV, or \u03b8_S>1 are natural specificity levers \u2014 each requires a pre-registered comparison, not post-hoc cherry-picking."
+      },
+      {
+        "id": "D",
+        "title": "Institutional device-matched controls (Tier A) for true FAR",
+        "detail": "Public NSRDB remains an interim upper-bound flavor only. Phase-2/S5-style specificity still needs partner Holter/telemetry matched to deployment setting."
+      },
+      {
+        "id": "E",
+        "title": "Optional light cascade (exploratory only, if ever tested)",
+        "detail": "A non-primary cascade such as 'SDD candidate \u2192 OPC confirm' or vice versa could be scored on the existing per-record tables without reprocessing RR, but only as a clearly labeled secondary analysis with no fusion claim in the primary manuscript arm."
+      },
+      {
+        "id": "F",
+        "title": "Manuscript framing",
+        "detail": "Present the three operating points as a trade-off surface, not a winner. Emphasize predicate differences (collapse vs distributional TV vs continuous z)."
+      }
+    ],
+    "caveats": [
+      "Exploratory public-data bake-off only; small event n (11+22).",
+      "FAR \u2260 classical 1\u2212specificity; episode rate with 0.5 h refractory on Holter.",
+      "NSRDB not device-matched to VFDB/CU; not institutional ICU telemetry.",
+      "Timebases differ (strided \u03c4_s vs symbol endpoints); FAR definition is shared.",
+      "No threshold optimization / validation-set retune in this join analysis.",
+      "No clinical utility, FDA readiness, or deployability is asserted; S5 (FAR \u2264 2/24h) is not asserted.",
+      "OPC L=8 excluded as primary arm (parameter\u2013alphabet saturation).",
+      "No OPC\u2227SDD fusion scored."
+    ]
+  },
+  "outputs": {
+    "tradeoff_csv": "results/ordinal_sensitivity_specificity_tradeoff.csv",
+    "cohort_csv": "results/ordinal_tradeoff_by_cohort.csv",
+    "summary_json": "results/ordinal_tradeoff_summary.json",
+    "doc": "docs/ORDINAL_SENSITIVITY_SPECIFICITY_TRADEOFF.md"
+  }
+}

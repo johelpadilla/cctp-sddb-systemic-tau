@@ -1,6 +1,6 @@
 # CCTP / SDDB: Systemic Tau and ordinal RECD before spontaneous VF
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21327196.svg)](https://doi.org/10.5281/zenodo.21327196)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21270698.svg)](https://doi.org/10.5281/zenodo.21270698)
 [![GitHub release](https://img.shields.io/github/v/release/johelpadilla/cctp-sddb-systemic-tau)](https://github.com/johelpadilla/cctp-sddb-systemic-tau/releases)
 
 **Analysis code and companion data for the manuscript**
@@ -28,18 +28,19 @@ ORCID: [0000-0002-5797-6931](https://orcid.org/0000-0002-5797-6931)
 
 | Path | Description |
 |------|-------------|
-| `code/` | Full analysis pipeline + Phase-1/Phase-2 external validation |
+| `code/` | Full analysis pipeline + Phase-1/Phase-2 external validation + ordinal detectors |
+| `code/ordinal_detectors/` | Native OPC / SDD detectors + causal cascade merger (exploratory) |
 | `data/rr_*_clean.npz` | Cleaned RR series for the *N* = 10 analytic cohort (+ `rr_44` expansion) |
 | `data/rr_external/` | Cleaned RR for VFDB / CUDB / NSRDB Phase-1 & Phase-2 extracts |
 | `data/sddb/` | PhysioNet headers + beat annotations (`.hea`, `.atr`/`.ari`; no large `.dat`) |
 | `data/vfdb/`, `data/cudb/`, `data/nsrdb/` | External DB headers + annotations (`.dat` omitted; re-download from PhysioNet) |
 | `data/records_inventory.csv` | Record inventory / inclusion notes |
 | `selected_records.txt` | Final *N* = 10 record list |
-| `results/` | Batch, stratified, lead-time, H2H, Phase-1, and Phase-2 FAR tables |
+| `results/` | Batch, stratified, lead-time, H2H, Phase-1/2 FAR, and ordinal trade-off tables |
 | `figures/` | Per-record, batch, and publication figures |
-| `docs/` | External validation plans/reports, Phase 2 Tier A request, Copilot draft |
-| `tests/` | Unit tests for detector / FAR / Phase-2 planning artifacts |
-| `manuscript/` | Manuscript source (Markdown + PDF + bibliography + figures) |
+| `docs/` | External validation plans/reports, ordinal detector notes, Phase 2 Tier A request |
+| `tests/` | Unit tests for detector / FAR / ordinal / Phase-2 planning artifacts |
+| `manuscript/` | Manuscript source (Markdown + PDF + bibliography + figures; §3.11 ordinal) |
 
 ### Analysis scripts (`code/`)
 
@@ -64,6 +65,11 @@ ORCID: [0000-0002-5797-6931](https://orcid.org/0000-0002-5797-6931)
 | `run_external_validation_phase1.py` | Frozen external sensitivity + control FAR (Phase 1) |
 | `download_nsrdb_records.py` | Download NSRDB annotations (Phase 2 full set) |
 | `run_external_validation_phase2_far.py` | Full NSRDB interim FAR under frozen primary rule |
+| `run_ordinal_exploratory_bakeoff.py` | Exploratory OPC/SDD vs abs-z sensitivity (SDDB+VFDB) |
+| `run_ordinal_far_comparison.py` | Comparable NSRDB FAR for OPC / SDD / abs-z (no fusion) |
+| `run_ordinal_tradeoff_analysis.py` | Join-only sensitivity × FAR trade-off |
+| `run_ordinal_cascade_fusion.py` | Causal SDD→OPC cascade (exploratory, low priority) |
+| `run_ordinal_opc_param_explore.py` | Modest OPC L/θ_D/θ_R grid (keep baseline) |
 
 ### Extension docs
 
@@ -75,11 +81,17 @@ ORCID: [0000-0002-5797-6931](https://orcid.org/0000-0002-5797-6931)
 | `docs/EXTERNAL_VALIDATION_PHASE2_PROGRESS.md` | Phase 2 public interim + Tier A status |
 | `docs/PHASE2_INSTITUTIONAL_DATA_REQUEST.md` | Partner-facing Tier A data request |
 | `docs/PHASE2_IRB_DATA_CHECKLIST.md` | IRB / de-ID checklist |
+| `docs/ORDINAL_ALARM_DETECTORS.md` | Formal OPC + SDD definitions (exploratory) |
+| `docs/ORDINAL_SENSITIVITY_SPECIFICITY_TRADEOFF.md` | Sensitivity–FAR trade-off surface |
+| `docs/ORDINAL_NSRDB_FAR_COMPARISON.md` | Control FAR methodology for ordinal arms |
+| `docs/ORDINAL_CASCADE_FUSION.md` | Causal cascade SDD→OPC write-up |
+| `docs/ORDINAL_EXPLORATORY_BAKEOFF.md` | SDDB/VFDB exploratory bake-off |
 | `docs/JUL12_RESULTS_INTERPRETATION.md` | Discovery stratified / lead-time / H2H reading |
 | `docs/CLINICAL_COPILOT_DRAFT.md` | Copilot inputs/displays + research-use limits |
 | `tests/test_leadtime_detector.py` | Unit tests for pure detector/lead-time functions |
 | `tests/test_far_and_short_windows.py` | FAR / short-window helper tests |
 | `tests/test_phase2_far_artifacts.py` | Phase 2 FAR artifact honesty tests |
+| `tests/test_ordinal_*.py` | Ordinal detectors, FAR, cascade, param-explore tests |
 | `tests/test_phase2_planning_artifacts.py` | Phase 2 planning / Tier A structural tests |
 
 ---
@@ -204,15 +216,16 @@ If you use this code or derived results, please cite the manuscript and the Syst
   author    = {Padilla-Villanueva, Johel},
   title     = {{CCTP}/{SDDB}: Systemic Tau and ordinal {RECD} before spontaneous {VF}},
   year      = {2026},
-  version   = {v1.2.0},
+  version   = {v1.3.0},
   publisher = {Zenodo},
-  doi       = {10.5281/zenodo.21327196},
+  doi       = {10.5281/zenodo.21270698},
   url       = {https://github.com/johelpadilla/cctp-sddb-systemic-tau}
 }
 ```
 
-**DOIs:** this version [10.5281/zenodo.21327196](https://doi.org/10.5281/zenodo.21327196)
-· concept [10.5281/zenodo.21270698](https://doi.org/10.5281/zenodo.21270698)
+**DOIs:** concept [10.5281/zenodo.21270698](https://doi.org/10.5281/zenodo.21270698)
+(version DOI for v1.3.0 is pinned after Zenodo mint)
+· prior v1.2.0 [10.5281/zenodo.21327196](https://doi.org/10.5281/zenodo.21327196)
 · prior v1.1.0 [10.5281/zenodo.21326738](https://doi.org/10.5281/zenodo.21326738)
 
 Also cite PhysioNet SDDB ([Goldberger et al., 2000](https://doi.org/10.1161/01.CIR.101.23.e215); [Greenwald, 1986](https://dspace.mit.edu/handle/1721.1/28139)).

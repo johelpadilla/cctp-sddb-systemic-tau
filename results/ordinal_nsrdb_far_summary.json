@@ -1,0 +1,113 @@
+{
+  "generated_at": "2026-07-13T17:46:08.796004+00:00",
+  "phase": "ordinal_nsrdb_far_comparison",
+  "n_npz_found": 18,
+  "n_controls_processed": 18,
+  "control_max_hours": 12.0,
+  "basal_hours": 2.0,
+  "refractory_h": 0.5,
+  "fusion": false,
+  "params": {
+    "opc": {
+      "L": 50,
+      "theta_D": 0.35,
+      "theta_R": 5,
+      "K": 36,
+      "encoding": "joint_bivariate_bandt_pompe_m3"
+    },
+    "sdd": {
+      "L_c": 50,
+      "theta_TV": 0.35,
+      "theta_S": 1,
+      "basal": "fixed_early",
+      "mask_basal": true,
+      "K": 36
+    },
+    "absz": {
+      "z_threshold": 2.0,
+      "min_consecutive": 3,
+      "metric": "tau_s",
+      "W_TAU": 101,
+      "stride": 5,
+      "frozen": true
+    }
+  },
+  "methodology": {
+    "far_formula": "FAR = total_episodes / total_search_hours * 24",
+    "episode_definition_absz": "abs-z >= 2 sustained >= 3 consecutive samples; then refractory 0.5 h (count_alarm_episodes)",
+    "episode_definition_ordinal": "Binary alarm from opc_detect / sdd_detect (persistence already in detector); each True sample outside refractory starts an episode; refractory 0.5 h (count_binary_alarm_episodes)",
+    "basal_window": "Phase-2 style: (0.25, min(basal_hours, 0.25*total_h))",
+    "search_window": "After basal end through end of capped recording",
+    "control_cap_h": 12.0,
+    "device_mismatch": true,
+    "device_mismatch_note": "NSRDB is rhythm-healthy Holter ECG \u2014 NOT device-matched to VFDB/CU telemetry. FAR is an interim public upper-bound estimate only."
+  },
+  "pooled_far": {
+    "opc_L50": {
+      "n_controls": 18.0,
+      "total_episodes": 28.0,
+      "total_search_hours": 179.9978949652778,
+      "far_per_24h": 3.7333769938233505,
+      "fraction_alarmed": 0.3888888888888889,
+      "reason": "ok"
+    },
+    "sdd": {
+      "n_controls": 18.0,
+      "total_episodes": 347.0,
+      "total_search_hours": 179.9978949652778,
+      "far_per_24h": 46.26720774488224,
+      "fraction_alarmed": 1.0,
+      "reason": "ok"
+    },
+    "absz_tau_s": {
+      "n_controls": 18.0,
+      "total_episodes": 253.0,
+      "total_search_hours": 179.9978949652778,
+      "far_per_24h": 33.7337278370467,
+      "fraction_alarmed": 1.0,
+      "reason": "ok"
+    }
+  },
+  "per_record_far_stats": {
+    "opc_L50": {
+      "mean": 3.7333628476296576,
+      "median": 0.0,
+      "min": 0.0,
+      "max": 16.80003281256409,
+      "std": 5.725620919843367,
+      "n": 18.0
+    },
+    "sdd": {
+      "mean": 46.267205651593684,
+      "median": 45.60091043486308,
+      "min": 45.599999999999994,
+      "max": 48.000812513753495,
+      "std": 1.0748880273906007,
+      "n": 18.0
+    },
+    "absz_tau_s": {
+      "mean": 33.73371788851651,
+      "median": 33.600466675555154,
+      "min": 19.200370840495832,
+      "max": 45.60057396555773,
+      "std": 7.041507594554357,
+      "n": 18.0
+    }
+  },
+  "s5_claim": false,
+  "clinical_claim": false,
+  "superiority_claim": false,
+  "qualitative_notes": [
+    "Pooled FAR (alarms/24h): OPC L=50 = 3.733, SDD = 46.267, abs-z \u03c4_s = 33.734 (n=18).",
+    "OPC L=50 shows lower pooled FAR than frozen abs-z on these NSRDB Holters (observational; not a clinical superiority claim).",
+    "SDD shows higher pooled FAR than frozen abs-z (more distribution-shift triggers on healthy Holter dynamics).",
+    "Among ordinal rules, OPC L=50 appears more specific (lower FAR) than SDD under these fixed params \u2014 consistent with bake-off basal cleanliness.",
+    "Timebases differ: abs-z on strided \u03c4_s vs symbol-endpoint times for OPC/SDD; FAR remains comparable by shared definition (episodes/search_h\u00d724), not identical indices.",
+    "S5 (FAR \u2264 2/24h) is NOT claimed. NSRDB is not device-matched ICU/telemetry control."
+  ],
+  "phase2_absz_reference": {
+    "source": "results/external_phase2_far.json",
+    "tau_s_far_per_24h_expected_order": "~33\u201334",
+    "note": "Sanity: abs-z arm here should be same order of magnitude as Phase 2 \u03c4_s FAR."
+  }
+}

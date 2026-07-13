@@ -1,0 +1,283 @@
+{
+  "generated_at": "2026-07-13T18:11:19.799998+00:00",
+  "phase": "ordinal_cascade_sdd_confirm_opc",
+  "exploratory_only": true,
+  "clinical_claim": false,
+  "superiority_claim": false,
+  "s5_claim": false,
+  "fusion": true,
+  "fusion_kind": "cascade_sdd_confirm_opc",
+  "rule": {
+    "description": "SDD is the candidate filter; SDD alarm at t becomes cascade alarm only if OPC L=50 also alarms within closed window [t-W, t+W]. Event evaluation is causal: only OPC with t_opc < event_hr may confirm; decision_time = max(t_SDD, t_OPC_confirm) must be < event_hr (no post-event look-ahead).",
+    "confirm_window_min": 5.0,
+    "confirm_window_h": 0.08333333333333333,
+    "causal": true,
+    "opc_max_hr": "event_hr (strictly before event)",
+    "decision_time": "max(t_SDD, earliest pre-event OPC in \u00b1W)",
+    "window_justification": "\u00b15 min is a local co-occurrence confirm: short VFDB horizons and multi-hour SDDB leads both only need same short-term instability epoch; not a second independent long-horizon detector. Causality forbids post-event OPC from confirming pre-event SDD.",
+    "candidate": "SDD",
+    "confirm": "OPC_L50"
+  },
+  "params": {
+    "opc": {
+      "L": 50,
+      "theta_D": 0.35,
+      "theta_R": 5,
+      "K": 36
+    },
+    "sdd": {
+      "L_c": 50,
+      "theta_TV": 0.35,
+      "theta_S": 1,
+      "basal": "fixed_early",
+      "mask_basal": true,
+      "K": 36
+    },
+    "absz": {
+      "z_threshold": 2.0,
+      "min_consecutive": 3,
+      "metric": "tau_s",
+      "W_TAU": 101,
+      "stride": 5,
+      "frozen": true
+    },
+    "encoding": "joint_bivariate_BP_m3",
+    "singleton_detectors_retuned": false
+  },
+  "methodology": {
+    "sensitivity": "first causal cascade decision in post-basal pre-event search; decision_time = max(t_SDD, t_OPC_pre_event); lead = event_hr - decision_time; OPC with t >= event_hr cannot confirm",
+    "far_formula": "FAR = total_episodes / total_search_hours * 24",
+    "far_cascade_note": "NSRDB controls have no event; cascade FAR uses bidirectional \u00b1W on full control streams (no post-event look-ahead issue).",
+    "refractory_h": 0.5,
+    "control_max_hours": 12.0,
+    "basal_hours": 2.0,
+    "device_mismatch": true,
+    "device_mismatch_note": "NSRDB is rhythm-healthy Holter ECG \u2014 NOT device-matched to VFDB/SDDB. FAR is an interim public upper-bound estimate only."
+  },
+  "n_event_records": 33,
+  "n_sddb": 11,
+  "n_vfdb": 22,
+  "n_nsrdb_controls": 18,
+  "sensitivity": {
+    "cascade": {
+      "sddb": {
+        "n": 11,
+        "n_detected": 6,
+        "sensitivity": 0.5454545454545454,
+        "median_lead_h": 4.848301323784721,
+        "mean_lead_h": 4.82668068214699
+      },
+      "vfdb": {
+        "n": 22,
+        "n_detected": 7,
+        "sensitivity": 0.3181818181818182,
+        "median_lead_h": 0.06494001600477434,
+        "mean_lead_h": 0.10543126848008898
+      },
+      "all_events": {
+        "n": 33,
+        "n_detected": 13,
+        "sensitivity": 0.3939393939393939,
+        "median_lead_h": 0.3277655368381076,
+        "mean_lead_h": 2.284469459403274
+      }
+    },
+    "opc_L50": {
+      "sddb": {
+        "n": 11,
+        "n_detected": 6,
+        "sensitivity": 0.5454545454545454,
+        "median_lead_h": 4.848495551215277,
+        "mean_lead_h": 4.782538565176504
+      },
+      "vfdb": {
+        "n": 22,
+        "n_detected": 8,
+        "sensitivity": 0.36363636363636365,
+        "median_lead_h": 0.04930889659457738,
+        "mean_lead_h": 0.09560972074667613
+      },
+      "all_events": {
+        "n": 33,
+        "n_detected": 14,
+        "sensitivity": 0.42424242424242425,
+        "median_lead_h": 0.28432387881808807,
+        "mean_lead_h": 2.104293511216602
+      }
+    },
+    "sdd": {
+      "sddb": {
+        "n": 11,
+        "n_detected": 11,
+        "sensitivity": 1.0,
+        "median_lead_h": 6.964224175347221,
+        "mean_lead_h": 6.19627895162563
+      },
+      "vfdb": {
+        "n": 22,
+        "n_detected": 21,
+        "sensitivity": 0.9545454545454546,
+        "median_lead_h": 0.14148554484049478,
+        "mean_lead_h": 0.14840089777790047
+      },
+      "all_events": {
+        "n": 33,
+        "n_detected": 32,
+        "sensitivity": 0.9696969696969697,
+        "median_lead_h": 0.23744388580322262,
+        "mean_lead_h": 2.227358978788058
+      }
+    },
+    "absz": {
+      "sddb": {
+        "n": 11,
+        "n_detected": 11,
+        "sensitivity": 1.0,
+        "median_lead_h": 5.889453667534722,
+        "mean_lead_h": 5.747111421835543
+      },
+      "vfdb": {
+        "n": 22,
+        "n_detected": 19,
+        "sensitivity": 0.8636363636363636,
+        "median_lead_h": 0.09989332411024304,
+        "mean_lead_h": 0.1364578916315447
+      },
+      "all_events": {
+        "n": 33,
+        "n_detected": 30,
+        "sensitivity": 0.9090909090909091,
+        "median_lead_h": 0.22606776767306858,
+        "mean_lead_h": 2.1936975193730106
+      }
+    }
+  },
+  "pooled_far": {
+    "cascade": {
+      "n_controls": 18.0,
+      "total_episodes": 29.0,
+      "total_search_hours": 179.9978949652778,
+      "far_per_24h": 3.866711886459899,
+      "fraction_alarmed": 0.3888888888888889,
+      "reason": "ok"
+    },
+    "opc_L50": {
+      "n_controls": 18.0,
+      "total_episodes": 28.0,
+      "total_search_hours": 179.9978949652778,
+      "far_per_24h": 3.7333769938233505,
+      "fraction_alarmed": 0.3888888888888889,
+      "reason": "ok"
+    },
+    "sdd": {
+      "n_controls": 18.0,
+      "total_episodes": 347.0,
+      "total_search_hours": 179.9978949652778,
+      "far_per_24h": 46.26720774488224,
+      "fraction_alarmed": 1.0,
+      "reason": "ok"
+    },
+    "absz": {
+      "n_controls": 18.0,
+      "total_episodes": 253.0,
+      "total_search_hours": 179.9978949652778,
+      "far_per_24h": 33.7337278370467,
+      "fraction_alarmed": 1.0,
+      "reason": "ok"
+    }
+  },
+  "gain_loss": {
+    "all_events": {
+      "n": 33,
+      "vs_opc": {
+        "gained": 0,
+        "lost": 1,
+        "both_on": 13,
+        "both_off": 19
+      },
+      "vs_sdd": {
+        "gained": 0,
+        "lost": 19,
+        "both_on": 13,
+        "both_off": 1
+      },
+      "vs_absz": {
+        "gained": 0,
+        "lost": 17,
+        "both_on": 13,
+        "both_off": 3
+      }
+    },
+    "sddb": {
+      "n": 11,
+      "vs_opc": {
+        "gained": 0,
+        "lost": 0,
+        "both_on": 6,
+        "both_off": 5
+      },
+      "vs_sdd": {
+        "gained": 0,
+        "lost": 5,
+        "both_on": 6,
+        "both_off": 0
+      },
+      "vs_absz": {
+        "gained": 0,
+        "lost": 5,
+        "both_on": 6,
+        "both_off": 0
+      }
+    },
+    "vfdb": {
+      "n": 22,
+      "vs_opc": {
+        "gained": 0,
+        "lost": 1,
+        "both_on": 7,
+        "both_off": 14
+      },
+      "vs_sdd": {
+        "gained": 0,
+        "lost": 14,
+        "both_on": 7,
+        "both_off": 1
+      },
+      "vs_absz": {
+        "gained": 0,
+        "lost": 12,
+        "both_on": 7,
+        "both_off": 3
+      }
+    }
+  },
+  "observations": [
+    "Cascade all-event sensitivity = 0.394 (OPC L=50 0.424, SDD 0.970, abs-z 0.909).",
+    "Cascade pooled NSRDB FAR = 3.867/24h (OPC 3.733, SDD 46.267, abs-z 33.734).",
+    "Cascade FAR \u2264 SDD FAR on pooled NSRDB, as expected under OPC confirmation (confirmation can only drop or keep SDD episodes, never invent SDD-less alarms).",
+    "Events vs SDD: gained 0, lost 19 (lost expected when SDD fires without local OPC confirmation).",
+    "Events vs OPC L=50: gained 0, lost 1 (gains require SDD candidate co-located with OPC; losses when OPC alone was enough).",
+    "Events vs abs-z: gained 0, lost 17.",
+    "Cascade is SDD-first: it cannot detect events that SDD misses; sensitivity ceiling is SDD's sensitivity (minus unconfirmed SDD hits).",
+    "NSRDB is healthy Holter, not device-matched to VFDB/SDDB telemetry \u2014 FAR is an interim public upper-bound estimate only.",
+    "Exploratory only: no clinical claim, no S5 claim, no superiority claim, no production threshold change."
+  ],
+  "recommendation": {
+    "further_exploration_warranted": "low_priority",
+    "text": "Cascade does not improve on OPC L=50 in both sens and FAR under these fixed params; further cascade work is low priority unless a new confirm rule is justified a priori (avoid post-hoc window fishing).",
+    "sens_drop_vs_sdd": 0.5757575757575758,
+    "far_drop_vs_sdd": 42.400495858422346,
+    "better_balance_than_absz_heuristic": false
+  },
+  "limitations": [
+    "Cascade cannot recover events that SDD misses (SDD is hard filter).",
+    "Confirmation may drop true SDD positives when OPC does not co-fire locally pre-event.",
+    "Causal rule: post-event OPC cannot confirm (no look-ahead); sensitivity can drop vs non-causal co-occurrence.",
+    "VFDB short records: \u00b15 min window can miss staggered OPC/SDD peaks.",
+    "NSRDB device mismatch; FAR not ICU/telemetry-matched.",
+    "Timebases: abs-z on strided \u03c4_s vs symbol endpoints for ordinal/cascade.",
+    "Fixed params only; no threshold or window grid search (avoids fishing).",
+    "Exploratory fusion arm \u2014 singleton experiments remain fusion=False."
+  ],
+  "executive_summary": "Light cascade SDD\u2192OPC (\u00b15 min): all-event sens=0.394 (SDDB 0.545, VFDB 0.318); NSRDB FAR=3.867/24h vs OPC 3.733, SDD 46.267, abs-z 33.734. Recommendation: low_priority. Exploratory only \u2014 no clinical claims."
+}

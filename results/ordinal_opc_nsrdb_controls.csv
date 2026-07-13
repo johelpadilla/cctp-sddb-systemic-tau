@@ -1,0 +1,9 @@
+source,record,role,n_symbols,L,theta_D,theta_R,post_basal_alarm_frac,post_basal_alarm_count,post_basal_n
+nsrdb,16265,control,33344,8,0.35,5,1.0,27560,27560
+nsrdb,16272,control,21880,8,0.35,5,1.0,18079,18079
+nsrdb,16273,control,29640,8,0.35,5,1.0,24364,24364
+nsrdb,16420,control,31057,8,0.35,5,1.0,25798,25798
+nsrdb,16483,control,33008,8,0.35,5,1.0,26752,26752
+nsrdb,16539,control,28790,8,0.35,5,1.0,23678,23678
+nsrdb,16773,control,27388,8,0.35,5,1.0,22516,22516
+nsrdb,16786,control,28914,8,0.35,5,1.0,24069,24069

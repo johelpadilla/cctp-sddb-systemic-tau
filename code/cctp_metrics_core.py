@@ -591,6 +591,71 @@ def count_alarm_episodes(
     }
 
 
+def count_binary_alarm_episodes(
+    alarm: np.ndarray,
+    t_hr: np.ndarray,
+    *,
+    search_start_hr: float,
+    search_end_hr: Optional[float] = None,
+    refractory_h: float = 0.5,
+) -> Dict[str, float]:
+    """
+    Count alarm *episodes* on a pre-computed binary alarm series with refractory.
+
+    Same Phase-2 FAR episode definition as the continuous path, but for
+    detectors that already emit a 0/1 alarm stream (e.g. OPC, SDD):
+      - Search window: (search_start_hr, search_end_hr) with exclusive bounds
+        matching count_alarm_episodes (t > t0 and t < t1).
+      - When alarm is True and not in refractory, count one episode and set
+        refractory_until = t_alarm + refractory_h.
+      - Persistence / min-run is assumed already applied inside the binary
+        detector (OPC θ_R, SDD θ_S); this function does not re-apply min_run.
+
+    FAR uses false_alarm_rate: total_episodes / total_search_hours * 24.
+
+    Returns n_episodes, first_alarm_hr, search_hours, alarmed (0/1).
+    """
+    alarm = np.asarray(alarm)
+    t_hr = np.asarray(t_hr, dtype=float)
+    if alarm.shape != t_hr.shape:
+        raise ValueError("alarm and t_hr must have the same shape")
+    t0 = float(search_start_hr)
+    t1 = float(np.nanmax(t_hr)) if search_end_hr is None else float(search_end_hr)
+    search_hours = float(max(0.0, t1 - t0))
+    mask = (t_hr > t0) & (t_hr < t1) & np.isfinite(t_hr)
+    # Treat non-zero as alarm; NaN in alarm → not alarmed
+    a_s = alarm[mask]
+    t_s = t_hr[mask]
+    if len(t_s) == 0:
+        return {
+            "n_episodes": 0.0,
+            "first_alarm_hr": float("nan"),
+            "search_hours": search_hours,
+            "alarmed": 0.0,
+        }
+    n_episodes = 0
+    first_alarm_hr = float("nan")
+    refractory_until = -np.inf
+    for i in range(len(t_s)):
+        if t_s[i] < refractory_until:
+            continue
+        try:
+            is_on = bool(int(a_s[i]) != 0) and np.isfinite(float(a_s[i]))
+        except (TypeError, ValueError):
+            is_on = False
+        if is_on:
+            n_episodes += 1
+            if not np.isfinite(first_alarm_hr):
+                first_alarm_hr = float(t_s[i])
+            refractory_until = float(t_s[i]) + float(refractory_h)
+    return {
+        "n_episodes": float(n_episodes),
+        "first_alarm_hr": first_alarm_hr,
+        "search_hours": search_hours,
+        "alarmed": 1.0 if n_episodes > 0 else 0.0,
+    }
+
+
 def false_alarm_rate(
     control_rows: Sequence[Dict[str, float]],
     *,

@@ -1,0 +1,132 @@
+{
+  "generated_at": "2026-07-13T17:22:47.614550+00:00",
+  "params": {
+    "encoding": "joint_bivariate_BP_m3",
+    "K": 36,
+    "m": 3,
+    "delay": 1,
+    "opc": {
+      "L": 8,
+      "theta_D": 0.35,
+      "theta_R": 5
+    },
+    "opc_scale_companion": {
+      "L": 50,
+      "theta_D": 0.35,
+      "theta_R": 5,
+      "note": "L expanded so min(L,K)/K can exceed theta_D for K=36; not abs-z retune"
+    },
+    "sdd": {
+      "L_c": 50,
+      "theta_TV": 0.35,
+      "theta_S": 1
+    },
+    "absz": {
+      "metric": "tau_s",
+      "z_threshold": 2.0,
+      "min_consecutive": 3
+    },
+    "fusion": false
+  },
+  "opc_default": {
+    "sddb": {
+      "n": 11,
+      "n_detected": 11,
+      "sensitivity": 1.0,
+      "median_lead_h": 6.9998111979166655,
+      "mean_lead_h": 6.241456459122475
+    },
+    "vfdb": {
+      "n": 22,
+      "n_detected": 22,
+      "sensitivity": 1.0,
+      "median_lead_h": 0.17421388838026258,
+      "mean_lead_h": 0.17505075504081422
+    },
+    "all_events": {
+      "n": 33,
+      "n_detected": 33,
+      "sensitivity": 1.0,
+      "median_lead_h": 0.26357887268066404,
+      "mean_lead_h": 2.197185989734701
+    }
+  },
+  "sdd": {
+    "sddb": {
+      "n": 11,
+      "n_detected": 11,
+      "sensitivity": 1.0,
+      "median_lead_h": 6.964224175347221,
+      "mean_lead_h": 6.19627895162563
+    },
+    "vfdb": {
+      "n": 22,
+      "n_detected": 21,
+      "sensitivity": 0.9545454545454546,
+      "median_lead_h": 0.14148554484049478,
+      "mean_lead_h": 0.14840089777790047
+    },
+    "all_events": {
+      "n": 33,
+      "n_detected": 32,
+      "sensitivity": 0.9696969696969697,
+      "median_lead_h": 0.23744388580322262,
+      "mean_lead_h": 2.227358978788058
+    }
+  },
+  "absz_tau_s": {
+    "sddb": {
+      "n": 11,
+      "n_detected": 11,
+      "sensitivity": 1.0,
+      "median_lead_h": 5.889453667534722,
+      "mean_lead_h": 5.747111421835543
+    },
+    "vfdb": {
+      "n": 22,
+      "n_detected": 19,
+      "sensitivity": 0.8636363636363636,
+      "median_lead_h": 0.09989332411024304,
+      "mean_lead_h": 0.1364578916315447
+    },
+    "all_events": {
+      "n": 33,
+      "n_detected": 30,
+      "sensitivity": 0.9090909090909091,
+      "median_lead_h": 0.22606776767306858,
+      "mean_lead_h": 2.1936975193730106
+    }
+  },
+  "clinical_claim": false,
+  "superiority_claim": false,
+  "exploratory_only": true,
+  "opc_L50_companion": {
+    "sddb": {
+      "n": 11,
+      "n_detected": 6,
+      "sensitivity": 0.5454545454545454,
+      "median_lead_h": 4.848495551215277,
+      "mean_lead_h": 4.782538565176504
+    },
+    "vfdb": {
+      "n": 22,
+      "n_detected": 8,
+      "sensitivity": 0.36363636363636365,
+      "median_lead_h": 0.04930889659457738,
+      "mean_lead_h": 0.09560972074667613
+    },
+    "all_events": {
+      "n": 33,
+      "n_detected": 14,
+      "sensitivity": 0.42424242424242425,
+      "median_lead_h": 0.28432387881808807,
+      "mean_lead_h": 2.104293511216602
+    }
+  },
+  "nsrdb_control_flavor": {
+    "n": 8,
+    "opc_mean_post_basal_alarm_frac": 1.0,
+    "sdd_mean_post_basal_alarm_frac": 0.10691542158234203,
+    "note": "fraction of post-basal symbol endpoints alarmed; not FAR/24h"
+  }
+}

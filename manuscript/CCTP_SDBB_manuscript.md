@@ -324,7 +324,7 @@ terminal & 4 & $+0.009$ & $-0.011$ & $-101$ & $-0.013$ \\
 
 Paced records show consistently \textbf{negative} relational deltas for both $\tau_s$ and excess3. AF records show a positive mean $\Delta\tau_s$. Sinus records are mixed (median $\Delta\tau_s\approx 0$). Intermediate events carry larger mean variance rises than terminal ones in this small sample. Terminal mean $\Delta\mathrm{excess3}$ is slightly negative ($n=4$) and should not be over-interpreted as a universal terminal signature. Figure~\ref{fig:strat} summarizes these patterns visually.
 
-![Stratified mean deltas of $\tau_s$, excess3, variance, and AR(1) by substrate and event type ($N=10$).](figures/publication/fig_stratified_deltas.png){width=95%}
+![Stratified mean deltas of $\tau_s$, excess3, variance, and AR(1) by substrate and event type ($N=10$).](figures/publication/fig_stratified_deltas.png){#fig:strat width=95%}
 
 ## 3.7 Lead-time detector performance
 
@@ -412,6 +412,112 @@ Fraction of controls with $\geq 1$ alarm & 1.0 & 1.0 \\
 **Honest reading.** Expanding from 6 to 18 healthy Holters does not materially lower primary FAR. The Phase 1 specificity bottleneck was therefore not a sampling fluke of $n=6$. Two caveats remain explicit: (i) \textbf{device mismatch}---NSRDB is rhythm-healthy ambulatory Holter ECG, not device-matched to VFDB/CU clinical telemetry; (ii) the frozen single-metric abs-$z$ rule still fails any clinical-style FAR tolerance (e.g., FAR $\leq 2$/24 h is not met and is not claimed). Public healthy Holter expansion is therefore closed as the main specificity path; the scientifically next step is quality-first institutional / device-matched non-event controls under the same frozen parameters, not further retuning on public data.
 
 These interim numbers leave the discovery relational message intact: sign-concordant pre-VF reorganization on SDDB and Phase 1 external sensitivity still stand as evidence of what Systemic Tau and RECD can detect before VF. What they do not establish---and what this manuscript does not claim---is clinical specificity or deployability.
+
+## 3.11 Toward native ordinal detectors (exploratory)
+
+\noindent\textit{Placement.} This section is inserted after the Phase~2 public FAR interim (Section~3.10) and before the Discussion, so that the frozen abs-$z$ specificity bottleneck is fully stated before any methodological alternative is introduced. It does not replace Sections~3.7--3.10 as the primary discovery or external-validation narrative.
+
+\noindent\textit{Accompanying visuals (suggested).} A natural companion to this section would be: (i) Table~\ref{tab:ordinal_tradeoff} below (sensitivity vs FAR for the three primary arms); (ii) an optional scatter of all-event sensitivity against pooled NSRDB FAR with one point per detector (OPC, SDD, abs-$z$, cascade); (iii) if space allows, a small cascade head-to-head row or panel next to the trade-off table. No new image assets are required for the claims below; formal definitions and full grids live in the repository technical notes cited at the end of the section.
+
+### Ontological mismatch of the continuous abs-$z$ rule
+
+Systemic Tau and RECD are built on ordinal structure: Bandt--Pompe ranks, discrete relation codes, and hierarchical symbolic levels ($\Phi_1$, $\Phi_2$, $\Phi_3$). That construction is deliberately robust to monotone re-scalings of the raw series. The production lead-time detector used throughout Sections~3.7--3.10, however, is a continuous absolute $z$-score on an already-aggregated scalar trajectory $m(t)$ (typically $\tau_s$ or excess3):
+
+$$
+z(t)=\frac{m(t)-\mu_{\mathrm{basal}}}{\sigma_{\mathrm{basal}}+\varepsilon},\qquad
+A_{\mathrm{abs}\text{-}z}(t)=\mathbf{1}\{\lvert z(t)\rvert \ge 2\}
+$$
+
+with a sustained-run requirement of at least three consecutive alarmed windows. The rule is frozen for discovery and external reproducibility ($\theta_3=0.08$, high-threshold $0.65$, $W_\tau=101$, stride $=5$) and remains the primary detector of this manuscript. Ontologically, it reintroduces dependence on the first two moments of a continuous summary. That second-order continuous layer is not native to the discrete symbol stream that generates ordinal coupling: it can alarm when basal variance is small and $m(t)$ drifts modestly, and it can fail to register pure rank reorganizations that leave amplitude statistics nearly unchanged. The high FAR documented on NSRDB under this frozen rule (Sections~3.9--3.10) is therefore not only an empirical specificity problem; it is consistent with a predicate that measures excursion from basal mean and variance rather than reorganization of ordinal support.
+
+### Motivation for native ordinal alternatives
+
+The natural methodological question is whether alarm predicates that remain entirely inside the discrete ordinal alphabet can serve as \emph{exploratory} alternatives---not as production replacements and not as clinical upgrades. Two independent detectors were formalized for that purpose:
+
+\begin{enumerate}
+\item \textbf{Ordinal Persistence Collapse (OPC):} alarm when the system collapses into a small repertoire of ordinal states and that collapse \emph{persists}.
+\item \textbf{Symbolic Distribution Divergence (SDD):} alarm when the empirical distribution of ordinal symbols diverges from a fixed early basal law.
+\end{enumerate}
+
+Both consume only a joint Bandt--Pompe symbol stream (bivariate proxy, $m=3$, delay $=1$, joint alphabet $K=36$). Neither re-estimates $\mu$ or $\sigma$ of $m(t)$ or of the raw RR series. Options were kept strictly separate until a deliberate secondary fusion experiment (below). Formal definitions, edge cases, and reference implementations are recorded in `docs/ORDINAL_ALARM_DETECTORS.md`.
+
+### Ordinal Persistence Collapse (OPC)
+
+Fix a window length $L$ of consecutive symbols ending at time $t$. Let $\mathrm{supp}(W_t)$ be the set of distinct symbols in that window and define the normalized support diversity
+
+$$
+D_t=\frac{\lvert\mathrm{supp}(W_t)\rvert}{K}\in\Bigl\{\tfrac{1}{K},\ldots,1\Bigr\}.
+$$
+
+A low-diversity indicator $\ell_t=\mathbf{1}\{D_t\le\theta_D\}$ yields a run length $R_t$ equal to the number of consecutive window endpoints ending at $t$ with $\ell=1$. The OPC alarm is the conjunction of collapse and persistence:
+
+$$
+A_{\mathrm{OPC}}(t)=\mathbf{1}\{D_t\le\theta_D\}\;\wedge\;\mathbf{1}\{R_t\ge\theta_R\}.
+$$
+
+Unless otherwise noted, the exploratory companion configuration is $L=50$, $\theta_D=0.35$, $\theta_R=5$, $K=36$ (chosen so that $\min(L,K)/K$ can exceed $\theta_D$ under a joint alphabet of size 36). Conceptually, OPC targets $\Phi_2$-adjacent locking: the system becomes trapped in few ordinal configurations for too long. It is expected to be specificity-leaning: brief distributional wobbles that never collapse the support should not alarm.
+
+### Symbolic Distribution Divergence (SDD)
+
+Let $P_{\mathrm{basal}}$ be the empirical symbol distribution on a fixed early basal segment and $P_t$ the empirical distribution on a current window of length $L_c$. Total variation
+
+$$
+\mathrm{TV}(P_t,P_{\mathrm{basal}})=\tfrac{1}{2}\sum_{s\in\Sigma}\lvert P_t(s)-P_{\mathrm{basal}}(s)\rvert
+$$
+
+measures structural change of the ordinal law without reference to continuous amplitude. The exploratory SDD rule alarms when TV exceeds a threshold for a short sustained run:
+
+$$
+A_{\mathrm{SDD}}(t)=\mathbf{1}\{\mathrm{TV}(P_t,P_{\mathrm{basal}})\ge\theta_{\mathrm{TV}}\}
+$$
+
+with exploratory defaults $L_c=50$, $\theta_{\mathrm{TV}}=0.35$, sustained length $\theta_S=1$, fixed early basal, basal samples masked from the search. SDD is expected to be sensitivity-leaning: any sustained reorganization of symbol frequencies can fire, including reorganizations that keep moderate diversity.
+
+### Exploratory sensitivity--FAR trade-off
+
+Sensitivity was scored as the fraction of pre-event records with at least one post-basal pre-event alarm on SDDB ($n=11$) plus independent VFDB events ($n=22$; 33 events total). FAR used the same Phase~2 control protocol as Section~3.10: NSRDB $n=18$ healthy Holters, early basal, search capped at 12 h per record (about 180 search-hours), refractory episode counting of 0.5 h, with $\mathrm{FAR}=(\mathrm{episodes}/\mathrm{search\ hours})\times 24$. Detectors were not retuned on these sets; abs-$z$ remained frozen. Full methodology and per-cohort tables appear in `docs/ORDINAL_SENSITIVITY_SPECIFICITY_TRADEOFF.md` and `docs/ORDINAL_NSRDB_FAR_COMPARISON.md`.
+
+\begin{table}[H]
+\centering
+\caption{Exploratory sensitivity--FAR trade-off for three strictly separate detectors under fixed parameters. Sensitivity: SDDB+VFDB events ($n=33$). FAR: NSRDB controls ($n=18$, about 180 search-hours, refractory 0.5 h). No clinical claim; not a ranking of superiority.}
+\label{tab:ordinal_tradeoff}
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Detector & Sens SDDB & Sens VFDB & Sens all & FAR / 24 h \\
+\midrule
+OPC ($L=50$) & 0.545 (6/11) & 0.364 (8/22) & 0.424 (14/33) & 3.733 \\
+SDD (TV) & 1.000 (11/11) & 0.955 (21/22) & 0.970 (32/33) & 46.267 \\
+abs-$z$ $\tau_s$ (frozen) & 1.000 (11/11) & 0.864 (19/22) & 0.909 (30/33) & 33.734 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The three arms form a \textbf{trade-off surface}, not a winner. OPC is the most specific under these defaults (pooled FAR $\approx 3.73$/24 h; 28 control episodes; median per-record FAR $=0$) but detects only about 42\% of public pre-event records. SDD is the most sensitive (all-event sensitivity $\approx 0.97$) with the highest control FAR ($\approx 46.3$/24 h; 347 episodes; every control alarmed). Frozen abs-$z$ sits between them on FAR ($\approx 33.7$/24 h; high sensitivity $\approx 0.91$), reproducing the Phase~2 order of magnitude as a sanity anchor. Preference among arms therefore depends on the objective (specificity vs hit rate vs continuity with the frozen primary), not on a global superiority claim. NSRDB remains rhythm-healthy ambulatory Holter, not device-matched to VFDB/CU telemetry---the same caveat as Phase~2.
+
+### Light cascade SDD to OPC (secondary)
+
+As a deliberately secondary experiment, an SDD candidate was confirmed only if OPC ($L=50$) also alarmed within a closed $\pm 5$ min window, with causal confirmation restricted to pre-event OPC (decision time $=\max(t_{\mathrm{SDD}},t_{\mathrm{OPC}})$ before the event). Cascade all-event sensitivity was 0.394 (13/33; SDDB 0.545, VFDB 0.318) with NSRDB FAR $\approx 3.87$/24 h (29 episodes)---essentially OPC-like specificity without recovering SDD's hit rate. Versus OPC alone the cascade gained 0 events and lost 1; versus SDD it gained 0 and lost 19. Because the cascade is SDD-first, it cannot detect events SDD misses, and OPC confirmation drops unconfirmed true SDD positives. Under these fixed parameters the cascade does not improve the joint balance relative to OPC alone; further cascade window-fishing is therefore low priority unless a new confirm rule is justified \emph{a priori}. Details: `docs/ORDINAL_CASCADE_FUSION.md`.
+
+### Modest OPC parameter exploration
+
+A 36-cell grid around the OPC companion---$L\in\{40,50,60,70\}$, $\theta_D\in\{0.30,0.35,0.40\}$, $\theta_R\in\{4,5,6\}$---was scored with the same sensitivity and FAR definitions, without retuning abs-$z$ and without fusion to SDD. No cell increased all-event sensitivity while keeping FAR within an exploratory slack of $\le\max(1.5\times\mathrm{baseline},\ \mathrm{baseline}+2)$. Sensitivity gains appeared only with substantially higher FAR (e.g., looser $\theta_D=0.40$ or shorter $L=40$). Qualitatively, larger $L$ averaged diversity over more symbols and damped brief collapses (lower sens, lower FAR); higher $\theta_D$ loosened the collapse threshold (higher sens, higher FAR); $\theta_R$ had a small marginal effect. The recommendation is therefore \textbf{keep baseline} ($L=50$, $\theta_D=0.35$, $\theta_R=5$). Full grid: `results/ordinal_opc_param_explore_report.md`.
+
+### Honest reading: strengths, limitations, and trade-offs
+
+\textbf{What this section supports.} Native ordinal detectors can be defined rigorously on the same symbol substrate that underlies Systemic Tau / RECD, evaluated side-by-side with the frozen abs-$z$ rule, and summarized as a transparent trade-off surface on public PhysioNet cohorts. OPC illustrates a specificity-leaning collapse+persistence operating point; SDD illustrates a sensitivity-leaning distributional operating point; abs-$z$ remains the frozen continuous baseline. That mapping from predicate to operating region is itself scientifically useful: it shows that the high FAR of Sections~3.9--3.10 is not an inevitable property of ``any detector on $\tau_s$,'' but is tied to a particular continuous decision rule.
+
+\textbf{What this section does not support.} No clinical utility, FDA readiness, deployability, or S5-style FAR $\le 2$/24 h is claimed for OPC, SDD, cascade, or abs-$z$. Event $n$ is small (11+22); NSRDB is not device-matched institutional telemetry; FAR is an episode rate under a refractory protocol, not classical $1-\mathrm{specificity}$; timebases differ (strided continuous $\tau_s$ vs symbol-endpoint ordinal streams) even though the FAR definition is shared. Cascade and parameter grids were exploratory secondary analyses, not nested cross-validated optimization. Production abs-$z$ thresholds remain frozen.
+
+\textbf{Practical implication for the manuscript.} The primary scientific story remains context-dependent relational reorganization before VF (Sections~3.1--3.8) plus honest external FAR under the frozen continuous rule (Sections~3.9--3.10). Section~3.11 is a methodological epilogue: an example of what scale-aligned ordinal alarm design can look like, and of the sensitivity--specificity price each design currently pays on public data. Deeper formalization and full numerical tables live outside the main text in:
+
+\begin{itemize}
+\item \texttt{docs/ORDINAL\_ALARM\_DETECTORS.md} --- formal OPC/SDD definitions;
+\item \texttt{docs/ORDINAL\_SENSITIVITY\_SPECIFICITY\_TRADEOFF.md} --- joint sens$\times$FAR trade-off;
+\item \texttt{docs/ORDINAL\_NSRDB\_FAR\_COMPARISON.md} --- control FAR methodology;
+\item \texttt{docs/ORDINAL\_CASCADE\_FUSION.md} --- causal cascade SDD$\to$OPC;
+\item \texttt{results/ordinal\_opc\_param\_explore\_report.md} --- 36-cell OPC grid and keep-baseline decision.
+\end{itemize}
 
 # 4. Discussion
 

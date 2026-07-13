@@ -1,0 +1,13 @@
+detector,detector_display,cohort,role,n_records,n_detected_or_episodes,sensitivity,far_per_24h,fraction_alarmed,median_lead_h,note
+opc_L50,OPC L=50,SDDB,events_sensitivity,11,6,0.5454545455,,,4.848495551,Holter pre-VF event sensitivity (exploratory)
+opc_L50,OPC L=50,VFDB,events_sensitivity,22,8,0.3636363636,,,0.04930889659,Telemetry pre-VF event sensitivity (exploratory)
+opc_L50,OPC L=50,all_events,events_sensitivity,33,14,0.4242424242,,,0.2843238788,SDDB+VFDB pooled event sensitivity
+opc_L50,OPC L=50,NSRDB,controls_far,18,28,,3.733376994,0.3888888889,,Healthy Holter FAR; not device-matched; not classical specificity
+sdd,SDD (TV),SDDB,events_sensitivity,11,11,1,,,6.964224175,Holter pre-VF event sensitivity (exploratory)
+sdd,SDD (TV),VFDB,events_sensitivity,22,21,0.9545454545,,,0.1414855448,Telemetry pre-VF event sensitivity (exploratory)
+sdd,SDD (TV),all_events,events_sensitivity,33,32,0.9696969697,,,0.2374438858,SDDB+VFDB pooled event sensitivity
+sdd,SDD (TV),NSRDB,controls_far,18,347,,46.26720774,1,,Healthy Holter FAR; not device-matched; not classical specificity
+absz_tau_s,abs-z τ_s (frozen),SDDB,events_sensitivity,11,11,1,,,5.889453668,Holter pre-VF event sensitivity (exploratory)
+absz_tau_s,abs-z τ_s (frozen),VFDB,events_sensitivity,22,19,0.8636363636,,,0.09989332411,Telemetry pre-VF event sensitivity (exploratory)
+absz_tau_s,abs-z τ_s (frozen),all_events,events_sensitivity,33,30,0.9090909091,,,0.2260677677,SDDB+VFDB pooled event sensitivity
+absz_tau_s,abs-z τ_s (frozen),NSRDB,controls_far,18,253,,33.73372784,1,,Healthy Holter FAR; not device-matched; not classical specificity

@@ -1,0 +1,60 @@
+ORDINAL EXPLORATORY BAKE-OFF — DATA INVENTORY
+generated_at: 2026-07-13T17:22:03.491165+00:00
+
+NOTE: Repo stores cleaned RR NPZ, not pre-baked ordinal-symbol NPZ.
+Symbols are derived at runtime: bivariate proxy → Bandt–Pompe m=3,τ=1
+joint code σ = s0*6+s1, K=36.
+
+=== SDDB cleaned RR (analytic + optional) ===
+  OK  rr_30_clean.npz  n_beats=128807  total_h=24.000  vfon_h=7.909
+  OK  rr_31_clean.npz  n_beats=63217  total_h=13.966  vfon_h=13.707
+  OK  rr_32_clean.npz  n_beats=127199  total_h=24.000  vfon_h=16.755
+  OK  rr_35_clean.npz  n_beats=100741  total_h=24.000  vfon_h=24.582
+  OK  rr_36_clean.npz  n_beats=77323  total_h=20.324  vfon_h=18.984
+  OK  rr_38_clean.npz  n_beats=74430  total_h=18.303  vfon_h=8.032
+  OK  rr_45_clean.npz  n_beats=99137  total_h=23.811  vfon_h=18.155
+  OK  rr_47_clean.npz  n_beats=92812  total_h=23.597  vfon_h=6.217
+  OK  rr_50_clean.npz  n_beats=64253  total_h=23.127  vfon_h=11.762
+  OK  rr_51_clean.npz  n_beats=77931  total_h=24.000  vfon_h=22.973
+  OK  rr_44_clean.npz  n_beats=118667  total_h=23.333  vfon_h=19.646
+
+=== VFDB cleaned RR (data/rr_external/vfdb_*_clean.npz) ===
+  count=22
+  OK  vfdb_418_clean.npz  n_beats=4293  total_h=0.583  pre_event_h=0.111  label=VFL
+  OK  vfdb_419_clean.npz  n_beats=3883  total_h=0.583  pre_event_h=0.011  label=VFL
+  OK  vfdb_420_clean.npz  n_beats=2975  total_h=0.583  pre_event_h=0.397  label=VT
+  OK  vfdb_421_clean.npz  n_beats=4417  total_h=0.583  pre_event_h=0.248  label=VT
+  OK  vfdb_422_clean.npz  n_beats=3975  total_h=0.583  pre_event_h=0.370  label=VT
+  OK  vfdb_423_clean.npz  n_beats=2862  total_h=0.486  pre_event_h=0.250  label=VT
+  OK  vfdb_424_clean.npz  n_beats=3896  total_h=0.581  pre_event_h=0.350  label=VFIB
+  OK  vfdb_425_clean.npz  n_beats=2060  total_h=0.583  pre_event_h=0.258  label=VT
+  OK  vfdb_426_clean.npz  n_beats=3703  total_h=0.583  pre_event_h=0.179  label=VF
+  OK  vfdb_427_clean.npz  n_beats=4243  total_h=0.583  pre_event_h=0.180  label=VT
+  OK  vfdb_428_clean.npz  n_beats=3274  total_h=0.583  pre_event_h=0.469  label=VT
+  OK  vfdb_429_clean.npz  n_beats=3611  total_h=0.583  pre_event_h=0.112  label=VT
+  OK  vfdb_430_clean.npz  n_beats=4847  total_h=0.583  pre_event_h=0.058  label=VT
+  OK  vfdb_602_clean.npz  n_beats=2965  total_h=0.583  pre_event_h=0.135  label=VT
+  OK  vfdb_605_clean.npz  n_beats=1883  total_h=0.583  pre_event_h=0.458  label=VT
+  OK  vfdb_607_clean.npz  n_beats=1858  total_h=0.583  pre_event_h=0.037  label=VT
+  OK  vfdb_609_clean.npz  n_beats=2198  total_h=0.583  pre_event_h=0.284  label=VFL
+  OK  vfdb_610_clean.npz  n_beats=2117  total_h=0.583  pre_event_h=0.511  label=VT
+  OK  vfdb_611_clean.npz  n_beats=4123  total_h=0.583  pre_event_h=0.332  label=VT
+  OK  vfdb_612_clean.npz  n_beats=2458  total_h=0.583  pre_event_h=0.474  label=VT
+  OK  vfdb_614_clean.npz  n_beats=3476  total_h=0.583  pre_event_h=0.395  label=VT
+  OK  vfdb_615_clean.npz  n_beats=1588  total_h=0.583  pre_event_h=0.091  label=VT
+
+=== Raw PhysioNet dirs (NOT primary symbol store) ===
+  sddb/  entries=28  (hea/atr/dat annotations)
+  vfdb/  entries=69  (hea/atr/dat annotations)
+
+=== Optional NSRDB controls ===
+  count=18
+  OK  nsrdb_16265_clean.npz
+  OK  nsrdb_16272_clean.npz
+  OK  nsrdb_16273_clean.npz
+  OK  nsrdb_16420_clean.npz
+  OK  nsrdb_16483_clean.npz
+  ... +13 more
+
+=== Pre-baked ordinal symbol NPZ search ===
+  none (expected — symbols derived from RR)
