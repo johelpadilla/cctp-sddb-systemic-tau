@@ -2,16 +2,16 @@ cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 type: software
 title: "CCTP/SDDB: Systemic Tau and ordinal RECD before spontaneous ventricular fibrillation"
-version: "1.3.0"
-date-released: "2026-07-13"
-doi: "10.5281/zenodo.21344730"
+version: "1.4.0"
+date-released: "2026-07-14"
+doi: "10.5281/zenodo.21270698"
 identifiers:
   - type: doi
-    value: "10.5281/zenodo.21344730"
-    description: "This version (v1.3.0)"
-  - type: doi
     value: "10.5281/zenodo.21270698"
-    description: "Concept DOI (all versions)"
+    description: "Concept DOI (all versions; version DOI pinned after Zenodo archive)"
+  - type: doi
+    value: "10.5281/zenodo.21344730"
+    description: "Prior version (v1.3.0)"
   - type: doi
     value: "10.5281/zenodo.21327196"
     description: "Prior version (v1.2.0)"
@@ -30,9 +30,11 @@ abstract: >-
   Analysis code, cleaned RR series, results, and figures for the Holter
   manuscript on Systemic Tau and nested ordinal RECD (excess3) preceding
   spontaneous ventricular fibrillation in PhysioNet SDDB (N=10), External
-  Validation Phase 1/2, and exploratory native ordinal alarm detectors
-  (OPC, SDD; manuscript §3.11) as a sensitivity–FAR trade-off surface
-  versus frozen abs-z. No clinical / S5 / deployability claim.
+  Validation Phase 1/2, exploratory native ordinal detectors (OPC, SDD),
+  surplus-primary I0 / structural arms (closed as FAR-competitive primary),
+  and final detector ranking (abs-z τ_s preferred primary for pre-VF hit
+  rate; OPC specificity companion; I0 not promoted). No clinical / S5 /
+  deployability claim.
 keywords:
   - Systemic Tau
   - RECD
@@ -46,9 +48,11 @@ keywords:
   - ordinal detectors
   - OPC
   - SDD
+  - synergy surplus
+  - OPSP
 license: MIT
 repository-code: "https://github.com/johelpadilla/cctp-sddb-systemic-tau"
-url: "https://doi.org/10.5281/zenodo.21344730"
+url: "https://doi.org/10.5281/zenodo.21270698"
 contact:
   - family-names: "Padilla-Villanueva"
     given-names: "Johel"
@@ -60,7 +64,7 @@ preferred-citation:
       given-names: "Johel"
       orcid: "https://orcid.org/0000-0002-5797-6931"
   title: "CCTP/SDDB: Systemic Tau and ordinal RECD before spontaneous ventricular fibrillation"
-  version: "1.3.0"
+  version: "1.4.0"
   year: 2026
-  doi: "10.5281/zenodo.21344730"
-  url: "https://doi.org/10.5281/zenodo.21344730"
+  doi: "10.5281/zenodo.21270698"
+  url: "https://doi.org/10.5281/zenodo.21270698"

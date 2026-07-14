@@ -1,0 +1,358 @@
+{
+  "generated_at": "2026-07-14T00:33:36.417858+00:00",
+  "phase": "opsp_integrated_holter_eval",
+  "smoke": false,
+  "clinical_claim": false,
+  "params": {
+    "encoding": "bivariate_BandtPompe_m3_factors",
+    "K_joint": 36,
+    "I0": {
+      "name": "I0",
+      "collapse_role": "none",
+      "L": 50,
+      "theta_delta_S": 0.08,
+      "theta_R": 5,
+      "theta_D": 0.35,
+      "confirm_window": 5,
+      "modulate_delta_R": 2,
+      "modulate_delta_S": 0.02
+    },
+    "I-mod": {
+      "name": "I-mod",
+      "collapse_role": "modulate",
+      "L": 50,
+      "theta_delta_S": 0.08,
+      "theta_R": 5,
+      "theta_D": 0.35,
+      "confirm_window": 5,
+      "modulate_delta_R": 2,
+      "modulate_delta_S": 0.02
+    },
+    "I-confirm": {
+      "name": "I-confirm",
+      "collapse_role": "confirm",
+      "L": 50,
+      "theta_delta_S": 0.12,
+      "theta_R": 8,
+      "theta_D": 0.35,
+      "confirm_window": 5,
+      "modulate_delta_R": 2,
+      "modulate_delta_S": 0.02
+    },
+    "OPS-S1": {
+      "name": "OPS-S1",
+      "L": 50,
+      "theta_delta_S": 0.08,
+      "theta_R": 5
+    },
+    "control_max_hours": 12.0,
+    "basal_hours": 2.0,
+    "refractory_h": 0.5
+  },
+  "methodology": {
+    "sensitivity": "First alarm in post-basal pre-event search window (same family as ordinal exploratory bake-off)",
+    "far": "FAR = total_episodes / total_search_hours * 24; episode refractory 0.5 h (count_binary_alarm_episodes); Phase-2 NSRDB control basal/search",
+    "primary_arm": "I0 (collapse_role=none; surplus-persist primary)",
+    "secondary_arms": [
+      "I-mod",
+      "I-confirm"
+    ],
+    "ops_note": "OPS-S1 uses ops_detect with same basal-relative gates as I0; I0 core is ontologically the same surplus-persist path",
+    "proxy_label": "S_t = TV(joint, product margins) is Level-3\u2013consistent proxy, not excess3"
+  },
+  "sensitivity": {
+    "I0": {
+      "sddb": {
+        "n": 11,
+        "n_detected": 11,
+        "sensitivity": 1.0,
+        "median_lead_h": 6.931450195312499,
+        "mean_lead_h": 6.152612871882892
+      },
+      "vfdb": {
+        "n": 22,
+        "n_detected": 15,
+        "sensitivity": 0.6818181818181818,
+        "median_lead_h": 0.18631443447536888,
+        "mean_lead_h": 0.17031170089156542
+      },
+      "all_events": {
+        "n": 33,
+        "n_detected": 26,
+        "sensitivity": 0.7878787878787878,
+        "median_lead_h": 0.2847405497233073,
+        "mean_lead_h": 2.701285273234049
+      }
+    },
+    "I-mod": {
+      "sddb": {
+        "n": 11,
+        "n_detected": 11,
+        "sensitivity": 1.0,
+        "median_lead_h": 6.931450195312499,
+        "mean_lead_h": 6.152612871882892
+      },
+      "vfdb": {
+        "n": 22,
+        "n_detected": 15,
+        "sensitivity": 0.6818181818181818,
+        "median_lead_h": 0.18631443447536888,
+        "mean_lead_h": 0.17046266372115523
+      },
+      "all_events": {
+        "n": 33,
+        "n_detected": 26,
+        "sensitivity": 0.7878787878787878,
+        "median_lead_h": 0.2847405497233073,
+        "mean_lead_h": 2.701372367174197
+      }
+    },
+    "I-confirm": {
+      "sddb": {
+        "n": 11,
+        "n_detected": 6,
+        "sensitivity": 0.5454545454545454,
+        "median_lead_h": 3.4656274414062493,
+        "mean_lead_h": 3.9360092954282404
+      },
+      "vfdb": {
+        "n": 22,
+        "n_detected": 3,
+        "sensitivity": 0.13636363636363635,
+        "median_lead_h": 0.06650556776258681,
+        "mean_lead_h": 0.10747000800238717
+      },
+      "all_events": {
+        "n": 33,
+        "n_detected": 9,
+        "sensitivity": 0.2727272727272727,
+        "median_lead_h": 1.656579861111111,
+        "mean_lead_h": 2.659829532952956
+      }
+    },
+    "OPS-S1": {
+      "sddb": {
+        "n": 11,
+        "n_detected": 11,
+        "sensitivity": 1.0,
+        "median_lead_h": 6.931450195312499,
+        "mean_lead_h": 6.152612871882892
+      },
+      "vfdb": {
+        "n": 22,
+        "n_detected": 15,
+        "sensitivity": 0.6818181818181818,
+        "median_lead_h": 0.18631443447536888,
+        "mean_lead_h": 0.17031170089156542
+      },
+      "all_events": {
+        "n": 33,
+        "n_detected": 26,
+        "sensitivity": 0.7878787878787878,
+        "median_lead_h": 0.2847405497233073,
+        "mean_lead_h": 2.701285273234049
+      }
+    }
+  },
+  "far": {
+    "I0": {
+      "n_controls": 18,
+      "total_episodes": 301.0,
+      "total_search_hours": 179.99789496527777,
+      "far_per_24h": 40.133802683601026,
+      "fraction_alarmed": 1.0,
+      "median_far_per_record": 40.80056224734332,
+      "mean_far_per_record": 40.13381679077432
+    },
+    "I-mod": {
+      "n_controls": 18,
+      "total_episodes": 301.0,
+      "total_search_hours": 179.99789496527777,
+      "far_per_24h": 40.133802683601026,
+      "fraction_alarmed": 1.0,
+      "median_far_per_record": 40.80056224734332,
+      "mean_far_per_record": 40.13381679077432
+    },
+    "I-confirm": {
+      "n_controls": 18,
+      "total_episodes": 13.0,
+      "total_search_hours": 179.99789496527777,
+      "far_per_24h": 1.7333536042751274,
+      "fraction_alarmed": 0.2777777777777778,
+      "median_far_per_record": 0.0,
+      "mean_far_per_record": 1.733357783972671
+    },
+    "OPS-S1": {
+      "n_controls": 18,
+      "total_episodes": 301.0,
+      "total_search_hours": 179.99789496527777,
+      "far_per_24h": 40.133802683601026,
+      "fraction_alarmed": 1.0,
+      "median_far_per_record": 40.80056224734332,
+      "mean_far_per_record": 40.13381679077432
+    }
+  },
+  "baseline_anchors": {
+    "opc_L50": {
+      "sens_sddb": 0.5454545455,
+      "sens_vfdb": 0.3636363636,
+      "sens_all": 0.4242424242,
+      "n_sddb": 11,
+      "n_detected_sddb": 6,
+      "n_vfdb": 22,
+      "n_detected_vfdb": 8,
+      "n_all": 33,
+      "n_detected_all": 14,
+      "far_per_24h": 3.733376994,
+      "total_episodes": 28,
+      "total_search_hours": 179.997895,
+      "n_controls": 18,
+      "source": "results/ordinal_sensitivity_specificity_tradeoff.csv + ordinal_nsrdb_far_summary.json"
+    },
+    "absz_tau_s": {
+      "sens_sddb": 1.0,
+      "sens_vfdb": 0.8636363636,
+      "sens_all": 0.9090909091,
+      "n_sddb": 11,
+      "n_detected_sddb": 11,
+      "n_vfdb": 22,
+      "n_detected_vfdb": 19,
+      "n_all": 33,
+      "n_detected_all": 30,
+      "far_per_24h": 33.73372784,
+      "total_episodes": 253,
+      "total_search_hours": 179.997895,
+      "n_controls": 18,
+      "source": "results/ordinal_exploratory_summary.json + ordinal_nsrdb_far_summary.json"
+    },
+    "sdd": {
+      "sens_sddb": 1.0,
+      "sens_vfdb": 0.9545454545,
+      "sens_all": 0.9696969697,
+      "far_per_24h": 46.26720774,
+      "source": "results/ordinal_sensitivity_specificity_tradeoff.csv"
+    }
+  },
+  "comparison": [
+    {
+      "detector": "I0",
+      "role": "primary",
+      "source": "this_run",
+      "sens_sddb": 1.0,
+      "n_sddb": 11,
+      "n_detected_sddb": 11,
+      "sens_vfdb": 0.6818181818181818,
+      "n_vfdb": 22,
+      "n_detected_vfdb": 15,
+      "sens_all": 0.7878787878787878,
+      "n_all": 33,
+      "n_detected_all": 26,
+      "median_lead_h_all": 0.2847405497233073,
+      "far_per_24h": 40.133802683601026,
+      "total_episodes": 301.0,
+      "total_search_hours": 179.99789496527777,
+      "n_controls": 18,
+      "fraction_controls_alarmed": 1.0
+    },
+    {
+      "detector": "I-mod",
+      "role": "secondary",
+      "source": "this_run",
+      "sens_sddb": 1.0,
+      "n_sddb": 11,
+      "n_detected_sddb": 11,
+      "sens_vfdb": 0.6818181818181818,
+      "n_vfdb": 22,
+      "n_detected_vfdb": 15,
+      "sens_all": 0.7878787878787878,
+      "n_all": 33,
+      "n_detected_all": 26,
+      "median_lead_h_all": 0.2847405497233073,
+      "far_per_24h": 40.133802683601026,
+      "total_episodes": 301.0,
+      "total_search_hours": 179.99789496527777,
+      "n_controls": 18,
+      "fraction_controls_alarmed": 1.0
+    },
+    {
+      "detector": "I-confirm",
+      "role": "secondary",
+      "source": "this_run",
+      "sens_sddb": 0.5454545454545454,
+      "n_sddb": 11,
+      "n_detected_sddb": 6,
+      "sens_vfdb": 0.13636363636363635,
+      "n_vfdb": 22,
+      "n_detected_vfdb": 3,
+      "sens_all": 0.2727272727272727,
+      "n_all": 33,
+      "n_detected_all": 9,
+      "median_lead_h_all": 1.656579861111111,
+      "far_per_24h": 1.7333536042751274,
+      "total_episodes": 13.0,
+      "total_search_hours": 179.99789496527777,
+      "n_controls": 18,
+      "fraction_controls_alarmed": 0.2777777777777778
+    },
+    {
+      "detector": "OPS-S1",
+      "role": "mode_s_twin",
+      "source": "this_run",
+      "sens_sddb": 1.0,
+      "n_sddb": 11,
+      "n_detected_sddb": 11,
+      "sens_vfdb": 0.6818181818181818,
+      "n_vfdb": 22,
+      "n_detected_vfdb": 15,
+      "sens_all": 0.7878787878787878,
+      "n_all": 33,
+      "n_detected_all": 26,
+      "median_lead_h_all": 0.2847405497233073,
+      "far_per_24h": 40.133802683601026,
+      "total_episodes": 301.0,
+      "total_search_hours": 179.99789496527777,
+      "n_controls": 18,
+      "fraction_controls_alarmed": 1.0
+    },
+    {
+      "detector": "opc_L50",
+      "role": "baseline_anchor",
+      "source": "results/ordinal_sensitivity_specificity_tradeoff.csv + ordinal_nsrdb_far_summary.json",
+      "sens_sddb": 0.5454545455,
+      "n_sddb": 11,
+      "n_detected_sddb": 6,
+      "sens_vfdb": 0.3636363636,
+      "n_vfdb": 22,
+      "n_detected_vfdb": 8,
+      "sens_all": 0.4242424242,
+      "n_all": 33,
+      "n_detected_all": 14,
+      "median_lead_h_all": "",
+      "far_per_24h": 3.733376994,
+      "total_episodes": 28,
+      "total_search_hours": 179.997895,
+      "n_controls": 18,
+      "fraction_controls_alarmed": ""
+    },
+    {
+      "detector": "absz_tau_s",
+      "role": "baseline_anchor",
+      "source": "results/ordinal_exploratory_summary.json + ordinal_nsrdb_far_summary.json",
+      "sens_sddb": 1.0,
+      "n_sddb": 11,
+      "n_detected_sddb": 11,
+      "sens_vfdb": 0.8636363636,
+      "n_vfdb": 22,
+      "n_detected_vfdb": 19,
+      "sens_all": 0.9090909091,
+      "n_all": 33,
+      "n_detected_all": 30,
+      "median_lead_h_all": "",
+      "far_per_24h": 33.73372784,
+      "total_episodes": 253,
+      "total_search_hours": 179.997895,
+      "n_controls": 18,
+      "fraction_controls_alarmed": ""
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # CCTP / SDDB: Systemic Tau and ordinal RECD before spontaneous VF
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21344730.svg)](https://doi.org/10.5281/zenodo.21344730)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21270698.svg)](https://doi.org/10.5281/zenodo.21270698)
 [![GitHub release](https://img.shields.io/github/v/release/johelpadilla/cctp-sddb-systemic-tau)](https://github.com/johelpadilla/cctp-sddb-systemic-tau/releases)
 
 **Analysis code and companion data for the manuscript**
@@ -70,6 +70,10 @@ ORCID: [0000-0002-5797-6931](https://orcid.org/0000-0002-5797-6931)
 | `run_ordinal_tradeoff_analysis.py` | Join-only sensitivity × FAR trade-off |
 | `run_ordinal_cascade_fusion.py` | Causal SDD→OPC cascade (exploratory, low priority) |
 | `run_ordinal_opc_param_explore.py` | Modest OPC L/θ_D/θ_R grid (keep baseline) |
+| `run_opsp_integrated_holter_eval.py` | OPSP / I0 Holter sens+FAR (do not promote I0) |
+| `run_i0_surplus_param_grid.py` | Pre-registered I0 θ_ΔS×θ_R grid (0/16 clear advances) |
+| `run_i0_structural_arms.py` | Structural surplus arms R0–R5 (0/6; stop surplus-primary) |
+| `ordinal_detectors/opc_refinements.py` | OPC-G/BR, OPS surplus, OPSP, basal_mode, hop |
 
 ### Extension docs
 
@@ -86,12 +90,19 @@ ORCID: [0000-0002-5797-6931](https://orcid.org/0000-0002-5797-6931)
 | `docs/ORDINAL_NSRDB_FAR_COMPARISON.md` | Control FAR methodology for ordinal arms |
 | `docs/ORDINAL_CASCADE_FUSION.md` | Causal cascade SDD→OPC write-up |
 | `docs/ORDINAL_EXPLORATORY_BAKEOFF.md` | SDDB/VFDB exploratory bake-off |
+| `docs/I0_SURPLUS_PARAM_GRID.md` | I0 θ-grid pre-reg rules + 0/16 result |
+| `docs/I0_STRUCTURAL_ARMS.md` | Structural surplus R0–R5 Holter + stop rule |
+| `docs/FINAL_DETECTOR_RANKING.md` | Final ranking: abs-z primary; OPC companion; I0 not promoted |
+| `docs/INTEGRATED_N2_PERSIST_N3_SURPLUS_DETECTOR.md` | OPSP / I0 design |
+| `docs/OPSP_INTEGRATED_HOLTER_EVAL.md` | I0 Holter eval report |
 | `docs/JUL12_RESULTS_INTERPRETATION.md` | Discovery stratified / lead-time / H2H reading |
 | `docs/CLINICAL_COPILOT_DRAFT.md` | Copilot inputs/displays + research-use limits |
 | `tests/test_leadtime_detector.py` | Unit tests for pure detector/lead-time functions |
 | `tests/test_far_and_short_windows.py` | FAR / short-window helper tests |
 | `tests/test_phase2_far_artifacts.py` | Phase 2 FAR artifact honesty tests |
 | `tests/test_ordinal_*.py` | Ordinal detectors, FAR, cascade, param-explore tests |
+| `tests/test_opc_refinements.py` | OPC refinements / OPS / OPSP unit tests |
+| `tests/test_i0_*.py` | I0 grid + structural arms scorers |
 | `tests/test_phase2_planning_artifacts.py` | Phase 2 planning / Tier A structural tests |
 
 ---
@@ -216,17 +227,18 @@ If you use this code or derived results, please cite the manuscript and the Syst
   author    = {Padilla-Villanueva, Johel},
   title     = {{CCTP}/{SDDB}: Systemic Tau and ordinal {RECD} before spontaneous {VF}},
   year      = {2026},
-  version   = {v1.3.0},
+  version   = {v1.4.0},
   publisher = {Zenodo},
-  doi       = {10.5281/zenodo.21344730},
+  doi       = {10.5281/zenodo.21270698},
   url       = {https://github.com/johelpadilla/cctp-sddb-systemic-tau}
 }
 ```
 
-**DOIs:** this version [10.5281/zenodo.21344730](https://doi.org/10.5281/zenodo.21344730)
-· concept [10.5281/zenodo.21270698](https://doi.org/10.5281/zenodo.21270698)
+**DOIs:** concept (all versions) [10.5281/zenodo.21270698](https://doi.org/10.5281/zenodo.21270698)
+· prior v1.3.0 [10.5281/zenodo.21344730](https://doi.org/10.5281/zenodo.21344730)
 · prior v1.2.0 [10.5281/zenodo.21327196](https://doi.org/10.5281/zenodo.21327196)
 · prior v1.1.0 [10.5281/zenodo.21326738](https://doi.org/10.5281/zenodo.21326738)
+· *v1.4.0 version DOI is pinned after Zenodo auto-archive of this release*
 
 Also cite PhysioNet SDDB ([Goldberger et al., 2000](https://doi.org/10.1161/01.CIR.101.23.e215); [Greenwald, 1986](https://dspace.mit.edu/handle/1721.1/28139)).
 

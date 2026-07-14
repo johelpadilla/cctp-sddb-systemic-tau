@@ -15,6 +15,15 @@ from .cascade_fusion import (
     cascade_first_alarm_index,
     cascade_first_causal_detection,
 )
+from .opc_refinements import (
+    opc_detect_gap_tolerant,
+    opc_detect_basal_relative,
+    ordinal_synergy_surplus,
+    ops_detect,
+    opsp_integrated_detect,
+    joint_symbols_from_factors,
+    compute_surplus_threshold,
+)
 
 __all__ = [
     "opc_detect",
@@ -27,4 +36,11 @@ __all__ = [
     "cascade_sdd_confirm_opc",
     "cascade_first_alarm_index",
     "cascade_first_causal_detection",
+    "opc_detect_gap_tolerant",
+    "opc_detect_basal_relative",
+    "ordinal_synergy_surplus",
+    "ops_detect",
+    "opsp_integrated_detect",
+    "joint_symbols_from_factors",
+    "compute_surplus_threshold",
 ]
