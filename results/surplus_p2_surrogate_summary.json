@@ -1,0 +1,112 @@
+{
+  "exercise": "surplus_p2_surrogate_phase_beta",
+  "timestamp_utc": "2026-07-14T17:09:43.751712+00:00",
+  "smoke": false,
+  "methods": {
+    "proxy": "P2-10",
+    "p2_lag": 10,
+    "m": 3,
+    "delay": 1,
+    "L": 50,
+    "K": 36,
+    "statistic": "TV(P_joint, P1\u2297P2)",
+    "surr_method": "phase",
+    "surr_target": "channel_2_only (lagged |\u0394RR| after z-score in proxy)",
+    "n_surr": 19,
+    "S_ex": "S - median_k(S_surr_k) pointwise",
+    "S_z": "(S - mean_k) / std_k pointwise over surrogates",
+    "high_S": 0.4,
+    "high_Sex": 0.05,
+    "high_Sz": 2.0,
+    "min_episode_len": 5,
+    "merge_gap": 10,
+    "control_max_hours": 12.0,
+    "seed": 20260714,
+    "note": "Diagnostic surplus-over-surrogate on P2-10 only. Not a detector; not I0; production build_bivariate_proxy untouched."
+  },
+  "summary": {
+    "proxy_id": "P2-10",
+    "n_nsrdb": 18,
+    "n_event": 32,
+    "nsrdb_mean_of_mean_S": 0.2685054070847912,
+    "nsrdb_mean_of_p90_S": 0.32499111111111106,
+    "nsrdb_mean_frac_S_ge_0p40": 0.004736226561478608,
+    "nsrdb_mean_episode_rate_S_per_24h": 27.2,
+    "nsrdb_mean_of_mean_S_surr_med": 0.2705497348614156,
+    "nsrdb_mean_of_mean_Sex": -0.0020443277766243333,
+    "nsrdb_mean_of_p90_Sex": 0.054400000000000004,
+    "nsrdb_mean_frac_Sex_ge_high": 0.11720064170478797,
+    "nsrdb_mean_episode_rate_Sex_per_24h": 599.4666666666667,
+    "nsrdb_mean_of_mean_Sz": -0.0880745964785296,
+    "nsrdb_mean_episode_rate_Sz_per_24h": 251.86666666666667,
+    "floor_drop_frac_Sex_vs_S": 1.0076137303856185,
+    "event_mean_of_mean_S_basal": 0.2890721731809637,
+    "event_mean_delta_S_approach_minus_basal": -0.009296790489119685,
+    "event_frac_approach_gt_basal_S": 0.375,
+    "cohens_d_event_basal_vs_nsrdb_S": 0.781795186577757,
+    "event_mean_of_mean_Sex_basal": 0.012641815136087968,
+    "event_mean_delta_Sex_approach_minus_basal": -0.009097287798174657,
+    "event_frac_approach_gt_basal_Sex": 0.34375,
+    "cohens_d_event_basal_vs_nsrdb_Sex": 0.48444441693173124,
+    "diff_event_basal_minus_nsrdb_Sex": 0.0146861429127123,
+    "event_mean_of_mean_Sz_basal": 0.22941581051360022,
+    "event_mean_delta_Sz_approach_minus_basal": -0.21579763359733095,
+    "cohens_d_event_basal_vs_nsrdb_Sz": 0.536257098404709
+  },
+  "screening": {
+    "floor_drop_frac_Sex_vs_S": 1.0076137303856185,
+    "floor_criterion_pass": true,
+    "cohens_d_Sex": 0.48444441693173124,
+    "d_criterion_pass": false,
+    "delta_Sex_approach_minus_basal": -0.009097287798174657,
+    "positive_approach_rise": false,
+    "interesting_screening": false,
+    "criteria": {
+      "floor_drop_ge": 0.2,
+      "min_cohens_d": 0.6,
+      "approach_delta": "mean(approach-basal) > 0 on S^ex",
+      "logic": "floor_ok AND (d_ok OR positive_approach_rise)"
+    }
+  },
+  "comparison_table": [
+    {
+      "metric_family": "raw_S",
+      "nsrdb_mean": 0.2685054070847912,
+      "nsrdb_p90": 0.32499111111111106,
+      "nsrdb_frac_high": 0.004736226561478608,
+      "nsrdb_eps_per_24h": 27.2,
+      "event_basal_mean": 0.2890721731809637,
+      "delta_approach_basal": -0.009296790489119685,
+      "cohens_d_event_vs_nsrdb": 0.781795186577757,
+      "frac_approach_gt_basal": 0.375
+    },
+    {
+      "metric_family": "S_ex",
+      "nsrdb_mean": -0.0020443277766243333,
+      "nsrdb_p90": 0.054400000000000004,
+      "nsrdb_frac_high": 0.11720064170478797,
+      "nsrdb_eps_per_24h": 599.4666666666667,
+      "event_basal_mean": 0.012641815136087968,
+      "delta_approach_basal": -0.009097287798174657,
+      "cohens_d_event_vs_nsrdb": 0.48444441693173124,
+      "frac_approach_gt_basal": 0.34375
+    },
+    {
+      "metric_family": "S_z",
+      "nsrdb_mean": -0.0880745964785296,
+      "nsrdb_p90": NaN,
+      "nsrdb_frac_high": NaN,
+      "nsrdb_eps_per_24h": 251.86666666666667,
+      "event_basal_mean": 0.22941581051360022,
+      "delta_approach_basal": -0.21579763359733095,
+      "cohens_d_event_vs_nsrdb": 0.536257098404709,
+      "frac_approach_gt_basal": NaN
+    }
+  ],
+  "artifacts": {
+    "nsrdb_per_record": "surplus_p2_surrogate_nsrdb_per_record.csv",
+    "event_per_record": "surplus_p2_surrogate_event_per_record.csv",
+    "summary": "surplus_p2_surrogate_summary.csv"
+  },
+  "disclaimer": "Diagnostic only. No clinical claims. Not a detector."
+}

@@ -1,0 +1,185 @@
+{
+  "timestamp_utc": "2026-07-14T02:51:19.540128+00:00",
+  "exercise": "surplus_nsrdb_diagnostic",
+  "not_a_detector": true,
+  "params": {
+    "L": 50,
+    "m": 3,
+    "delay": 1,
+    "k1": 6,
+    "k2": 6,
+    "K_joint": 36,
+    "high_abs": 0.4,
+    "control_max_hours": 12.0,
+    "basal_hours": 2.0,
+    "cov_stride": 25,
+    "min_episode_len": 5,
+    "merge_gap": 10,
+    "definition_S": "TV(P_joint, P1\u2297P2) Bandt-Pompe bivariate m=3"
+  },
+  "nsrdb": {
+    "n_records": 18,
+    "n_skipped": 0,
+    "mean_of_mean_S": 0.37263458096278446,
+    "median_of_mean_S": 0.3729302223662021,
+    "mean_of_p90_S": 0.44065777777777776,
+    "mean_frac_S_ge_0p40": 0.301247715814696,
+    "mean_frac_S_ge_0p50": 0.018311549859722786,
+    "total_episodes": 6441,
+    "mean_episode_rate_per_24h": 858.8099556936181,
+    "mean_of_mean_S_basal": 0.37342105046491875,
+    "mean_of_mean_S_search": 0.3724736162231468,
+    "mean_diversity": 0.56794215421903,
+    "mean_MI_bits": 0.7356935689561127,
+    "mean_rr_cv": 0.06080335668742454
+  },
+  "event_basal": {
+    "n_records": 32,
+    "n_sddb": 11,
+    "n_vfdb": 21,
+    "mean_of_mean_S_basal": 0.4482157274297258,
+    "median_of_mean_S_basal": 0.4379807410441628,
+    "mean_of_p90_S_basal": 0.50532625,
+    "mean_of_mean_S_approach": 0.44327804329533604,
+    "mean_diversity_basal": 0.5424410664892071,
+    "mean_MI_bits_basal": 0.9387645571520367,
+    "mean_rr_cv_basal": 0.13236085470308487
+  },
+  "contrast": {
+    "nsrdb_meanS_minus_event_basal_meanS": -0.07558114646694136,
+    "cohens_d_nsrdb_vs_event_basal": -1.8260559482502057,
+    "nsrdb_basal_meanS_minus_event_basal_meanS": -0.07479467696480707
+  },
+  "top_covariates_pooled": [
+    {
+      "feature": "MI_bits",
+      "n_records": 18,
+      "mean_cohens_d": 6.2154002809741575,
+      "median_cohens_d": 6.279432439910094,
+      "mean_pearson_r": 0.9562855438467222,
+      "mean_of_mean_high": 0.9963978594859886,
+      "mean_of_mean_low": 0.527335918835407,
+      "mean_delta": 0.4690619406505816
+    },
+    {
+      "feature": "NMI",
+      "n_records": 18,
+      "mean_cohens_d": 5.1862696067178655,
+      "median_cohens_d": 5.298871489983418,
+      "mean_pearson_r": 0.9071873453379252,
+      "mean_of_mean_high": 0.4145258990769237,
+      "mean_of_mean_low": 0.23411812317057207,
+      "mean_delta": 0.18040777590635165
+    },
+    {
+      "feature": "diversity",
+      "n_records": 18,
+      "mean_cohens_d": -1.6367815939830228,
+      "median_cohens_d": -1.7133682794875462,
+      "mean_pearson_r": -0.4328593518163289,
+      "mean_of_mean_high": 0.5137254613693324,
+      "mean_of_mean_low": 0.5956222609852662,
+      "mean_delta": -0.08189679961593377
+    },
+    {
+      "feature": "joint_support_frac",
+      "n_records": 18,
+      "mean_cohens_d": -1.6367815939830228,
+      "median_cohens_d": -1.7133682794875462,
+      "mean_pearson_r": -0.4328593518163289,
+      "mean_of_mean_high": 0.5137254613693324,
+      "mean_of_mean_low": 0.5956222609852662,
+      "mean_delta": -0.08189679961593377
+    },
+    {
+      "feature": "n_unique_joint",
+      "n_records": 18,
+      "mean_cohens_d": -1.6367815939830228,
+      "median_cohens_d": -1.713368279487545,
+      "mean_pearson_r": -0.4328593518163289,
+      "mean_of_mean_high": 18.49411660929597,
+      "mean_of_mean_low": 21.44240139546958,
+      "mean_delta": -2.9482847861736126
+    },
+    {
+      "feature": "H_joint",
+      "n_records": 18,
+      "mean_cohens_d": -1.564759227468575,
+      "median_cohens_d": -1.6143488705493825,
+      "mean_pearson_r": -0.43129831955297626,
+      "mean_of_mean_high": 3.9191280476617547,
+      "mean_of_mean_low": 4.174267827855015,
+      "mean_delta": -0.25513978019326045
+    },
+    {
+      "feature": "H_pi1",
+      "n_records": 18,
+      "mean_cohens_d": 1.3404760704632745,
+      "median_cohens_d": 1.313232782801705,
+      "mean_pearson_r": 0.35377519708354693,
+      "mean_of_mean_high": 2.44021734664314,
+      "mean_of_mean_low": 2.2904117512783038,
+      "mean_delta": 0.14980559536483629
+    },
+    {
+      "feature": "rr_ar1",
+      "n_records": 18,
+      "mean_cohens_d": -1.2780347773702245,
+      "median_cohens_d": -1.2628913374385662,
+      "mean_pearson_r": -0.35611858313066336,
+      "mean_of_mean_high": 0.5274376323249176,
+      "mean_of_mean_low": 0.78526613340678,
+      "mean_delta": -0.2578285010818624
+    },
+    {
+      "feature": "top3_joint_frac",
+      "n_records": 18,
+      "mean_cohens_d": 1.0046668005270638,
+      "median_cohens_d": 1.0548664551806333,
+      "mean_pearson_r": 0.3078492734248863,
+      "mean_of_mean_high": 0.3488632022269439,
+      "mean_of_mean_low": 0.2993611927994578,
+      "mean_delta": 0.049502009427486116
+    },
+    {
+      "feature": "rr_cv",
+      "n_records": 18,
+      "mean_cohens_d": -0.6728989310880013,
+      "median_cohens_d": -0.7316581360035219,
+      "mean_pearson_r": -0.17041601369417694,
+      "mean_of_mean_high": 0.05287332998460053,
+      "mean_of_mean_low": 0.06750463965283625,
+      "mean_delta": -0.014631309668235719
+    },
+    {
+      "feature": "H_pi2",
+      "n_records": 18,
+      "mean_cohens_d": 0.6054954004454229,
+      "median_cohens_d": 0.5747265510483163,
+      "mean_pearson_r": 0.18207934654858288,
+      "mean_of_mean_high": 2.4753085605046032,
+      "mean_of_mean_low": 2.4111919954121186,
+      "mean_delta": 0.06411656509248465
+    },
+    {
+      "feature": "rr_std",
+      "n_records": 18,
+      "mean_cohens_d": -0.534162483933227,
+      "median_cohens_d": -0.6074007712098094,
+      "mean_pearson_r": -0.13689727150518663,
+      "mean_of_mean_high": 41.55171984158338,
+      "mean_of_mean_low": 50.24161918794933,
+      "mean_delta": -8.689899346365955
+    }
+  ],
+  "artifacts": {
+    "nsrdb_per_record": "surplus_diag_nsrdb_per_record.csv",
+    "episodes": "surplus_diag_nsrdb_episodes.csv",
+    "high_vs_low": "surplus_diag_nsrdb_high_vs_low.csv",
+    "high_vs_low_pooled": "surplus_diag_nsrdb_high_vs_low_pooled.csv",
+    "event_basal": "surplus_diag_event_basal_per_record.csv",
+    "cohort_comparison": "surplus_diag_cohort_comparison.csv",
+    "summary": "surplus_diag_summary.json"
+  },
+  "smoke": false
+}
