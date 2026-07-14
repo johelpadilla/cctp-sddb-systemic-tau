@@ -1,6 +1,6 @@
 # CCTP / SDDB: Systemic Tau and ordinal RECD before spontaneous VF
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21270698.svg)](https://doi.org/10.5281/zenodo.21270698)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21348295.svg)](https://doi.org/10.5281/zenodo.21348295)
 [![GitHub release](https://img.shields.io/github/v/release/johelpadilla/cctp-sddb-systemic-tau)](https://github.com/johelpadilla/cctp-sddb-systemic-tau/releases)
 
 **Analysis code and companion data for the manuscript**
@@ -229,16 +229,16 @@ If you use this code or derived results, please cite the manuscript and the Syst
   year      = {2026},
   version   = {v1.4.0},
   publisher = {Zenodo},
-  doi       = {10.5281/zenodo.21270698},
+  doi       = {10.5281/zenodo.21348295},
   url       = {https://github.com/johelpadilla/cctp-sddb-systemic-tau}
 }
 ```
 
-**DOIs:** concept (all versions) [10.5281/zenodo.21270698](https://doi.org/10.5281/zenodo.21270698)
+**DOIs:** this version [10.5281/zenodo.21348295](https://doi.org/10.5281/zenodo.21348295)
+· concept [10.5281/zenodo.21270698](https://doi.org/10.5281/zenodo.21270698)
 · prior v1.3.0 [10.5281/zenodo.21344730](https://doi.org/10.5281/zenodo.21344730)
 · prior v1.2.0 [10.5281/zenodo.21327196](https://doi.org/10.5281/zenodo.21327196)
 · prior v1.1.0 [10.5281/zenodo.21326738](https://doi.org/10.5281/zenodo.21326738)
-· *v1.4.0 version DOI is pinned after Zenodo auto-archive of this release*
 
 Also cite PhysioNet SDDB ([Goldberger et al., 2000](https://doi.org/10.1161/01.CIR.101.23.e215); [Greenwald, 1986](https://dspace.mit.edu/handle/1721.1/28139)).
 

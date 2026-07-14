@@ -636,7 +636,7 @@ Natural extensions include (i) quality-first institutional / device-matched non-
 # Data and Code Availability
 
 - \textbf{SDDB:} PhysioNet Sudden Cardiac Death Holter Database, DOI \href{https://doi.org/10.13026/C2W306}{10.13026/C2W306} [@PhysioNetSDDB; @Greenwald1986; @Goldberger2000].
-- \textbf{Analysis code for this study (primary):} full pipeline (RR extraction, Systemic Tau, phase-shuffle surrogates, nested ordinal RECD / excess3, weighted RECD, batch orchestration), cleaned RR series for the $N=10$ cohort, results tables, and figures are publicly available at \url{https://github.com/johelpadilla/cctp-sddb-systemic-tau} and archived on Zenodo (DOI \href{https://doi.org/10.5281/zenodo.21270699}{10.5281/zenodo.21270699}; concept DOI \href{https://doi.org/10.5281/zenodo.21270698}{10.5281/zenodo.21270698}) [@Padilla2026CCTPcode].
+- \textbf{Analysis code for this study (primary):} full pipeline (RR extraction, Systemic Tau, phase-shuffle surrogates, nested ordinal RECD / excess3, weighted RECD, batch orchestration), cleaned RR series for the $N=10$ cohort, results tables, and figures are publicly available at \url{https://github.com/johelpadilla/cctp-sddb-systemic-tau} and archived on Zenodo (this version DOI \href{https://doi.org/10.5281/zenodo.21348295}{10.5281/zenodo.21348295}; concept DOI \href{https://doi.org/10.5281/zenodo.21270698}{10.5281/zenodo.21270698}) [@Padilla2026CCTPcode].
 - \textbf{Systemic Tau core library:} `systemictau` Python package [@Padilla2026software], \url{https://github.com/johelpadilla/systemictau}.
 - \textbf{Theory:} prior Systemic Tau / RECD works and syntheses [@Padilla2025preprints; @Padilla2026synthesis; @Padilla2025chaotic].
 
@@ -664,7 +664,7 @@ This study analyzes exclusively de-identified, publicly available Holter recordi
 # Appendix A. Reproducibility commands
 
 Public repository: \url{https://github.com/johelpadilla/cctp-sddb-systemic-tau}  
-Zenodo archive (v1.0.1): DOI \href{https://doi.org/10.5281/zenodo.21270699}{10.5281/zenodo.21270699}
+Zenodo archive (v1.4.0): DOI \href{https://doi.org/10.5281/zenodo.21348295}{10.5281/zenodo.21348295}
 
 ```bash
 git clone https://github.com/johelpadilla/cctp-sddb-systemic-tau.git

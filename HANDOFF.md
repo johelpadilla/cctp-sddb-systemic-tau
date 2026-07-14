@@ -3,10 +3,11 @@
 **Date**: 2026-07-14  
 **Root**: `/Users/johelpadilla/grok-safe/Investigaciones/Cardiac_CCTP_Pilot/`  
 **GitHub**: https://github.com/johelpadilla/cctp-sddb-systemic-tau  
-**Last shipped release**: **v1.4.0** — final ordinal epilogue package (I0 + structural + ranking)  
+**Last shipped release**: **v1.4.0** — https://github.com/johelpadilla/cctp-sddb-systemic-tau/releases/tag/v1.4.0  
+**Zenodo DOI (v1.4.0)**: https://doi.org/10.5281/zenodo.21348295  
 **Zenodo concept DOI**: https://doi.org/10.5281/zenodo.21270698  
-**Zenodo version DOI (v1.4.0)**: *pinned after archive* (see post-release pin commit)  
 **Prior version DOI (v1.3.0)**: https://doi.org/10.5281/zenodo.21344730  
+**HEAD at ship**: release content `46b097b`; DOI pin commit follows  
 
 **Status snapshot**
 
