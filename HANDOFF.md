@@ -7,7 +7,7 @@
 **Zenodo DOI (v1.4.0)**: https://doi.org/10.5281/zenodo.21348295  
 **Zenodo concept DOI**: https://doi.org/10.5281/zenodo.21270698  
 **Prior version DOI (v1.3.0)**: https://doi.org/10.5281/zenodo.21344730  
-**HEAD at ship**: release content `46b097b`; DOI pin commit follows  
+**HEAD**: `3305452` (DOI pin); release content `46b097b`  
 
 **Status snapshot**
 
