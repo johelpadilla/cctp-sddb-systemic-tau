@@ -7,9 +7,9 @@
 **Zenodo DOI (v1.4.0)**: https://doi.org/10.5281/zenodo.21348295  
 **Zenodo concept DOI**: https://doi.org/10.5281/zenodo.21270698  
 **Prior version DOI (v1.3.0)**: https://doi.org/10.5281/zenodo.21344730  
-**HEAD (local `main`)**: `563f0cf` — archive Surplus/P2/Surrogate diagnostic line (closed; no detector)  
+**HEAD (local `main`)**: tip (ahead of origin; not pushed); archive content `4186024`  
 **origin/main (shipped)**: `6f19efb` (v1.4.0 DOI pin + HANDOFF); release content `46b097b`  
-**Local vs origin:** `main` **ahead 1** (not pushed).  
+**Local vs origin:** `main` **ahead 2** (not pushed).  
 
 **Surplus line:** closed and archived on local `main`. Authoritative close: **`docs/SURPLUS_LINE_CLOSURE.md`**. Not a detector; not I0.
 
@@ -260,7 +260,7 @@ Diagnostic runners remain exploratory (no promotion criteria).
 ## Leave-off (for next agent)
 
 **Shipped:** `origin/main` @ `6f19efb` = **v1.4.0** (abs-z primary; I0/surplus-primary stopped; GitHub + Zenodo).  
-**Local archive:** `563f0cf` on `main` (ahead of origin; not pushed).
+**Local archive content:** `4186024` — Surplus/P2/Surrogate diagnostic line (closed; no detector). Not pushed.
 
 **Clinical claim:** NONE.
 
