@@ -190,14 +190,15 @@ def compute_phi2(
 
 def _joint_entropy_and_marginals(S_window: np.ndarray) -> Tuple[float, float, float]:
     """
-    Calcula H(joint), promedio H(marginal), y proxy de info mutua pairwise promedio
-    sobre una ventana de símbolos.
-    Muy quirúrgico: conteos exactos (N pequeño, m=3 → 6^N factible).
+    H(joint), suma de marginales y proxy Syn.
+
+    Cuenta filas (tuplas conjuntas). Hasta nested-recd 0.2.2, np.unique sobre
+    una lista de tuplas aplanaba los símbolos y Syn no era esta definición.
+    Con N=2, Syn sigue siendo 0.
     """
+    S_window = np.asarray(S_window)
     T, N = S_window.shape
-    # Joint tuples como tuplas hashables
-    joint_tuples = [tuple(row) for row in S_window]
-    unique_j, counts_j = np.unique(joint_tuples, return_counts=True)
+    _, counts_j = np.unique(S_window, axis=0, return_counts=True)
     p_joint = counts_j / counts_j.sum()
     H_joint = -np.sum(p_joint * np.log2(p_joint + 1e-12))
 
@@ -214,8 +215,8 @@ def _joint_entropy_and_marginals(S_window: np.ndarray) -> Tuple[float, float, fl
     pair_mi = []
     for i in range(N):
         for j in range(i + 1, N):
-            joint2 = list(zip(S_window[:, i], S_window[:, j]))
-            _, cj = np.unique(joint2, return_counts=True)
+            pair = S_window[:, [i, j]]
+            _, cj = np.unique(pair, axis=0, return_counts=True)
             pj = cj / cj.sum()
             H2 = -np.sum(pj * np.log2(pj + 1e-12))
 

@@ -14,7 +14,9 @@ ORCID: [0000-0002-5797-6931](https://orcid.org/0000-0002-5797-6931)
 **Companion libraries**
 
 - [`systemictau`](https://github.com/johelpadilla/systemictau) — Systemic Tau core  
-- Nested ordinal RECD levels are vendored in `code/recd_ordinal_levels.py` for exact paper reproducibility
+- Nested ordinal RECD levels are vendored in `code/recd_ordinal_levels.py`.
+
+**Joint counting (25 Sep 2026).** The vendored copy had the nested-recd ≤ 0.2.2 bug: `np.unique` on a list of tuples pools the symbols, so Syn is not the joint-tuple definition when N ≥ 3. This repository calls that function on the bivariate proxy `[z(RR), z(|ΔRR|)]`. For N = 2, Syn is 0 under both countings and excess3 = 0.4·Surp is unchanged. The published v1.4.0 numbers are unaffected. The vendored function now counts joint rows, matching nested-recd 0.2.3 ([10.5281/zenodo.22970079](https://doi.org/10.5281/zenodo.22970079)).
 
 **PhysioNet data**
 
